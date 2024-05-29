@@ -1,4 +1,3 @@
-
 const getQuiz = (name) => {
   const quiz = require(`../../db/quiz/${name}.json`)
   return new Promise((resolve) => {
@@ -6,6 +5,4 @@ const getQuiz = (name) => {
   })
 }
 
-export {
-  getQuiz
-}
+export { getQuiz }

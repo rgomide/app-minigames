@@ -9,7 +9,7 @@ const QuizStartScreen = (props) => {
     const quiz = await getQuiz('quiz01')
 
     quiz.questions.forEach((question) => {
-      question.answers.forEach((answer) => (delete answer.pressed))
+      question.answers.forEach((answer) => delete answer.pressed)
     })
 
     navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz })
