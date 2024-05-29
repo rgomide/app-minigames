@@ -1,0 +1,80 @@
+{
+  "topic": "Capitals",
+  "questions": [
+    {
+      "title": "What is the capital of France?",
+      "answers": [
+        {
+          "id": 1,
+          "answer": "Paris",
+          "correct": true
+        },
+        {
+          "id": 2,
+          "answer": "London",
+          "correct": false
+        },
+        {
+          "id": 3,
+          "answer": "Berlin",
+          "correct": false
+        },
+        {
+          "id": 4,
+          "answer": "Madrid",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "title": "What is the capital of Germany?",
+      "answers": [
+        {
+          "id": 1,
+          "answer": "Rio de Janeiro",
+          "correct": false
+        },
+        {
+          "id": 2,
+          "answer": "Washington DC",
+          "correct": false
+        },
+        {
+          "id": 3,
+          "answer": "Berlin",
+          "correct": true
+        },
+        {
+          "id": 4,
+          "answer": "Moscow",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "title": "What is the capital of Spain?",
+      "answers": [
+        {
+          "id": 1,
+          "answer": "Tokyo",
+          "correct": false
+        },
+        {
+          "id": 2,
+          "answer": "Paris",
+          "correct": false
+        },
+        {
+          "id": 3,
+          "answer": "Peckham",
+          "correct": false
+        },
+        {
+          "id": 4,
+          "answer": "Madrid",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
