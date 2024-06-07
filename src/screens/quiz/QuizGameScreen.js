@@ -1,8 +1,7 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import QuizCard from '../../../components/quiz/QuizCard'
-import { QUIZ_RESULT_SCREEN } from '../../../contants/screens'
-import { useFocusEffect } from '@react-navigation/native'
+import QuizCard from '../../components/quiz/QuizCard'
+import { QUIZ_RESULT_SCREEN } from '../../constants/screens'
 
 const QuizGameScreen = (props) => {
   const {

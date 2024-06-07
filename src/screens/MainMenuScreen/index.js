@@ -1,11 +1,11 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { QUIZ_HOME_SCREEN } from '../../contants/screens'
+import { QUIZ_START_SCREEN } from '../../constants/screens'
 
 const MainMenuScreen = (props) => {
   const navigation = props.navigation
 
   const openQuiz = () => {
-    navigation.navigate(QUIZ_HOME_SCREEN)
+    navigation.navigate(QUIZ_START_SCREEN)
   }
 
   return (

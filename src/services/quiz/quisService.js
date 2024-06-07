@@ -1,7 +1,13 @@
+import quiz01 from '../../db/quiz/quiz01.json'
+
+const quizSummary = {
+  quiz01: quiz01
+}
+
 const getQuiz = (name) => {
-  const quiz = require(`../../db/quiz/${name}.json`)
+  const clonedQuiz = JSON.parse(JSON.stringify(quizSummary[name]))
   return new Promise((resolve) => {
-    resolve(quiz)
+    resolve(clonedQuiz)
   })
 }
 

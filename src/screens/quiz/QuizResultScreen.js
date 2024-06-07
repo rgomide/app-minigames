@@ -1,13 +1,15 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { MAIN_MENU_SCREEN, QUIZ_HOME_SCREEN } from '../../../contants/screens'
+import { MAIN_MENU_SCREEN } from '../../constants/screens'
 
 const QuizResultScreen = (props) => {
   const {
     navigation,
     route: {
-      params: { topic, questions, answers }
+      params: { topic }
     }
   } = props
+
+  console.log(props.route.params)
 
   const navigateToMainMenu = () => {
     navigation.navigate(MAIN_MENU_SCREEN, { key: Math.random().toString() })

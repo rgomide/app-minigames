@@ -1,10 +1,8 @@
 import { Text, View } from 'react-native'
-import CheckButtonGroup from '../../CheckButtonGroup'
+import CheckButtonGroup from '../CheckButtonGroup'
 
 const QuizCard = ({ question, onChange }) => {
   const { title, answers } = question
-
-  console.log('QuizCard', question)
 
   return (
     <View>

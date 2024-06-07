@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import CheckButton from '../CheckButton'
+import CheckButton from './CheckButton'
 import { useState } from 'react'
 
 const CheckButtonGroup = ({ data, titleFieldName, onChange }) => {
