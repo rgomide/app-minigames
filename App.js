@@ -30,7 +30,7 @@ export default function App() {
           <Stack.Screen
             name={QUIZ_RESULT_SCREEN}
             component={QuizResultScreen}
-            options={{ title: 'Quiz' }}
+            options={{ title: 'Quiz', headerLeft: () => <></>}}
           />
         </Stack.Group>
       </Stack.Navigator>
