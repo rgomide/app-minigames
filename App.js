@@ -25,12 +25,12 @@ export default function App() {
           <Stack.Screen
             name={QUIZ_GAME_SCREEN}
             component={QuizGameScreen}
-            options={{ title: 'Quiz' }}
+            options={{ title: 'Quiz', headerLeft: () => <></> }}
           />
           <Stack.Screen
             name={QUIZ_RESULT_SCREEN}
             component={QuizResultScreen}
-            options={{ title: 'Quiz', headerLeft: () => <></>}}
+            options={{ title: 'Quiz', headerLeft: () => <></> }}
           />
         </Stack.Group>
       </Stack.Navigator>

@@ -10,11 +10,12 @@ const QuizResultScreen = (props) => {
     }
   } = props
 
-  console.log(props.route.params)
-
   const totalCorrectAnswers = answers.reduce((acc, answer) => {
     return answer.correct ? acc + 1 : acc
   }, 0)
+
+  const totalCorrectAnswerTitle =
+    totalCorrectAnswers == 1 ? 'resposta correta' : 'respostas corretas'
 
   const navigateToMainMenu = () => {
     navigation.navigate(MAIN_MENU_SCREEN, { key: Math.random().toString() })
@@ -31,7 +32,7 @@ const QuizResultScreen = (props) => {
 
       <View style={styles.viewRow}>
         <Text style={styles.textTotalCorrect}>{totalCorrectAnswers}</Text>
-        <Text style={styles.textTitle}>acertos</Text>
+        <Text style={styles.textTitle}>{totalCorrectAnswerTitle}</Text>
       </View>
 
       <View style={styles.resultView}>
@@ -39,7 +40,7 @@ const QuizResultScreen = (props) => {
           <QuizResultCard key={index} question={question} answer={answers[index]} />
         ))}
       </View>
-      <Button title="Menu Principal" onPress={() => navigateToMainMenu()} />
+      <Button title="Voltar" onPress={() => navigateToMainMenu()} />
     </View>
   )
 }
@@ -62,11 +63,15 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
+    includeFontPadding: false,
+    textAlignVertical: 'center'
   },
   textTotalCorrect: {
     fontWeight: 'bold',
-    fontSize: 25
+    fontSize: 25,
+    includeFontPadding: false,
+    textAlignVertical: 'bottom'
   }
 })
 

@@ -1,8 +1,8 @@
 {
-  "topic": "Capitals",
+  "topic": "Capitais",
   "questions": [
     {
-      "title": "What is the capital of France?",
+      "title": "Qual é a capital da França?",
       "answers": [
         {
           "id": 1,
@@ -11,12 +11,12 @@
         },
         {
           "id": 2,
-          "answer": "London",
+          "answer": "Londres",
           "correct": false
         },
         {
           "id": 3,
-          "answer": "Berlin",
+          "answer": "Berlim",
           "correct": false
         },
         {
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "title": "What is the capital of Germany?",
+      "title": "Qual é a capital da Alemanha?",
       "answers": [
         {
           "id": 1,
@@ -41,22 +41,22 @@
         },
         {
           "id": 3,
-          "answer": "Berlin",
+          "answer": "Berlim",
           "correct": true
         },
         {
           "id": 4,
-          "answer": "Moscow",
+          "answer": "Moscou",
           "correct": false
         }
       ]
     },
     {
-      "title": "What is the capital of Spain?",
+      "title": "Qual é a capital da Espanha?",
       "answers": [
         {
           "id": 1,
-          "answer": "Tokyo",
+          "answer": "Tóquio",
           "correct": false
         },
         {
@@ -66,7 +66,7 @@
         },
         {
           "id": 3,
-          "answer": "Peckham",
+          "answer": "Pequim",
           "correct": false
         },
         {
