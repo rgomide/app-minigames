@@ -8,9 +8,8 @@
 
 ## Executando o projeto
 
-1. Adicione as chaves de conexão com o Supabase no arquivo [supabaseConfig.js](./src/config/supabaseConfig.js).
-2. Execute `npm install`.
-3. Execute `npm run web`.
+1. Execute `npm install`.
+2. Execute `npm run web`.
 
 ## Comandos úteis do github
 
