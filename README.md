@@ -5,6 +5,7 @@
 
 - [Executar o projeto](#executando-o-projeto)
 - [Comandos úteis do github](#comandos-úteis-do-github)
+- [Referências](#referências)
 
 ## Executando o projeto
 
@@ -67,3 +68,6 @@ git checkout -b NOME-DA-NOVA-BRANCH
 ```
 git branch --show-current
 ``` 
+
+## Referências
+- [Gitbash](https://git-scm.com/downloads)
