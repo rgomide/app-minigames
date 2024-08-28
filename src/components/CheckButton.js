@@ -1,14 +1,41 @@
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text } from 'react-native'
+import { Pressable, StyleSheet, Text, View, Image } from 'react-native'
 
-const CheckButton = ({ titleFieldName, pressed, data, onChange }) => {
+const CheckButton = ({ titleFieldName, imagesFieldName, pressed, data, onChange }) => {
+  const images = data[imagesFieldName] || []
+
   const [isPressed, setIsPressed] = useState(pressed)
+  const [imageDimensions, setImageDimensions] = useState({})
 
   const togglePressed = () => {
     const newValue = !isPressed
     setIsPressed(newValue)
 
     onChange(data, newValue)
+  }
+
+  const handleImageLoadedEvent = (image, index) => {
+    Image.getSize(
+      image,
+      (width, height) => {
+        let higherDimension = width > height ? width : height
+        const maxDimension = 260
+
+        if (higherDimension > maxDimension) {
+          const ratio = maxDimension / higherDimension
+          width *= ratio
+          height *= ratio
+        }
+
+        setImageDimensions((prevState) => ({
+          ...prevState,
+          [index]: { width, height }
+        }))
+      },
+      (error) => {
+        console.error(`Couldn't get the image size: ${error.message}`)
+      }
+    )
   }
 
   const mainStyle = () => {
@@ -21,6 +48,22 @@ const CheckButton = ({ titleFieldName, pressed, data, onChange }) => {
   return (
     <Pressable style={mainStyle()} onPress={togglePressed}>
       <Text>{data[titleFieldName]}</Text>
+      <View style={styles.imagesView}>
+        {images.map((image, index) => (
+          <Image
+            key={index}
+            source={{ uri: image }}
+            onLoad={() => handleImageLoadedEvent(image, index)}
+            style={[
+              {
+                width: imageDimensions[index]?.width || 50,
+                height: imageDimensions[index]?.height || 50
+              },
+              styles.image
+            ]}
+          />
+        ))}
+      </View>
     </Pressable>
   )
 }
@@ -37,6 +80,14 @@ const styles = StyleSheet.create({
   },
   unpressed: {
     backgroundColor: 'white'
+  },
+  imagesView: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 5
+  },
+  image: {
+    borderRadius: 5
   }
 })
 

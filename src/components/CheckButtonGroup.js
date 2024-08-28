@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native'
 import CheckButton from './CheckButton'
 import { useState } from 'react'
 
-const CheckButtonGroup = ({ data, titleFieldName, onChange }) => {
+const CheckButtonGroup = ({ data, titleFieldName, imagesFieldName, onChange }) => {
   const onElementPressed = (item, pressed) => {
     if (pressed) {
       data.forEach((element) => {
@@ -18,6 +18,7 @@ const CheckButtonGroup = ({ data, titleFieldName, onChange }) => {
         <CheckButton
           key={item.id}
           titleFieldName={titleFieldName}
+          imagesFieldName={imagesFieldName}
           pressed={item.pressed}
           data={item}
           onChange={onElementPressed}
