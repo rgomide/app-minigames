@@ -3,11 +3,7 @@
   "questions": [
     {
       "title": "Qual é a capital da França?",
-      "images": [
-        "https://picsum.photos/id/150/200/300",
-        "https://picsum.photos/id/202/300/300",
-        "https://picsum.photos/id/195/200/300"
-      ],
+      "images": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
       "answers": [
         {
           "id": 1,

@@ -72,7 +72,8 @@ const QuizGameScreen = (props) => {
 const styles = StyleSheet.create({
   mainView: {
     gap: 5,
-    padding: 10
+    padding: 10,
+    backgroundColor: 'white'
   }
 })
 
