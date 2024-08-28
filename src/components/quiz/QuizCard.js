@@ -9,7 +9,12 @@ const QuizCard = ({ question, onChange }) => {
       <Text>{title}</Text>
       <Text>Alternativas:</Text>
       <View>
-        <CheckButtonGroup data={answers} titleFieldName="answer" onChange={onChange} />
+        <CheckButtonGroup
+          data={answers}
+          imagesFieldName="images"
+          titleFieldName="answer"
+          onChange={onChange}
+        />
       </View>
     </View>
   )
