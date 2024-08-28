@@ -18,7 +18,7 @@ const CheckButton = ({ titleFieldName, imagesFieldName, pressed, data, onChange 
     Image.getSize(
       image,
       (width, height) => {
-        let higherDimension = (width > height) ? width : height
+        let higherDimension = width > height ? width : height
         const maxDimension = 200
 
         if (higherDimension > maxDimension) {
@@ -54,12 +54,13 @@ const CheckButton = ({ titleFieldName, imagesFieldName, pressed, data, onChange 
             key={index}
             source={{ uri: image }}
             onLoad={() => handleImageLoadedEvent(image, index)}
-            style={
-              [{
+            style={[
+              {
                 width: imageDimensions[index]?.width || 50,
                 height: imageDimensions[index]?.height || 50
-              }, styles.image]
-            }
+              },
+              styles.image
+            ]}
           />
         ))}
       </View>
