@@ -1,0 +1,51 @@
+{
+    "forca": {
+        "temas": [
+            {
+                "tema": "Animais",
+                "grupos": [
+                    {
+                        "dica": "Mamíferos",
+                        "imagem": "https://picsum.photos/id/200/200/300",  
+                        "palavras": ["elefante", "gato", "cachorro", "leao", "girafa"]
+                    },
+                    {
+                        "dica": "Aves",
+                        "imagem": "https://picsum.photos/id/200/200/300",  
+                        "palavras": ["papagaio", "coruja", "pombo", "aguia", "galinha"]
+                    }
+                ]
+            },
+            {
+                "tema": "Frutas",
+                "grupos": [
+                    {
+                        "dica": "Tropicais",
+                        "imagem": "",  
+                        "palavras": ["banana", "abacaxi", "manga", "caju", "melancia"]
+                    },
+                    {
+                        "dica": "Cítricas",
+                        "imagem": "",  
+                        "palavras": ["laranja", "limão", "tangerina", "grapefruit", "limão-siciliano"]
+                    }
+                ]
+            },
+            {
+                "tema": "Países",
+                "grupos": [
+                    {
+                        "dica": "América do Sul",
+                        "imagem": "",  
+                        "palavras": ["brasil", "argentina", "chile", "uruguai", "paraguai"]
+                    },
+                    {
+                        "dica": "Europa",
+                        "imagem": "",  
+                        "palavras": ["portugal", "espanha", "franca", "alemanha", "italia"]
+                    }
+                ]
+            }
+        ]
+    }
+}
