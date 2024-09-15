@@ -1,0 +1,48 @@
+{
+  "dificuldade": "Facil",
+  "letras": ["C", "R", "M", "A", "O"],
+  "palavrasEscondidas": [
+    {
+      "palavra": "ROMA",
+      "tamanho": 4
+    },
+    {
+      "palavra": "AMOR",
+      "tamanho": 4
+    },
+    {
+      "palavra": "ARCO",
+      "tamanho": 4
+    },
+    {
+      "palavra": "MAR",
+      "tamanho": 3
+    },
+    {
+      "palavra": "CARO",
+      "tamanho": 4
+    }
+  ],
+  "dicas": [
+    {
+      "idDica": 1,
+      "textoDica": "Capital da Itália."
+    },
+    {
+      "idDica": 2,
+      "textoDica": "Sentimento profundo por alguém ou algo."
+    },
+    {
+      "idDica": 3,
+      "textoDica": "Instrumento usado por arqueiros."
+    },
+    {
+      "idDica": 4,
+      "textoDica": "Grande massa de água salgada."
+    },
+    {
+      "idDica": 5,
+      "textoDica": "Algo que não é barato."
+    }
+  ]
+}

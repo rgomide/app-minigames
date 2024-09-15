@@ -6,6 +6,8 @@ const QUIZ_START_SCREEN = 'QuizStartScreen'
 const QUIZ_RESULT_SCREEN = 'QuizResultScreen'
 
 const ANAGRAMA_START_SCREEN = 'AnagramaStartScreen'
+const ANAGRAMA_GAME_SCREEN = 'AnagramaGameScreen'
+const ANAGRAMA_RESULT_SCREEN = 'AnagramaResultScreen'
 
 const FORCA_START_SCREEN = 'ForcaStartScreen'
 
@@ -19,5 +21,7 @@ export {
   QUIZ_RESULT_SCREEN,
   FORCA_START_SCREEN,
   ANAGRAMA_START_SCREEN,
+  ANAGRAMA_GAME_SCREEN,
+  ANAGRAMA_RESULT_SCREEN,
   ASSOCIACAO_START_SCREEN
 }
