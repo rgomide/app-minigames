@@ -1,6 +1,9 @@
 {
   "dificuldade": "Facil",
   "letras": ["C", "R", "M", "A", "O"],
+  "enunciado": "Forme palavras com as letras disponíveis.",
+  "imagens": [],
+  "limiteDicas": 5,
   "palavrasEscondidas": [
     {
       "palavra": "ROMA",
@@ -20,29 +23,8 @@
     },
     {
       "palavra": "CARO",
+      "dica": "Algo que não é barato.",
       "tamanho": 4
-    }
-  ],
-  "dicas": [
-    {
-      "idDica": 1,
-      "textoDica": "Capital da Itália."
-    },
-    {
-      "idDica": 2,
-      "textoDica": "Sentimento profundo por alguém ou algo."
-    },
-    {
-      "idDica": 3,
-      "textoDica": "Instrumento usado por arqueiros."
-    },
-    {
-      "idDica": 4,
-      "textoDica": "Grande massa de água salgada."
-    },
-    {
-      "idDica": 5,
-      "textoDica": "Algo que não é barato."
     }
   ]
 }

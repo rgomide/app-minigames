@@ -66,12 +66,11 @@ const AnagramaGameScreen = ({ navigation, route }) => {
         )}
       />
 
-      <TextInput
-        style={{ borderColor: 'gray', borderWidth: 1, padding: 10, marginVertical: 10 }}
-        value={palavraAtual}
-        onChangeText={setPalavraAtual}
-        placeholder="Forme sua palavra"
-      />
+      <Text style={{
+        padding: 10,
+        backgroundColor: 'white',
+        borderWidth: 1
+      }}>{palavraAtual}</Text>
 
       <View style={{ alignItems: 'center' }}>
         <RenderizarLetras letrasEmbaralhadas={letrasEmbaralhadas} onLetraPress={(letra) => setPalavraAtual(palavraAtual + letra)} />
