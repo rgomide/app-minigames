@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Button, FlatList, Alert } from 'react-native';
 import RenderizarLetras from '../../components/anagrama/AnagramaLetraRender';
 import RenderizarPalavrasEscondidas from '../../components/anagrama/AnagramaRevelaPalavra';
+import { ANAGRAMA_RESULT_SCREEN } from '../../constants/screens'
 
-const AnagramaGameScreen = (props) => {
-  const { anagramaSettings } = props.route.params;
+const AnagramaGameScreen = ({ navigation, route }) => {
+  const { anagramaSettings } = route.params;
 
   const [letrasEmbaralhadas, setLetrasEmbaralhadas] = useState(anagramaSettings.letras);
   const [palavraAtual, setPalavraAtual] = useState('');
@@ -12,6 +13,11 @@ const AnagramaGameScreen = (props) => {
   const [palavrasDescobertas, setPalavrasDescobertas] = useState([]);
   const [dicasUsadas, setDicasUsadas] = useState(0);
 
+  useEffect(() => {
+    if (palavrasDescobertas.length === anagramaSettings.palavrasEscondidas.length) {
+      navigation.navigate(ANAGRAMA_RESULT_SCREEN);
+    }
+  }, [palavrasDescobertas, anagramaSettings.palavrasEscondidas.length, navigation]);
   const verificarPalavra = () => {
     const palavraFormada = palavraAtual.toUpperCase();
     const palavraEscondida = anagramaSettings.palavrasEscondidas.find(
