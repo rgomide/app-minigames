@@ -37,11 +37,9 @@ const ForcaGameScreen = () => {
   ])
 
   const [grupoAtual] = useState(tema.grupos[Math.floor(Math.random() * tema.grupos.length)])
-
   const [palavraAtual] = useState(
     grupoAtual.palavras[Math.floor(Math.random() * grupoAtual.palavras.length)]
   )
-
   const [tentativas, setTentativas] = useState([])
   const [letra, setLetra] = useState('')
   const [erros, setErros] = useState(0)
@@ -79,8 +77,11 @@ const ForcaGameScreen = () => {
     return palavraAtual
       .toUpperCase()
       .split('')
-      .map((letra) => (tentativas.includes(letra) ? letra : '_'))
-      .join(' ')
+      .map((letra, index) => (
+        <Text key={index} style={{ fontSize: 24, marginRight: 5 }}>
+          {tentativas.includes(letra) ? letra : '_'}
+        </Text>
+      ))
   }
 
   const onClickTecla = (teclaClicada) => {
@@ -92,9 +93,6 @@ const ForcaGameScreen = () => {
       }
     })
 
-    console.log('TECLA CLICADA')
-    console.log(teclaClicada)
-
     setTeclas(teclasAtualizadas)
   }
 
@@ -103,6 +101,7 @@ const ForcaGameScreen = () => {
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
         {teclas.map((tecla) => (
           <Button
+            key={tecla.letra}
             title={tecla.letra}
             disabled={tecla.clicado}
             onPress={() => onClickTecla(tecla)}
@@ -114,15 +113,17 @@ const ForcaGameScreen = () => {
 
       <Text>Dica: {grupoAtual.dica}</Text>
 
-      {grupoAtual.imagem ? (
+      {grupoAtual.imagem && (
         <Image
           source={{ uri: grupoAtual.imagem }}
           style={{ width: 200, height: 200, marginBottom: 20 }}
           resizeMode="contain"
         />
-      ) : null}
+      )}
 
-      <Text>Palavra: {renderPalavra()}</Text>
+      <Text>Palavra:</Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>{renderPalavra()}</View>
+
       <Text>Erros: {erros} de 6</Text>
 
       <TextInput
@@ -135,7 +136,7 @@ const ForcaGameScreen = () => {
 
       <Button title="Tentar Letra" onPress={handleTentativa} />
 
-      {mensagem && <Text>{mensagem}</Text>}
+      {mensagem ? <Text>{mensagem}</Text> : null}
     </View>
   )
 }
