@@ -100,15 +100,6 @@ const ForcaGameScreen = () => {
 
   return (
     <View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
-        {teclas.map((tecla) => (
-          <Button
-            title={tecla.letra}
-            disabled={tecla.clicado}
-            onPress={() => onClickTecla(tecla)}
-          />
-        ))}
-      </View>
 
       <Text>Tema: {tema.tema}</Text>
 
@@ -124,6 +115,16 @@ const ForcaGameScreen = () => {
 
       <Text>Palavra: {renderPalavra()}</Text>
       <Text>Erros: {erros} de 6</Text>
+
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+        {teclas.map((tecla) => (
+          <Button
+            title={tecla.letra}
+            disabled={tecla.clicado}
+            onPress={() => onClickTecla(tecla)}
+          />
+        ))}
+      </View>
 
       <TextInput
         value={letra}
