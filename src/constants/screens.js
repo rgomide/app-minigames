@@ -8,8 +8,8 @@ const QUIZ_RESULT_SCREEN = 'QuizResultScreen'
 const ANAGRAMA_START_SCREEN = 'AnagramaStartScreen'
 
 const FORCA_START_SCREEN = 'ForcaStartScreen'
-const FORCA_GAME_SCREEN = "ForcaGameScreen"
-const FORCA_END_SCREEN = "ForcaEndScreen"
+const FORCA_GAME_SCREEN = 'ForcaGameScreen'
+const FORCA_END_SCREEN = 'ForcaEndScreen'
 
 const ASSOCIACAO_START_SCREEN = 'AssociacaoStartScreen'
 

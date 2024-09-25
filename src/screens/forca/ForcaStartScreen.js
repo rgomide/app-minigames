@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, Button, Picker, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import forcaData from '../../db/forca/forca01.json';
+import React, { useState } from 'react'
+import { View, Text, Button, Picker, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import forcaData from '../../db/forca/forca01.json'
 
 const SelectForcaThemeScreen = () => {
-  const navigation = useNavigation();
-  const [selectedTheme, setSelectedTheme] = useState('');
+  const navigation = useNavigation()
+  const [selectedTheme, setSelectedTheme] = useState('')
 
   const handleStartGame = () => {
-    const temaSelecionado = forcaData.forca.temas.find(t => t.tema === selectedTheme);
+    const temaSelecionado = forcaData.forca.temas.find((t) => t.tema === selectedTheme)
     if (temaSelecionado) {
-      navigation.navigate('ForcaGameScreen', { tema: temaSelecionado });
+      navigation.navigate('ForcaGameScreen', { tema: temaSelecionado })
     }
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -27,30 +27,26 @@ const SelectForcaThemeScreen = () => {
           <Picker.Item key={index} label={temaObj.tema} value={temaObj.tema} />
         ))}
       </Picker>
-      <Button
-        title="Iniciar Forca"
-        onPress={handleStartGame}
-        disabled={!selectedTheme}
-      />
+      <Button title="Iniciar Forca" onPress={handleStartGame} disabled={!selectedTheme} />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16,
+    padding: 16
   },
   label: {
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 10
   },
   picker: {
     height: 50,
     width: '100%',
-    marginBottom: 20,
-  },
-});
+    marginBottom: 20
+  }
+})
 
-export default SelectForcaThemeScreen;
+export default SelectForcaThemeScreen
