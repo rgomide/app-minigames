@@ -1,17 +1,18 @@
 import React from 'react'
 import { View, Text, Button } from 'react-native'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 
 const ForcaEndScreen = () => {
-  const navigation = useNavigation()
   const route = useRoute()
-  const { resultado } = route.params
+  const navigation = useNavigation()
+  const { resultado, pontuacao } = route.params  // Recebe a pontuação passada
 
   return (
     <View>
-      <Text>Você {resultado} o jogo!</Text>
+      <Text>Você {resultado}!</Text>
+      <Text>Pontuação Final: {pontuacao}</Text>  {/* Exibe a pontuação */}
       <Button title="Jogar Novamente" onPress={() => navigation.navigate('ForcaStartScreen')} />
-      <Button title="Voltar ao Menu" onPress={() => navigation.navigate('MainMenuScreen')} />
+      <Button title="Voltar ao início" onPress={() => navigation.navigate('MainMenuScreen')} />
     </View>
   )
 }

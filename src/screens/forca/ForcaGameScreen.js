@@ -52,19 +52,21 @@ const ForcaGameScreen = () => {
 
   const onClickTecla = (teclaClicada) => {
     const letraUpper = teclaClicada.letra.toUpperCase()
-
-    const erroAtualizado = erros + 1
-    const tentativasAtualizado = [...tentativas, letraUpper] 
-
+  
+    const tentativasAtualizado = [...tentativas, letraUpper]
+  
+    let erroAtualizado = erros
+  
     if (palavraAtual.toUpperCase().includes(letraUpper)) {
       setTentativas(tentativasAtualizado)
       setMensagem(`A letra ${letraUpper} está correta!`)
     } else {
+      erroAtualizado = erros + 1
       setErros(erroAtualizado)
       setTentativas(tentativasAtualizado)
       setMensagem(`A letra ${letraUpper} está incorreta.`)
     }
-
+  
     const teclasAtualizadas = teclas.map((teclaOriginal) => {
       if (teclaOriginal.letra === teclaClicada.letra) {
         return { ...teclaOriginal, clicado: true }
@@ -72,20 +74,27 @@ const ForcaGameScreen = () => {
         return teclaOriginal
       }
     })
-
+  
     setTeclas(teclasAtualizadas)
-
+  
+    // Cálculo da pontuação
+    const pontuacaoMaxima = 120
+    const pontosPerdidos = erroAtualizado * 20
+    const pontuacao = pontuacaoMaxima - pontosPerdidos
+  
     if (erroAtualizado >= 6) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'perdeu' })
+      navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao })  // Passa a pontuação
     } else if (
       palavraAtual
         .toUpperCase()
         .split('')
         .every((l) => tentativasAtualizado.includes(l))
     ) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou' })
+      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao })  // Passa a pontuação
     }
   }
+  
+
 
   return (
     <View>
