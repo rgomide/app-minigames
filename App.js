@@ -9,6 +9,8 @@ import AnagramaGameScreen from './src/screens/anagrama/AnagramaGameScreen'
 import AnagramaResultScreen from './src/screens/anagrama/AnagramaResultScreen'
 
 import AssociacaoStartScreen from './src/screens/associacao/AssociacaoStartScreen'
+import AssociacaoGameScreen from './src/screens/associacao/AssociacaoGameScreen'
+import AssociacaoResultScreen from './src/screens/associacao/AssociacaoResultScreen'
 
 import ForcaStartScreen from './src/screens/forca/ForcaStartScreen'
 import ForcaGameScreen from "./src/screens/forca/ForcaGameScreen"
@@ -27,6 +29,8 @@ import {
   ANAGRAMA_GAME_SCREEN,
   ANAGRAMA_RESULT_SCREEN,
   ASSOCIACAO_START_SCREEN,
+  ASSOCIACAO_GAME_SCREEN,
+  ASSOCIACAO_RESULT_SCREEN,
   FORCA_START_SCREEN,
   FORCA_GAME_SCREEN,
   FORCA_END_SCREEN
@@ -61,6 +65,16 @@ export default function App() {
             name={ASSOCIACAO_START_SCREEN}
             component={AssociacaoStartScreen}
             options={{ title: 'Associação' }}
+          />
+          <Stack.Screen
+            name={ASSOCIACAO_GAME_SCREEN}
+            component={AssociacaoGameScreen}
+            options={{ title: 'Associação', headerLeft: () => <></> }}
+          />
+          <Stack.Screen
+            name={ASSOCIACAO_RESULT_SCREEN}
+            component={AssociacaoResultScreen}
+            options={{ title: 'Associação', headerLeft: () => <></> }}
           />
         </Stack.Group>
         <Stack.Group>
