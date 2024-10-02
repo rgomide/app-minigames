@@ -1,0 +1,49 @@
+{
+    "dificuldade": "Medio",
+    "letras": ["L", "S", "P", "E", "A"],
+    "palavrasEscondidas": [
+      {
+        "palavra": "PELA",
+        "tamanho": 4
+      },
+      {
+        "palavra": "SELA",
+        "tamanho": 4
+      },
+      {
+        "palavra": "PAES",
+        "tamanho": 4
+      },
+      {
+        "palavra": "PESA",
+        "tamanho": 4
+      },
+      {
+        "palavra": "LESA",
+        "tamanho": 4
+      }
+    ],
+    "dicas": [
+      {
+        "idDica": 1,
+        "textoDica": "Preposição comumente usada em português."
+      },
+      {
+        "idDica": 2,
+        "textoDica": "Equipamento usado para montar cavalos."
+      },
+      {
+        "idDica": 3,
+        "textoDica": "Um bairro famoso no Rio de Janeiro."
+      },
+      {
+        "idDica": 4,
+        "textoDica": "Ato de avaliar o peso de algo."
+      },
+      {
+        "idDica": 5,
+        "textoDica": "Sinonimo de ferir ou prejudicar."
+      }
+    ]
+  }
+  

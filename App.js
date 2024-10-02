@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import MainMenuScreen from './src/screens/MainMenuScreen'
 
 import AnagramaStartScreen from './src/screens/anagrama/AnagramaStartScreen'
+import AnagramaGameScreen from './src/screens/anagrama/AnagramaGameScreen'
+import AnagramaResultScreen from './src/screens/anagrama/AnagramaResultScreen'
 
 import AssociacaoStartScreen from './src/screens/associacao/AssociacaoStartScreen'
 
@@ -18,10 +20,13 @@ import QuizResultScreen from './src/screens/quiz/QuizResultScreen'
 
 import {
   MAIN_MENU_SCREEN,
-  QUIZ_START_SCREEN,
   QUIZ_GAME_SCREEN,
+  QUIZ_START_SCREEN,
   QUIZ_RESULT_SCREEN,
+  FORCA_START_SCREEN,
   ANAGRAMA_START_SCREEN,
+  ANAGRAMA_GAME_SCREEN,
+  ANAGRAMA_RESULT_SCREEN,
   ASSOCIACAO_START_SCREEN,
   FORCA_START_SCREEN,
   FORCA_GAME_SCREEN,
@@ -40,6 +45,16 @@ export default function App() {
             name={ANAGRAMA_START_SCREEN}
             component={AnagramaStartScreen}
             options={{ title: 'Anagrama' }}
+          />  
+          <Stack.Screen
+            name={ANAGRAMA_GAME_SCREEN}
+            component={AnagramaGameScreen}
+            options={{ title: 'Anagrama', headerLeft: () => <></> }}
+          />
+          <Stack.Screen
+            name={ANAGRAMA_RESULT_SCREEN}
+            component={AnagramaResultScreen}
+            options={{ title: 'Anagrama', headerLeft: () => <></> }}
           />
         </Stack.Group>
         <Stack.Group>

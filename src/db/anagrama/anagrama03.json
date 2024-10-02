@@ -1,0 +1,49 @@
+{
+    "dificuldade": "Dificil",
+    "letras": ["C", "I", "R", "S", "T", "O", "L", "A"],
+    "palavrasEscondidas": [
+      {
+        "palavra": "CRISTA",
+        "tamanho": 6
+      },
+      {
+        "palavra": "LISTAR",
+        "tamanho": 6
+      },
+      {
+        "palavra": "TIRAS",
+        "tamanho": 5
+      },
+      {
+        "palavra": "SALTO",
+        "tamanho": 5
+      },
+      {
+        "palavra": "TALIS",
+        "tamanho": 5
+      }
+    ],
+    "dicas": [
+      {
+        "idDica": 1,
+        "textoDica": "Parte superior da cabeça de algumas aves."
+      },
+      {
+        "idDica": 2,
+        "textoDica": "Organizar ou dispor itens em sequência."
+      },
+      {
+        "idDica": 3,
+        "textoDica": "Pequenos pedaços cortados de algo."
+      },
+      {
+        "idDica": 4,
+        "textoDica": "Parte do calçado que faz altear o calcanhar."
+      },
+      {
+        "idDica": 5,
+        "textoDica": "Termo relacionado a sacerdotes e rituais."
+      }
+    ]
+  }
+  
