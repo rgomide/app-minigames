@@ -11,6 +11,8 @@ import AnagramaResultScreen from './src/screens/anagrama/AnagramaResultScreen'
 import AssociacaoStartScreen from './src/screens/associacao/AssociacaoStartScreen'
 
 import ForcaStartScreen from './src/screens/forca/ForcaStartScreen'
+import ForcaGameScreen from "./src/screens/forca/ForcaGameScreen"
+import ForcaEndScreen from "./src/screens/forca/ForcaEndScreen"
 
 import QuizStartScreen from './src/screens/quiz/QuizStartScreen'
 import QuizGameScreen from './src/screens/quiz/QuizGameScreen'
@@ -25,7 +27,10 @@ import {
   ANAGRAMA_START_SCREEN,
   ANAGRAMA_GAME_SCREEN,
   ANAGRAMA_RESULT_SCREEN,
-  ASSOCIACAO_START_SCREEN
+  ASSOCIACAO_START_SCREEN,
+  FORCA_START_SCREEN,
+  FORCA_GAME_SCREEN,
+  FORCA_END_SCREEN
 } from './src/constants/screens'
 
 const Stack = createNativeStackNavigator()
@@ -64,6 +69,16 @@ export default function App() {
             name={FORCA_START_SCREEN}
             component={ForcaStartScreen}
             options={{ title: 'Forca' }}
+          />
+          <Stack.Screen 
+          name={FORCA_GAME_SCREEN}
+          component={ForcaGameScreen} 
+          options={{ title: 'Forca', headerLeft: () => <></> }}
+          />
+          <Stack.Screen 
+          name={FORCA_END_SCREEN} 
+          component={ForcaEndScreen} 
+          options={{ title: 'Forca', headerLeft: () => <></> }}
           />
         </Stack.Group>
         <Stack.Group>
