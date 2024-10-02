@@ -11,9 +11,9 @@ const AssociacaoResultScreen = ({ route, navigation }) => {
       <Text style={styles.title}>Você concluiu o jogo!</Text>
       <Text style={styles.score}>Pontuação final: {displayScore}</Text>
 
-      <Button 
-        title="Voltar ao Menu Principal" 
-        onPress={() => navigation.navigate('MainMenuScreen')} 
+      <Button
+        title="Voltar ao Menu Principal"
+        onPress={() => navigation.navigate('MainMenuScreen')}
       />
     </View>
   )
@@ -24,17 +24,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    padding: 16
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 20
   },
   score: {
     fontSize: 20,
-    marginBottom: 20,
-  },
+    marginBottom: 20
+  }
 })
 
 export default AssociacaoResultScreen

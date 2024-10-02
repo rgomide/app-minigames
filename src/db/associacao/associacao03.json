@@ -1,20 +1,20 @@
 {
-    "topic": "Países e Continentes",
-    "items": [
-        {
-            "id": 1,
-            "item": "Brasil",
-            "relacao": "América do Sul"
-        },
-        {
-            "id": 2,
-            "item": "França",
-            "relacao": "Europa"
-        },
-        {
-            "id": 3,
-            "item": "Japão",
-            "relacao": "Ásia"
-        }
-    ]
+  "topic": "Países e Continentes",
+  "items": [
+    {
+      "id": 1,
+      "item": "Brasil",
+      "relacao": "América do Sul"
+    },
+    {
+      "id": 2,
+      "item": "França",
+      "relacao": "Europa"
+    },
+    {
+      "id": 3,
+      "item": "Japão",
+      "relacao": "Ásia"
+    }
+  ]
 }

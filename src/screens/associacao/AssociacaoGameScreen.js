@@ -17,8 +17,12 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
   const [score, setScore] = useState(0)
 
   useEffect(() => {
-    setItens(shuffleArray([...associacaoSettings.items.map((i) => ({ id: i.id, content: i.item }))]))
-    setRelacoes(shuffleArray([...associacaoSettings.items.map((i) => ({ id: i.id, content: i.relacao }))]))
+    setItens(
+      shuffleArray([...associacaoSettings.items.map((i) => ({ id: i.id, content: i.item }))])
+    )
+    setRelacoes(
+      shuffleArray([...associacaoSettings.items.map((i) => ({ id: i.id, content: i.relacao }))])
+    )
   }, [associacaoSettings])
 
   useEffect(() => {
@@ -64,15 +68,22 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 style={[
                   styles.itemContainer,
-                  selectedItem && selectedItem.id === item.id ? { backgroundColor: feedbackColor } : null,
-                  isItemDisabled(item.id) ? styles.disabled : null, 
+                  selectedItem && selectedItem.id === item.id
+                    ? { backgroundColor: feedbackColor }
+                    : null,
+                  isItemDisabled(item.id) ? styles.disabled : null
                 ]}
-                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)} 
+                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)}
               >
                 {item.content.startsWith('http') ? (
-                  <Image source={{ uri: item.content }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />
+                  <Image
+                    source={{ uri: item.content }}
+                    style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]}
+                  />
                 ) : (
-                  <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>
+                  <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>
+                    {item.content}
+                  </Text>
                 )}
               </TouchableOpacity>
             )}
@@ -87,15 +98,22 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 style={[
                   styles.itemContainer,
-                  selectedRelacao && selectedRelacao.id === item.id ? { backgroundColor: feedbackColor } : null,
-                  isItemDisabled(item.id) ? styles.disabled : null, 
+                  selectedRelacao && selectedRelacao.id === item.id
+                    ? { backgroundColor: feedbackColor }
+                    : null,
+                  isItemDisabled(item.id) ? styles.disabled : null
                 ]}
-                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)} 
+                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)}
               >
                 {item.content.startsWith('http') ? (
-                  <Image source={{ uri: item.content }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />
+                  <Image
+                    source={{ uri: item.content }}
+                    style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]}
+                  />
                 ) : (
-                  <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>
+                  <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>
+                    {item.content}
+                  </Text>
                 )}
               </TouchableOpacity>
             )}
@@ -111,44 +129,44 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   gameArea: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flex: 1,
+    flex: 1
   },
   column: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   itemContainer: {
     padding: 16,
     borderWidth: 1,
     borderColor: '#000',
     marginBottom: 10,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   image: {
     width: 100,
     height: 100,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   disabled: {
-    backgroundColor: '#e0e0e0', 
+    backgroundColor: '#e0e0e0'
   },
   disabledText: {
-    color: '#a0a0a0', 
+    color: '#a0a0a0'
   },
   disabledImage: {
-    tintColor: '#a0a0a0', 
-  },
+    tintColor: '#a0a0a0'
+  }
 })
 
 export default AssociacaoGameScreen
