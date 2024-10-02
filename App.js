@@ -7,6 +7,8 @@ import MainMenuScreen from './src/screens/MainMenuScreen'
 import AnagramaStartScreen from './src/screens/anagrama/AnagramaStartScreen'
 
 import AssociacaoStartScreen from './src/screens/associacao/AssociacaoStartScreen'
+import AssociacaoGameScreen from './src/screens/associacao/AssociacaoGameScreen'
+import AssociacaoResultScreen from './src/screens/associacao/AssociacaoResultScreen'
 
 import ForcaStartScreen from './src/screens/forca/ForcaStartScreen'
 
@@ -21,6 +23,8 @@ import {
   QUIZ_RESULT_SCREEN,
   ANAGRAMA_START_SCREEN,
   ASSOCIACAO_START_SCREEN,
+  ASSOCIACAO_GAME_SCREEN,
+  ASSOCIACAO_RESULT_SCREEN,
   FORCA_START_SCREEN
 } from './src/constants/screens'
 
@@ -43,6 +47,16 @@ export default function App() {
             name={ASSOCIACAO_START_SCREEN}
             component={AssociacaoStartScreen}
             options={{ title: 'Associação' }}
+          />
+          <Stack.Screen
+            name={ASSOCIACAO_GAME_SCREEN}
+            component={AssociacaoGameScreen}
+            options={{ title: 'Associação', headerLeft: () => <></> }}
+          />
+          <Stack.Screen
+            name={ASSOCIACAO_RESULT_SCREEN}
+            component={AssociacaoResultScreen}
+            options={{ title: 'Associação', headerLeft: () => <></> }}
           />
         </Stack.Group>
         <Stack.Group>
