@@ -1,17 +1,8 @@
 {
   "dificuldade": "Facil",
-  "letras": [
-    "C",
-    "R",
-    "M",
-    "A",
-    "O"
-  ],
+  "letras": ["C", "R", "M", "A", "O"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": [
-    "https://picsum.photos/id/152/200/300",
-    "https://picsum.photos/id/195/200/300"
-  ],
+  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
   "limiteDicas": 5,
   "palavrasEscondidas": [
     {

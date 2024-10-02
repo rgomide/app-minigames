@@ -1,10 +1,9 @@
-import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import React from 'react'
+import { View, TouchableOpacity, Text } from 'react-native'
 
 const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
-   
   if (!letrasEmbaralhadas || !Array.isArray(letrasEmbaralhadas)) {
-    return null; 
+    return null
   }
 
   return (
@@ -12,14 +11,19 @@ const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
       {letrasEmbaralhadas.map((letra, index) => (
         <TouchableOpacity
           key={index}
-          style={{ marginHorizontal: 16, padding: 10, backgroundColor: 'lightgray', borderRadius: 10 }}
+          style={{
+            marginHorizontal: 16,
+            padding: 10,
+            backgroundColor: 'lightgray',
+            borderRadius: 10
+          }}
           onPress={() => onLetraPress(letra)}
         >
           <Text style={{ fontSize: 20 }}>{letra}</Text>
         </TouchableOpacity>
       ))}
     </View>
-  );
-};
+  )
+}
 
-export default RenderizarLetras;
+export default RenderizarLetras

@@ -37,7 +37,9 @@ const ForcaGameScreen = () => {
   ])
 
   const [grupoAtual] = useState(tema.grupos[Math.floor(Math.random() * tema.grupos.length)])
-  const [palavraAtual] = useState(grupoAtual.palavras[Math.floor(Math.random() * grupoAtual.palavras.length)])
+  const [palavraAtual] = useState(
+    grupoAtual.palavras[Math.floor(Math.random() * grupoAtual.palavras.length)]
+  )
   const [tentativas, setTentativas] = useState([])
   const [erros, setErros] = useState(0)
   const [mensagem, setMensagem] = useState('')
@@ -52,11 +54,11 @@ const ForcaGameScreen = () => {
 
   const onClickTecla = (teclaClicada) => {
     const letraUpper = teclaClicada.letra.toUpperCase()
-  
+
     const tentativasAtualizado = [...tentativas, letraUpper]
-  
+
     let erroAtualizado = erros
-  
+
     if (palavraAtual.toUpperCase().includes(letraUpper)) {
       setTentativas(tentativasAtualizado)
       setMensagem(`A letra ${letraUpper} está correta!`)
@@ -66,7 +68,7 @@ const ForcaGameScreen = () => {
       setTentativas(tentativasAtualizado)
       setMensagem(`A letra ${letraUpper} está incorreta.`)
     }
-  
+
     const teclasAtualizadas = teclas.map((teclaOriginal) => {
       if (teclaOriginal.letra === teclaClicada.letra) {
         return { ...teclaOriginal, clicado: true }
@@ -74,27 +76,25 @@ const ForcaGameScreen = () => {
         return teclaOriginal
       }
     })
-  
+
     setTeclas(teclasAtualizadas)
-  
+
     // Cálculo da pontuação
     const pontuacaoMaxima = 120
     const pontosPerdidos = erroAtualizado * 20
     const pontuacao = pontuacaoMaxima - pontosPerdidos
-  
+
     if (erroAtualizado >= 6) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao })  // Passa a pontuação
+      navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao }) // Passa a pontuação
     } else if (
       palavraAtual
         .toUpperCase()
         .split('')
         .every((l) => tentativasAtualizado.includes(l))
     ) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao })  // Passa a pontuação
+      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao }) // Passa a pontuação
     }
   }
-  
-
 
   return (
     <View>
@@ -121,7 +121,6 @@ const ForcaGameScreen = () => {
           />
         ))}
       </View>
-
     </View>
   )
 }
