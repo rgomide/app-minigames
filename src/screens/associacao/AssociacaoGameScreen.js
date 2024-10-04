@@ -17,8 +17,20 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
   const [score, setScore] = useState(0)
 
   useEffect(() => {
-    setItens(shuffleArray([...associacaoSettings.items.map((i) => ({ id: i.id, content: i.item }))]))
-    setRelacoes(shuffleArray([...associacaoSettings.items.map((i) => ({ id: i.id, content: i.relacao }))]))
+    const itemsList = associacaoSettings.items.map((item) => ({
+      id: item.id,
+      content: item.associar[0].titulo,
+      imagem: item.associar[0].imagem,
+    }))
+
+    const relationsList = associacaoSettings.items.map((item) => ({
+      id: item.id,
+      content: item.associar[1].titulo,
+      imagem: item.associar[1].imagem,
+    }))
+
+    setItens(shuffleArray(itemsList));
+    setRelacoes(shuffleArray(relationsList));
   }, [associacaoSettings])
 
   useEffect(() => {
@@ -56,51 +68,57 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>{associacaoSettings.topic}</Text>
 
-      <View style={styles.gameArea}>
-        <View style={styles.column}>
-          <FlatList
-            data={itens}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={[
-                  styles.itemContainer,
-                  selectedItem && selectedItem.id === item.id ? { backgroundColor: feedbackColor } : null,
-                  isItemDisabled(item.id) ? styles.disabled : null, 
-                ]}
-                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)} 
-              >
-                {item.content.startsWith('http') ? (
-                  <Image source={{ uri: item.content }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />
-                ) : (
-                  <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>
-                )}
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </View>
+      <Text style={styles.instructions}>
+        Toque em um item da coluna da esquerda e associe-o com um item da coluna da direita. 
+      </Text>
 
-        <View style={styles.column}>
-          <FlatList
-            data={relacoes}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={[
-                  styles.itemContainer,
-                  selectedRelacao && selectedRelacao.id === item.id ? { backgroundColor: feedbackColor } : null,
-                  isItemDisabled(item.id) ? styles.disabled : null, 
-                ]}
-                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)} 
-              >
-                {item.content.startsWith('http') ? (
-                  <Image source={{ uri: item.content }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />
-                ) : (
-                  <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>
-                )}
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item) => item.id.toString()}
-          />
+      <View style={styles.gameArea}>
+        <View style={styles.columnContainer}>
+          <View style={styles.column}>
+            <FlatList
+              data={itens}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={[
+                    styles.itemContainer,
+                    selectedItem && selectedItem.id === item.id ? { backgroundColor: feedbackColor } : null,
+                    isItemDisabled(item.id) ? styles.disabled : null, 
+                  ]}
+                  onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)}
+                >
+                  <View style={styles.contentContainer}>
+                    {item.content && <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>}
+                    {item.imagem && <Image source={{ uri: item.imagem }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />}
+                  </View>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </View>
+
+          <View style={styles.divider} />
+
+          <View style={styles.column}>
+            <FlatList
+              data={relacoes}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={[
+                    styles.itemContainer,
+                    selectedRelacao && selectedRelacao.id === item.id ? { backgroundColor: feedbackColor } : null,
+                    isItemDisabled(item.id) ? styles.disabled : null, // Estilo desativado
+                  ]}
+                  onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)} // Desativar clique se já foi usado ou se está no intervalo de feedback
+                >
+                  <View style={styles.contentContainer}>
+                    {item.content && <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>}
+                    {item.imagem && <Image source={{ uri: item.imagem }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />}
+                  </View>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -119,25 +137,43 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
+  instructions: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
   gameArea: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     flex: 1,
+  },
+  columnContainer: {
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'center', 
   },
   column: {
     flex: 1,
     paddingHorizontal: 10,
   },
+  divider: {
+    width: 2,  
+    backgroundColor: '#000',
+    marginHorizontal: 10,
+  },
   itemContainer: {
-    padding: 16,
+    padding: 8,
     borderWidth: 1,
     borderColor: '#000',
-    marginBottom: 10,
+    marginVertical: 5,
     alignItems: 'center',
+    height: 100, 
+    justifyContent: 'center', 
+  },
+  contentContainer: {
+    alignItems: 'center', 
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
   },
   disabled: {
