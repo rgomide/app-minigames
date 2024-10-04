@@ -1,20 +1,44 @@
 {
-    "topic": "Instrumentos Musicais e Sons",
+    "topic": "Instrumentos Musicais",
     "items": [
         {
             "id": 1,
-            "item": "Violino",
-            "relacao": "Cordas"
+            "associar": [
+                {
+                    "titulo": "Violino",
+                    "imagem": null
+                },
+                {
+                    "titulo": "Cordas",
+                    "imagem": null
+                }
+            ]
         },
         {
             "id": 2,
-            "item": "Piano",
-            "relacao": "Teclas"
+            "associar": [
+                {
+                    "titulo": "Piano",
+                    "imagem": null
+                },
+                {
+                    "titulo": "Teclas",
+                    "imagem": null
+                }
+            ]
         },
         {
             "id": 3,
-            "item": "Flauta",
-            "relacao": "Sopro"
+            "associar": [
+                {
+                    "titulo": "Flauta",
+                    "imagem": null
+                },
+                {
+                    "titulo": "Sopro",
+                    "imagem": null
+                }
+            ]
         }
     ]
 }

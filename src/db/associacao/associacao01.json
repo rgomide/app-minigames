@@ -3,18 +3,42 @@
     "items": [
         {
             "id": 1,
-            "item": "Leão",
-            "relacao": "Savana"
+            "associar": [
+                {
+                    "titulo": "Leão",
+                    "imagem": "https://picsum.photos/id/40/300/200"
+                },
+                {
+                    "titulo": null,
+                    "imagem": "https://picsum.photos/id/25/300/200"
+                }
+            ]
         },
         {
             "id": 2,
-            "item": "https://picsum.photos/id/28/300/200",
-            "relacao": "Floresta"
+            "associar": [
+                {
+                    "titulo": null,
+                    "imagem": "https://picsum.photos/id/219/300/200"
+                },
+                {
+                    "titulo": "Floresta",
+                    "imagem": null
+                }
+            ]
         },
         {
             "id": 3,
-            "item": "Pinguim",
-            "relacao": "https://picsum.photos/id/29/300/200"
+            "associar": [
+                {
+                    "titulo": "Pinguim",
+                    "imagem": null
+                },
+                {
+                    "titulo": "Polo Sul",
+                    "imagem": "https://picsum.photos/id/29/300/200"
+                }
+            ]
         }
     ]
 }
