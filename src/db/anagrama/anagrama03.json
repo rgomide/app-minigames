@@ -1,48 +1,36 @@
 {
   "dificuldade": "Dificil",
   "letras": ["C", "I", "R", "S", "T", "O", "L", "A"],
+  "enunciado": "Forme palavras com as letras disponíveis.",
+  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+  "pontuacaoMaxima": 100,
+  "perdaPorDica": 5,
+  "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
       "palavra": "CRISTA",
+      "dica": "Parte superior da cabeça de algumas aves.",
       "tamanho": 6
     },
     {
       "palavra": "LISTAR",
+      "dica": "Organizar ou dispor itens em sequência.",
       "tamanho": 6
     },
     {
       "palavra": "TIRAS",
+      "dica": "Pequenos pedaços cortados de algo.",
       "tamanho": 5
     },
     {
       "palavra": "SALTO",
+      "dica": "Parte do calçado que faz altear o calcanhar.",
       "tamanho": 5
     },
     {
       "palavra": "TALIS",
+      "dica": "Termo relacionado a sacerdotes e rituais.",
       "tamanho": 5
-    }
-  ],
-  "dicas": [
-    {
-      "idDica": 1,
-      "textoDica": "Parte superior da cabeça de algumas aves."
-    },
-    {
-      "idDica": 2,
-      "textoDica": "Organizar ou dispor itens em sequência."
-    },
-    {
-      "idDica": 3,
-      "textoDica": "Pequenos pedaços cortados de algo."
-    },
-    {
-      "idDica": 4,
-      "textoDica": "Parte do calçado que faz altear o calcanhar."
-    },
-    {
-      "idDica": 5,
-      "textoDica": "Termo relacionado a sacerdotes e rituais."
     }
   ]
 }
