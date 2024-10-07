@@ -1,48 +1,36 @@
 {
   "dificuldade": "Medio",
   "letras": ["L", "S", "P", "E", "A"],
+  "enunciado": "Forme palavras com as letras disponíveis.",
+  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+  "pontuacaoMaxima": 100,
+  "perdaPorDica": 5,
+  "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
       "palavra": "PELA",
+      "dica": "Preposição usada em português.",
       "tamanho": 4
     },
     {
       "palavra": "SELA",
+      "dica": "Equipamento para montar cavalos.",
       "tamanho": 4
     },
     {
       "palavra": "PAES",
+      "dica": "Alimento vendido em padarias.",
       "tamanho": 4
     },
     {
       "palavra": "PESA",
+      "dica": "Palavra que indica peso.",
       "tamanho": 4
     },
     {
       "palavra": "LESA",
+      "dica": "Sinônimo de prejudicar.",
       "tamanho": 4
-    }
-  ],
-  "dicas": [
-    {
-      "idDica": 1,
-      "textoDica": "Preposição comumente usada em português."
-    },
-    {
-      "idDica": 2,
-      "textoDica": "Equipamento usado para montar cavalos."
-    },
-    {
-      "idDica": 3,
-      "textoDica": "Um bairro famoso no Rio de Janeiro."
-    },
-    {
-      "idDica": 4,
-      "textoDica": "Ato de avaliar o peso de algo."
-    },
-    {
-      "idDica": 5,
-      "textoDica": "Sinonimo de ferir ou prejudicar."
     }
   ]
 }
