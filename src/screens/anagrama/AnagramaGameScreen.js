@@ -67,6 +67,7 @@ const AnagramaGameScreen = ({ navigation, route }) => {
         <Text style={{ fontSize: 16 }}>Pontuação: {pontuacao}</Text>
       </View>
 
+      <Text style={{ fontSize: 18, marginVertical: 20 }}>{anagramaSettings.enunciado}</Text>
       <ImagemIcone imagens={anagramaSettings.imagens} />
 
       <Text style={{ fontSize: 18, marginVertical: 20 }}>Palavras Escondidas:</Text>
