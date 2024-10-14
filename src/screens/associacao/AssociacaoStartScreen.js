@@ -21,7 +21,11 @@ const AssociacaoStartScreen = (props) => {
 
   return (
     <View style={styles.mainView}>
-      <Text style={styles.title}>Selecione o Tema do Jogo de Associação</Text>
+      <Text style={styles.title}>ASSOCIAÇÃO</Text>
+
+      <Text>Relacione os itens da coluna da direita com os itens da coluna da esquerda. </Text>
+
+      <Text>Selecione o tema: </Text>
 
       <RNPickerSelect
         placeholder={{ label: 'Selecione um tema...', value: null }}

@@ -11,10 +11,8 @@ const AssociacaoResultScreen = ({ route, navigation }) => {
       <Text style={styles.title}>Você concluiu o jogo!</Text>
       <Text style={styles.score}>Pontuação final: {displayScore}</Text>
 
-      <Button 
-        title="Voltar ao Menu Principal" 
-        onPress={() => navigation.navigate('MainMenuScreen')} 
-      />
+      <Button title="Jogar Novamente" onPress={() => navigation.navigate('AssociacaoStartScreen')} />
+      <Button title="Voltar ao início" onPress={() => navigation.navigate('MainMenuScreen')} />
     </View>
   )
 }

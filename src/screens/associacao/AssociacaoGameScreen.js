@@ -14,7 +14,7 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
   const [correctMatches, setCorrectMatches] = useState([])
   const [feedbackColor, setFeedbackColor] = useState('#ddd')
   const [isClickable, setIsClickable] = useState(true)
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(100)
 
   useEffect(() => {
     const itemsList = associacaoSettings.items.map((item) => ({
@@ -29,8 +29,8 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
       imagem: item.associar[1].imagem,
     }))
 
-    setItens(shuffleArray(itemsList));
-    setRelacoes(shuffleArray(relationsList));
+    setItens(shuffleArray(itemsList))
+    setRelacoes(shuffleArray(relationsList))
   }, [associacaoSettings])
 
   useEffect(() => {
@@ -39,12 +39,13 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
       setFeedbackColor(isCorrect ? 'green' : 'red')
       setIsClickable(false)
 
+      const pointsPerWrong = 100 / (2 * associacaoSettings.items.length) 
+
       const timeout = setTimeout(() => {
         if (isCorrect) {
           setCorrectMatches((prevMatches) => [...prevMatches, selectedItem.id])
-          setScore((prevScore) => prevScore + 10)
         } else {
-          setScore((prevScore) => prevScore - 5)
+          setScore((prevScore) => Math.max(prevScore - pointsPerWrong, 0))
         }
         setSelectedItem(null)
         setSelectedRelacao(null)
@@ -58,7 +59,8 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     if (correctMatches.length === associacaoSettings.items.length) {
-      navigation.navigate('AssociacaoResultScreen', { finalScore: score })
+      const finalScore = Math.max(Math.round(score), 0)
+      navigation.navigate('AssociacaoResultScreen', { finalScore })
     }
   }, [correctMatches, associacaoSettings.items.length, navigation, score])
 
@@ -66,8 +68,6 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{associacaoSettings.topic}</Text>
-
       <Text style={styles.instructions}>
         Toque em um item da coluna da esquerda e associe-o com um item da coluna da direita. 
       </Text>
@@ -82,7 +82,7 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
                   style={[
                     styles.itemContainer,
                     selectedItem && selectedItem.id === item.id ? { backgroundColor: feedbackColor } : null,
-                    isItemDisabled(item.id) ? styles.disabled : null, 
+                    isItemDisabled(item.id) ? styles.disabled : null,
                   ]}
                   onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)}
                 >
@@ -106,9 +106,9 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
                   style={[
                     styles.itemContainer,
                     selectedRelacao && selectedRelacao.id === item.id ? { backgroundColor: feedbackColor } : null,
-                    isItemDisabled(item.id) ? styles.disabled : null, // Estilo desativado
+                    isItemDisabled(item.id) ? styles.disabled : null,
                   ]}
-                  onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)} // Desativar clique se já foi usado ou se está no intervalo de feedback
+                  onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)}
                 >
                   <View style={styles.contentContainer}>
                     {item.content && <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>}
@@ -148,14 +148,14 @@ const styles = StyleSheet.create({
   columnContainer: {
     flexDirection: 'row',
     alignItems: 'stretch',
-    justifyContent: 'center', 
+    justifyContent: 'center',
   },
   column: {
     flex: 1,
     paddingHorizontal: 10,
   },
   divider: {
-    width: 2,  
+    width: 2,
     backgroundColor: '#000',
     marginHorizontal: 10,
   },
@@ -165,11 +165,11 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     marginVertical: 5,
     alignItems: 'center',
-    height: 100, 
-    justifyContent: 'center', 
+    height: 100,
+    justifyContent: 'center',
   },
   contentContainer: {
-    alignItems: 'center', 
+    alignItems: 'center',
   },
   image: {
     width: 80,
@@ -177,13 +177,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   disabled: {
-    backgroundColor: '#e0e0e0', 
+    backgroundColor: '#e0e0e0',
   },
   disabledText: {
-    color: '#a0a0a0', 
+    color: '#a0a0a0',
   },
   disabledImage: {
-    tintColor: '#a0a0a0', 
+    tintColor: '#a0a0a0',
   },
 })
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Button, Image, TouchableNativeFeedbackBase } from 'react-native'
+import { View, Text, Button, Image } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
 
 const ForcaGameScreen = () => {
@@ -79,22 +79,23 @@ const ForcaGameScreen = () => {
 
     setTeclas(teclasAtualizadas)
 
-    // Cálculo da pontuação
-    const pontuacaoMaxima = 120
-    const pontosPerdidos = erroAtualizado * 20
-    const pontuacao = pontuacaoMaxima - pontosPerdidos
+  // Cálculo da pontuação
+  const pontuacaoMaxima = 100
+  const pontosPerdidosPorErro = pontuacaoMaxima / 6 
+  const pontosPerdidos = erroAtualizado * pontosPerdidosPorErro
+  const pontuacao = Math.floor(pontuacaoMaxima - pontosPerdidos)  
 
-    if (erroAtualizado >= 6) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao }) // Passa a pontuação
-    } else if (
-      palavraAtual
-        .toUpperCase()
-        .split('')
-        .every((l) => tentativasAtualizado.includes(l))
-    ) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao }) // Passa a pontuação
-    }
+  if (erroAtualizado >= 6) {
+    navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual })  // Passa a pontuação
+  } else if (
+    palavraAtual
+      .toUpperCase()
+      .split('')
+      .every((l) => tentativasAtualizado.includes(l))
+  ) {
+    navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao })  // Passa a pontuação
   }
+}
 
   return (
     <View>

@@ -5,12 +5,17 @@ import { useRoute, useNavigation } from '@react-navigation/native'
 const ForcaEndScreen = () => {
   const route = useRoute()
   const navigation = useNavigation()
-  const { resultado, pontuacao } = route.params // Recebe a pontuação passada
+  const { resultado, pontuacao, palavraAtual } = route.params
 
   return (
     <View>
       <Text>Você {resultado}!</Text>
-      <Text>Pontuação Final: {pontuacao}</Text> {/* Exibe a pontuação */}
+      <Text>Pontuação Final: {pontuacao}</Text> 
+
+      {resultado === 'perdeu' && (
+        <Text>A palavra correta era: {palavraAtual}</Text>
+      )}
+
       <Button title="Jogar Novamente" onPress={() => navigation.navigate('ForcaStartScreen')} />
       <Button title="Voltar ao início" onPress={() => navigation.navigate('MainMenuScreen')} />
     </View>

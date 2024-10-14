@@ -1,43 +1,77 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { FontAwesome5 } from '@expo/vector-icons'
 import {
   ANAGRAMA_START_SCREEN,
   ASSOCIACAO_START_SCREEN,
   FORCA_START_SCREEN,
   QUIZ_START_SCREEN
-} from '../constants/screens'
+} from '../constants/screens.js'
 
-const MainMenuScreen = (props) => {
-  const navigation = props.navigation
-
-  const openAnagrama = () => {
-    navigation.navigate(ANAGRAMA_START_SCREEN)
-  }
-  const openAssociacao = () => {
-    navigation.navigate(ASSOCIACAO_START_SCREEN)
-  }
-  const openForca = () => {
-    navigation.navigate(FORCA_START_SCREEN)
-  }
-  const openQuiz = () => {
-    navigation.navigate(QUIZ_START_SCREEN)
-  }
-
+const MainMenuScreen = ({ navigation }) => {
   return (
-    <View style={styles.mainView}>
-      <Button title="Abrir Anagrama" onPress={openAnagrama} />
-      <Button title="Abrir Associação" onPress={openAssociacao} />
-      <Button title="Abrir Forca" onPress={openForca} />
-      <Button title="Abrir Quiz" onPress={openQuiz} />
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(ANAGRAMA_START_SCREEN)}>
+          <FontAwesome5 name="puzzle-piece" size={32} color="white" />
+          <Text style={styles.buttonText}>Anagrama</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(ASSOCIACAO_START_SCREEN)}>
+          <FontAwesome5 name="project-diagram" size={32} color="white" />
+          <Text style={styles.buttonText}>Associação</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.row}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(FORCA_START_SCREEN)}>
+          <FontAwesome5 name="gavel" size={32} color="white" />
+          <Text style={styles.buttonText}>Forca</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(QUIZ_START_SCREEN)}>
+          <FontAwesome5 name="question" size={32} color="white" />
+          <Text style={styles.buttonText}>Quiz</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  mainView: {
+  container: {
     flex: 1,
-    gap: 3,
-    padding: 10,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5'
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 30, 
+    width: '90%' 
+  },
+  button: {
+    backgroundColor: '#007bff', 
+    paddingVertical: 30, 
+    paddingHorizontal: 20, 
+    borderRadius: 12, 
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '45%' 
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18, 
+    marginTop: 10
   }
 })
 

@@ -1,5 +1,4 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { MAIN_MENU_SCREEN } from '../../constants/screens'
 import QuizResultCard from '../../components/quiz/QuizResultCard'
 
 const QuizResultScreen = (props) => {
@@ -17,9 +16,7 @@ const QuizResultScreen = (props) => {
   const totalCorrectAnswerTitle =
     totalCorrectAnswers == 1 ? 'resposta correta' : 'respostas corretas'
 
-  const navigateToMainMenu = () => {
-    navigation.navigate(MAIN_MENU_SCREEN, { key: Math.random().toString() })
-  }
+  const score = Math.floor(totalCorrectAnswers * (100 / questions.length))
 
   return (
     <View style={styles.mainView}>
@@ -35,12 +32,18 @@ const QuizResultScreen = (props) => {
         <Text style={styles.textTitle}>{totalCorrectAnswerTitle}</Text>
       </View>
 
+      <View style={styles.viewRow}>
+        <Text style={styles.textTitle}>Pontuação Final:</Text>
+        <Text style={styles.textTitle}>{score}</Text>
+      </View>
+
       <View style={styles.resultView}>
         {questions.map((question, index) => (
           <QuizResultCard key={index} question={question} answer={answers[index]} />
         ))}
       </View>
-      <Button title="Voltar" onPress={() => navigateToMainMenu()} />
+      <Button title="Jogar Novamente" onPress={() => navigation.navigate('QuizStartScreen')} />
+      <Button title="Voltar ao início" onPress={() => navigation.navigate('MainMenuScreen')} />
     </View>
   )
 }

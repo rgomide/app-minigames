@@ -16,7 +16,12 @@ const SelectForcaThemeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Selecione um tema:</Text>
+      <Text style={styles.title}>FORCA</Text>
+
+      <Text>Adivinhe a palavra secreta, antes de atingir os seis erros.</Text>
+
+      <Text>Selecione o tema: </Text>
+
       <Picker
         selectedValue={selectedTheme}
         onValueChange={(itemValue) => setSelectedTheme(itemValue)}
@@ -46,7 +51,12 @@ const styles = StyleSheet.create({
     height: 50,
     width: '100%',
     marginBottom: 20
-  }
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 })
 
 export default SelectForcaThemeScreen

@@ -1,4 +1,4 @@
-import { Button, StyleSheet, View } from 'react-native'
+import { Button, StyleSheet, View, Text } from 'react-native'
 import { useState } from 'react'
 import RNPickerSelect from 'react-native-picker-select'
 import { getQuiz } from '../../services/quiz/quisService'
@@ -16,6 +16,12 @@ const QuizStartScreen = (props) => {
 
   return (
     <View style={styles.mainView}>
+      <Text style={styles.title}>QUIZ</Text>
+
+      <Text>Responda as perguntas escolhendo a alternativa correta entre as opções. </Text>
+
+      <Text>Selecione o tema: </Text>
+
       <RNPickerSelect
         placeholder={{ label: 'Selecione um tema...' }}
         onValueChange={setSelectedQuiz}
@@ -32,7 +38,12 @@ const styles = StyleSheet.create({
     gap: 3,
     padding: 10,
     justifyContent: 'center'
-  }
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 })
 
 export default QuizStartScreen
