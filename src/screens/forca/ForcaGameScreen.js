@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import { View, Text, Button, Image } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
 
+import img0 from '../../img/img0.png'
+import img1 from '../../img/img1.png'
+import img2 from '../../img/img2.png'
+import img3 from '../../img/img3.png'
+import img4 from '../../img/img4.png'
+import img5 from '../../img/img5.png'
+import img6 from '../../img/img6.png'
+
 const ForcaGameScreen = () => {
   const route = useRoute()
   const navigation = useNavigation()
@@ -44,6 +52,8 @@ const ForcaGameScreen = () => {
   const [erros, setErros] = useState(0)
   const [mensagem, setMensagem] = useState('')
 
+  const forcaImagens = [img0, img1, img2, img3, img4, img5, img6]
+
   const renderPalavra = () => {
     return palavraAtual
       .toUpperCase()
@@ -79,49 +89,52 @@ const ForcaGameScreen = () => {
 
     setTeclas(teclasAtualizadas)
 
-  // Cálculo da pontuação
-  const pontuacaoMaxima = 100
-  const pontosPerdidosPorErro = pontuacaoMaxima / 6 
-  const pontosPerdidos = erroAtualizado * pontosPerdidosPorErro
-  const pontuacao = Math.floor(pontuacaoMaxima - pontosPerdidos)  
+    // Cálculo da pontuação
+    const pontuacaoMaxima = 100
+    const pontosPerdidosPorErro = pontuacaoMaxima / 6
+    const pontosPerdidos = erroAtualizado * pontosPerdidosPorErro
+    const pontuacao = Math.floor(pontuacaoMaxima - pontosPerdidos)
 
-  if (erroAtualizado >= 6) {
-    navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual })  // Passa a pontuação
-  } else if (
-    palavraAtual
-      .toUpperCase()
-      .split('')
-      .every((l) => tentativasAtualizado.includes(l))
-  ) {
-    navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao })  // Passa a pontuação
+    if (erroAtualizado >= 6) {
+      setTimeout(() => {
+        navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual })
+      }, 1000)  // Aguardar 1 segundo
+    } else if (
+      palavraAtual
+        .toUpperCase()
+        .split('')
+        .every((l) => tentativasAtualizado.includes(l))
+    ) {
+      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao, palavraAtual })
+    }
   }
-}
 
   return (
     <View>
       <Text>Tema: {tema.tema}</Text>
       <Text>Dica: {grupoAtual.dica}</Text>
 
-      {grupoAtual.imagem ? (
-        <Image
-          source={{ uri: grupoAtual.imagem }}
-          style={{ width: 200, height: 200, marginBottom: 20 }}
-          resizeMode="contain"
-        />
-      ) : null}
+      <Image
+        source={forcaImagens[erros]} 
+        style={{ width: 200, height: 200, marginBottom: 20 }}
+        resizeMode="contain"
+      />
 
       <Text>Palavra: {renderPalavra()}</Text>
       <Text>Erros: {erros} de 6</Text>
 
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
-        {teclas.map((tecla) => (
+        {teclas.map((tecla, index) => (
           <Button
+            key={index}  
             title={tecla.letra}
-            disabled={tecla.clicado}
+            disabled={tecla.clicado || erros >= 6} 
             onPress={() => onClickTecla(tecla)}
           />
         ))}
       </View>
+
+      {mensagem && <Text>{mensagem}</Text>}
     </View>
   )
 }
