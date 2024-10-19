@@ -17,36 +17,40 @@ const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada, 
   };
 
   return (
-    <View style={{ marginVertical: 10, alignItems: 'center' }}>
+    <View style={{ marginVertical: 8, alignItems: 'center' }}>
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         {item.palavra.split('').map((letra, index) => (
-          <View key={index} style={{ margin: 5, padding: 10, backgroundColor: 'lightgray' }}>
-            <Text style={{ fontSize: 20 }}>{palavraEncontrada ? letra : '_'}</Text>
+          <View key={index} style={{ margin: 5, padding: 12, backgroundColor: 'lightgray', borderRadius: 8 }}>
+            <Text style={{ fontSize: 12 }}>{palavraEncontrada ? letra : '_'}</Text>
           </View>
         ))}
 
-        
         <TouchableOpacity
           onPress={exibirDica}
           style={{
             marginLeft: 10,
             backgroundColor: dicaVisivel ? 'gray' : 'blue',
             borderRadius: 25,
-            width: 30,
-            height: 30,
+            width: 36,
+            height: 36,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            marginTop: 6
           }}
-          disabled={dicaVisivel} 
+          disabled={dicaVisivel}
         >
           <Text style={{ color: 'white', fontWeight: 'bold' }}>?</Text>
         </TouchableOpacity>
       </View>
 
-
-      {dicaVisivel && (
-        <Text style={{ marginTop: 5, color: 'gray', fontStyle: 'italic' }}>{item.dica}</Text>
-      )}
+      
+      <View style={{ marginTop: 4, height: 12, justifyContent: 'center' }}>
+        {dicaVisivel ? (
+          <Text style={{ color: 'gray', fontStyle: 'italic' }}>{item.dica}</Text>
+        ) : (
+          <Text>{}</Text>
+        )}
+      </View>
     </View>
   );
 };

@@ -7,19 +7,19 @@ const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
   }
 
   return (
-    <View style={{ flexDirection: 'row', marginVertical: 20 }}>
+    <View style={{ flexDirection: 'row', marginVertical: 18 }}>
       {letrasEmbaralhadas.map((letra, index) => (
         <TouchableOpacity
           key={index}
           style={{
             marginHorizontal: 16,
-            padding: 10,
+            padding: 12,
             backgroundColor: 'lightgray',
             borderRadius: 10
           }}
           onPress={() => onLetraPress(letra)}
         >
-          <Text style={{ fontSize: 20 }}>{letra}</Text>
+          <Text style={{ fontSize: 18 }}>{letra}</Text>
         </TouchableOpacity>
       ))}
     </View>

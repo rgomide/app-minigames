@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, Button, FlatList, Alert } from 'react-native'
+import { Text, View, FlatList, Alert } from 'react-native'
 import RenderizarLetras from '../../components/anagrama/AnagramaLetraRender'
 import RenderizarPalavrasEscondidas from '../../components/anagrama/AnagramaRevelaPalavra'
 import ImagemIcone from '../../components/anagrama/AnagramaImagemIcone'
+import AnagramaBotoes from '../../components/anagrama/AnagramaBotoes'
 import { ANAGRAMA_RESULT_SCREEN } from '../../constants/screens'
 
 const AnagramaGameScreen = ({ navigation, route }) => {
@@ -57,8 +58,8 @@ const AnagramaGameScreen = ({ navigation, route }) => {
   }
 
   return (
-    <View style={{ padding: 20 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+    <View style={{ padding: 12 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
         <Text style={{ fontSize: 16 }}>Tema: {anagramaSettings.tema}</Text>
         <Text style={{ fontSize: 16 }}>Erros: {erros}</Text>
         <Text style={{ fontSize: 16 }}>Dicas usadas: {dicasUsadas}</Text>
@@ -68,7 +69,7 @@ const AnagramaGameScreen = ({ navigation, route }) => {
 
       <ImagemIcone imagens={anagramaSettings.imagens} />
 
-      <Text style={{ fontSize: 18, marginVertical: 20 }}>Palavras Escondidas:</Text>
+      <Text style={{ fontSize: 18, marginVertical: 8 }}>Palavras Escondidas:</Text>
 
       <FlatList
         data={anagramaSettings.palavrasEscondidas}
@@ -83,16 +84,21 @@ const AnagramaGameScreen = ({ navigation, route }) => {
         )}
       />
 
-      <Text
-        style={{
-          padding: 10,
-          backgroundColor: 'white',
-          borderWidth: 1,
-          textAlign: 'center'
-        }}
-      >
-        {palavraAtual}
-      </Text>
+<Text
+  style={{
+    padding: 8,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    textAlign: 'center',
+    minHeight: 40, 
+    fontSize: 16, 
+    fontWeight: 'bold',
+    borderRadius:8 
+  }}
+>
+  {palavraAtual || ' '}
+</Text>
+
 
       <View style={{ alignItems: 'center' }}>
         <RenderizarLetras
@@ -101,9 +107,11 @@ const AnagramaGameScreen = ({ navigation, route }) => {
         />
       </View>
 
-      <Button title="Enviar Palavra" onPress={verificarPalavra} />
-      <Button title="Apagar" onPress={() => setPalavraAtual('')} color="red" />
-      <Button title="Reiniciar Nível" onPress={reiniciarNivel} color="orange" />
+      <AnagramaBotoes
+        onEnviarPress={verificarPalavra}
+        onApagarPress={() => setPalavraAtual('')}
+        onReiniciarPress={reiniciarNivel}
+      />
     </View>
   )
 }
