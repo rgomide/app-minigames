@@ -1,19 +1,15 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native'
 
-const AnagramaBotoes = ({ onEnviarPress, onApagarPress, onReiniciarPress }) => {
+const AnagramaBotoes = ({ onEnviarPress, onApagarPress }) => {
   return (
     <View style={styles.buttonRow}>
-  
-      <TouchableOpacity style={[styles.iconButton, styles.refreshButton]} onPress={onReiniciarPress}>
-        <Image source={require('../../../assets/refresh.png')} style={styles.iconImage} />
-      </TouchableOpacity>
-
-     
+      
       <TouchableOpacity style={[styles.enviarButton]} onPress={onEnviarPress}>
         <Text style={styles.enviarButtonText}>Enviar Palavra</Text> 
       </TouchableOpacity>
 
+      
       <TouchableOpacity style={[styles.iconButton, styles.apagarButton]} onPress={onApagarPress}>
         <Image source={require('../../../assets/backspace.png')} style={styles.iconImage} />
       </TouchableOpacity>
@@ -42,17 +38,14 @@ const styles = StyleSheet.create({
   apagarButton: {
     backgroundColor: 'red'
   },
-  refreshButton: {
-    backgroundColor: 'orange'
-  },
   enviarButton: {
     backgroundColor: '#007bff',
     paddingVertical: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
-    marginHorizontal: 8,
-    borderRadius:8
+    flex: 1, 
+    marginRight: 8, 
+    borderRadius: 8
   },
   enviarButtonText: {
     color: 'white',

@@ -48,15 +48,6 @@ const AnagramaGameScreen = ({ navigation, route }) => {
     setPontuacao((prevPontuacao) => Math.max(0, prevPontuacao - anagramaSettings.perdaPorDica))
   }
 
-  const reiniciarNivel = () => {
-    setErros(0)
-    setPalavraAtual('')
-    setPalavrasDescobertas([])
-    setDicasUsadas(0)
-    setPontuacao(anagramaSettings.pontuacaoMaxima)
-    setLetrasEmbaralhadas(anagramaSettings.letras)
-  }
-
   return (
     <View style={{ padding: 12 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -84,21 +75,20 @@ const AnagramaGameScreen = ({ navigation, route }) => {
         )}
       />
 
-<Text
-  style={{
-    padding: 8,
-    backgroundColor: 'white',
-    borderWidth: 1,
-    textAlign: 'center',
-    minHeight: 40, 
-    fontSize: 16, 
-    fontWeight: 'bold',
-    borderRadius:8 
-  }}
->
-  {palavraAtual || ' '}
-</Text>
-
+      <Text
+        style={{
+          padding: 8,
+          backgroundColor: 'white',
+          borderWidth: 1,
+          textAlign: 'center',
+          minHeight: 40,
+          fontSize: 16,
+          fontWeight: 'bold',
+          borderRadius: 8,
+        }}
+      >
+        {palavraAtual || ' '}
+      </Text>
 
       <View style={{ alignItems: 'center' }}>
         <RenderizarLetras
@@ -110,7 +100,6 @@ const AnagramaGameScreen = ({ navigation, route }) => {
       <AnagramaBotoes
         onEnviarPress={verificarPalavra}
         onApagarPress={() => setPalavraAtual('')}
-        onReiniciarPress={reiniciarNivel}
       />
     </View>
   )
