@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #F2E8DF; 
+  height: 100vh;
+  font-family: 'Fredoka One', cursive; 
+}
+
+.info-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+.info-icon img {
+    width: 40px;
+    height: 40px;
+  }
+  
+ 
+.info-icon:active {
+    transform: scale(0.95); 
+    transition: transform 0.2s ease;
+  }
+
+.info-bubble {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #f2bcbc;
+    font-family: 'Fredoka One', cursive;
+    color: #333333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+.info-bubble.show {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+
+.title {
+    font-size: 50px;
+    font-family: 'Fredoka One', cursive;
+    margin-bottom: 16px;
+    background:  #F28585;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+.description {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #333333;
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333333; 
+  font-family: 'Fredoka One', cursive; 
+}
+
+.picker {
+  height: 45px;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+  background-color: #f2bcbc;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  font-family: 'Fredoka One', cursive;
+}
+
+.start-button {
+  background-color: #f28585;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  max-width: 350px;
+  width: 100%;
+  font-family: 'Fredoka One', cursive;
+}
+
+.start-button:disabled {
+  background-color: #f2baba;
+  cursor: not-allowed;
+}
+
+.start-button:hover:not(:disabled) {
+  background-color: #e57373;
+}

@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import { View, Text, Button, Image } from 'react-native'
-import { useRoute, useNavigation } from '@react-navigation/native'
-
-import img0 from '../../img/img0.png'
-import img1 from '../../img/img1.png'
-import img2 from '../../img/img2.png'
-import img3 from '../../img/img3.png'
-import img4 from '../../img/img4.png'
-import img5 from '../../img/img5.png'
-import img6 from '../../img/img6.png'
+import React, { useState } from 'react';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import img0 from '../../img/img0.png';
+import img1 from '../../img/img1.png';
+import img2 from '../../img/img2.png';
+import img3 from '../../img/img3.png';
+import img4 from '../../img/img4.png';
+import img5 from '../../img/img5.png';
+import img6 from '../../img/img6.png';
+import '../../components/visual/ForcaGameVisual.css';
+import infoIcon from '../../img/duvida.png';
+import corretoSound from '../../sounds/correto.mp3';
+import erradoSound from '../../sounds/errado.mp3'; 
 
 const ForcaGameScreen = () => {
-  const route = useRoute()
-  const navigation = useNavigation()
-  const { tema } = route.params
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { tema } = route.params;
 
   const [teclas, setTeclas] = useState([
     { letra: 'A', clicado: false },
@@ -42,101 +44,127 @@ const ForcaGameScreen = () => {
     { letra: 'X', clicado: false },
     { letra: 'Y', clicado: false },
     { letra: 'Z', clicado: false }
-  ])
+  ]);
 
-  const [grupoAtual] = useState(tema.grupos[Math.floor(Math.random() * tema.grupos.length)])
+  const corretoAudio = new Audio(corretoSound);
+  const erradoAudio = new Audio(erradoSound);
+
+  const [grupoAtual] = useState(tema.grupos[Math.floor(Math.random() * tema.grupos.length)]);
   const [palavraAtual] = useState(
     grupoAtual.palavras[Math.floor(Math.random() * grupoAtual.palavras.length)]
-  )
-  const [tentativas, setTentativas] = useState([])
-  const [erros, setErros] = useState(0)
-  const [mensagem, setMensagem] = useState('')
+  );
+  const [tentativas, setTentativas] = useState([]);
+  const [erros, setErros] = useState(0);
+  const [mensagem, setMensagem] = useState('');
+  const [showInfo, setShowInfo] = useState(false);
 
-  const forcaImagens = [img0, img1, img2, img3, img4, img5, img6]
+  const forcaImagens = [img0, img1, img2, img3, img4, img5, img6];
 
   const renderPalavra = () => {
     return palavraAtual
       .toUpperCase()
       .split('')
       .map((letra) => (tentativas.includes(letra) ? letra : '_'))
-      .join(' ')
-  }
+      .join(' ');
+  };
+
+  const playSound = (isCorrect) => {
+    if (isCorrect) {
+      corretoAudio.play();
+    } else {
+      erradoAudio.play();
+    }
+  };
 
   const onClickTecla = (teclaClicada) => {
-    const letraUpper = teclaClicada.letra.toUpperCase()
+    const letraUpper = teclaClicada.letra.toUpperCase();
 
-    const tentativasAtualizado = [...tentativas, letraUpper]
+    const tentativasAtualizado = [...tentativas, letraUpper];
 
-    let erroAtualizado = erros
+    let erroAtualizado = erros;
 
     if (palavraAtual.toUpperCase().includes(letraUpper)) {
-      setTentativas(tentativasAtualizado)
-      setMensagem(`A letra ${letraUpper} está correta!`)
+      setTentativas(tentativasAtualizado);
+      setMensagem(`A letra ${letraUpper} está correta!`);
+      playSound(true);
     } else {
-      erroAtualizado = erros + 1
-      setErros(erroAtualizado)
-      setTentativas(tentativasAtualizado)
-      setMensagem(`A letra ${letraUpper} está incorreta.`)
+      erroAtualizado = erros + 1;
+      setErros(erroAtualizado);
+      setTentativas(tentativasAtualizado);
+      setMensagem(`A letra ${letraUpper} está incorreta.`);
+      playSound(false);
     }
 
     const teclasAtualizadas = teclas.map((teclaOriginal) => {
       if (teclaOriginal.letra === teclaClicada.letra) {
-        return { ...teclaOriginal, clicado: true }
+        return { ...teclaOriginal, clicado: true };
       } else {
-        return teclaOriginal
+        return teclaOriginal;
       }
-    })
+    });
 
-    setTeclas(teclasAtualizadas)
+    setTeclas(teclasAtualizadas);
 
-    // Cálculo da pontuação
-    const pontuacaoMaxima = 100
-    const pontosPerdidosPorErro = pontuacaoMaxima / 6
-    const pontosPerdidos = erroAtualizado * pontosPerdidosPorErro
-    const pontuacao = Math.floor(pontuacaoMaxima - pontosPerdidos)
+    const pontuacaoMaxima = 100;
+    const pontosPerdidosPorErro = pontuacaoMaxima / 6;
+    const pontosPerdidos = erroAtualizado * pontosPerdidosPorErro;
+    const pontuacao = Math.floor(pontuacaoMaxima - pontosPerdidos);
 
     if (erroAtualizado >= 6) {
       setTimeout(() => {
-        navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual })
-      }, 1000)  // Aguardar 1 segundo
+        navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual });
+      }, 1000);
     } else if (
       palavraAtual
         .toUpperCase()
         .split('')
         .every((l) => tentativasAtualizado.includes(l))
     ) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao, palavraAtual })
+      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao, palavraAtual });
     }
-  }
+  };
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
+  };
 
   return (
-    <View>
-      <Text>Tema: {tema.tema}</Text>
-      <Text>Dica: {grupoAtual.dica}</Text>
+    <div className="forca-container">
+      
+      <div className="info-icon" onClick={toggleInfo}>
+        <img src={infoIcon} alt="Informação" />
+      </div>
 
-      <Image
-        source={forcaImagens[erros]} 
-        style={{ width: 200, height: 200, marginBottom: 20 }}
-        resizeMode="contain"
+
+      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
+        <p>Adivinhe a palavra secreta, antes de atingir os seis erros.</p>
+      </div>
+
+      <img
+        src={forcaImagens[erros]} 
+        alt="Imagem da Forca"
+        className="forca-imagem"
       />
+      <p className="dica">Dica: {grupoAtual.dica}</p>
+      <p className="palavra">Palavra: {renderPalavra()}</p>
+      <p className="erros">Erros: {erros} de 6</p>
 
-      <Text>Palavra: {renderPalavra()}</Text>
-      <Text>Erros: {erros} de 6</Text>
-
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+      <div className="teclado">
         {teclas.map((tecla, index) => (
-          <Button
-            key={index}  
-            title={tecla.letra}
-            disabled={tecla.clicado || erros >= 6} 
-            onPress={() => onClickTecla(tecla)}
-          />
+          <button
+            key={index}
+            className="tecla"
+            disabled={tecla.clicado || erros >= 6}
+            onClick={() => onClickTecla(tecla)}
+          >
+            {tecla.letra}
+          </button>
         ))}
-      </View>
+      </div>
 
-      {mensagem && <Text>{mensagem}</Text>}
-    </View>
-  )
-}
+      {mensagem && <p className="mensagem">{mensagem}</p>}
+    </div>
+  );
+};
 
-export default ForcaGameScreen
+export default ForcaGameScreen;

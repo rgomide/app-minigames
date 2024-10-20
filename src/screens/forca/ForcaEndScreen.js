@@ -1,25 +1,54 @@
-import React from 'react'
-import { View, Text, Button } from 'react-native'
-import { useRoute, useNavigation } from '@react-navigation/native'
+import React, { useEffect } from 'react';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import '../../components/visual/ForcaEndVisual.css';
+import confeteGif from '../../img/confete.gif';
+import vitoriaSound from '../../sounds/vitoria.mp3';
+import derrotaSound from '../../sounds/derrota.mp3';
 
 const ForcaEndScreen = () => {
-  const route = useRoute()
-  const navigation = useNavigation()
-  const { resultado, pontuacao, palavraAtual } = route.params
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { resultado, pontuacao, palavraAtual } = route.params;
+  const vitoriaAudio = new Audio(vitoriaSound);
+  const derrotaAudio = new Audio(derrotaSound);
+
+  useEffect(() => {
+    if (resultado === 'ganhou') {
+      vitoriaAudio.play();
+    } else if (resultado === 'perdeu') {
+      derrotaAudio.play();
+    }
+  }, [resultado]);
 
   return (
-    <View>
-      <Text>Você {resultado}!</Text>
-      <Text>Pontuação Final: {pontuacao}</Text> 
+    <div className="end-screen-container">
+      {resultado === 'ganhou' && (
+        <img src={confeteGif} alt="Confete" className="confetti-gif" />
+      )}
+      <p className={`resultado ${resultado}`}>Você {resultado}!</p>
+      <p className="pontuacao">Pontuação Final: {pontuacao}</p>
 
       {resultado === 'perdeu' && (
-        <Text>A palavra correta era: {palavraAtual}</Text>
+        <p className="palavra-correta">A palavra correta era: {palavraAtual}</p>
       )}
 
-      <Button title="Jogar Novamente" onPress={() => navigation.navigate('ForcaStartScreen')} />
-      <Button title="Voltar ao início" onPress={() => navigation.navigate('MainMenuScreen')} />
-    </View>
-  )
+      <div className="button-container">
+        <button
+          className="btn jogar-novamente"
+          onClick={() => navigation.navigate('ForcaStartScreen')}
+        >
+          Jogar Novamente
+        </button>
+
+        <button
+          className="btn voltar-inicio"
+          onClick={() =>  navigation.navigate('MainMenuScreen')}
+        >
+          Voltar ao início
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default ForcaEndScreen
+export default ForcaEndScreen;

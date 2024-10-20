@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import MainMenuScreen from './src/screens/MainMenuScreen'
 
+
 import AnagramaStartScreen from './src/screens/anagrama/AnagramaStartScreen'
 import AnagramaGameScreen from './src/screens/anagrama/AnagramaGameScreen'
 import AnagramaResultScreen from './src/screens/anagrama/AnagramaResultScreen'
@@ -41,7 +42,7 @@ const Stack = createNativeStackNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={MAIN_MENU_SCREEN} screenOptions={{ contentStyle: { backgroundColor: "#eee" } }}>
+      <Stack.Navigator initialRouteName={MAIN_MENU_SCREEN} screenOptions={{ contentStyle: { backgroundColor: "#F2E8DF" } }}>
         <Stack.Screen name={MAIN_MENU_SCREEN} component={MainMenuScreen} options={{ title: 'Menu' }} />
         <Stack.Group>
           <Stack.Screen
@@ -86,7 +87,7 @@ export default function App() {
           <Stack.Screen 
           name={FORCA_GAME_SCREEN}
           component={ForcaGameScreen} 
-          options={{ title: 'Forca', headerLeft: () => <></> }}
+          options={{ headerShown: false }}
           />
           <Stack.Screen 
           name={FORCA_END_SCREEN} 
@@ -112,7 +113,6 @@ export default function App() {
           />
         </Stack.Group>
       </Stack.Navigator>
-      <StatusBar style="auto" />
     </NavigationContainer>
   )
 }
