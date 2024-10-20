@@ -1,0 +1,70 @@
+/* Estilo da tela principal do Quiz */
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F2E8DF; /* Cor de fundo da paleta */
+    padding: 20px;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  /* Título principal do Quiz */
+  .quiz-title {
+    font-size: 50px;
+    font-family: 'Fredoka One', cursive;
+    margin-bottom: 16px;
+    background:  #a99be0;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Rótulo de seleção do tema */
+  .quiz-label {
+    font-size: 20px;
+    color: #333333; /* Cor de destaque para o rótulo */
+    margin-bottom: 10px;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  /* Estilo para o seletor de temas */
+  .picker-quiz {
+    height: 45px;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 20px;
+    background-color: #bab1e0;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  /* Botão de iniciar quiz */
+  .quiz-button {
+    background-color: #bab1e0;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  max-width: 350px;
+  width: 100%;
+  font-family: 'Fredoka One', cursive;
+  }
+  
+  .quiz-button:disabled {
+    background-color: #bab1e0; /* Cor mais clara quando desabilitado */
+    cursor: not-allowed;
+  }
+  
+  .quiz-button:hover:not(:disabled) {
+    background-color: #b5aae0;
+    transform: translateY(-3px);
+  }
+  

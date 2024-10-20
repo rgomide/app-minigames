@@ -1,5 +1,5 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
-import QuizResultCard from '../../components/quiz/QuizResultCard'
+import QuizResultCard from '../../components/quiz/QuizResultCard';
+import '../../components/visual/QuizEndVisual.css'; // Importa o arquivo CSS
 
 const QuizResultScreen = (props) => {
   const {
@@ -7,75 +7,56 @@ const QuizResultScreen = (props) => {
     route: {
       params: { topic, answers, questions }
     }
-  } = props
+  } = props;
 
   const totalCorrectAnswers = answers.reduce((acc, answer) => {
-    return answer.correct ? acc + 1 : acc
-  }, 0)
+    return answer.correct ? acc + 1 : acc;
+  }, 0);
 
   const totalCorrectAnswerTitle =
-    totalCorrectAnswers == 1 ? 'resposta correta' : 'respostas corretas'
+    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas';
 
-  const score = Math.floor(totalCorrectAnswers * (100 / questions.length))
+  const score = Math.floor(totalCorrectAnswers * (100 / questions.length));
 
   return (
-    <View style={styles.mainView}>
-      <Text style={styles.textTitle}>Resultado</Text>
+    <div className="quiz-result-container">
+      <h1 className="quiz-result-title">Resultado</h1>
 
-      <View style={styles.viewRow}>
-        <Text style={styles.textTitle}>Tema:</Text>
-        <Text style={styles.textTitle}>{topic}</Text>
-      </View>
+      <div className="quiz-result-row">
+        <span className="quiz-result-label">Tema: {topic}</span>
+      </div>
 
-      <View style={styles.viewRow}>
-        <Text style={styles.textTotalCorrect}>{totalCorrectAnswers}</Text>
-        <Text style={styles.textTitle}>{totalCorrectAnswerTitle}</Text>
-      </View>
+      <div className="quiz-result-row">
+        <span className="quiz-result-total">{totalCorrectAnswers} {totalCorrectAnswerTitle}</span>
+      </div>
 
-      <View style={styles.viewRow}>
-        <Text style={styles.textTitle}>Pontuação Final:</Text>
-        <Text style={styles.textTitle}>{score}</Text>
-      </View>
+      <div className="quiz-result-row">
+        <span className="quiz-result-label">Pontuação Final: {score}</span>
+      </div>
 
-      <View style={styles.resultView}>
+      <div className="quiz-result-list">
         {questions.map((question, index) => (
           <QuizResultCard key={index} question={question} answer={answers[index]} />
         ))}
-      </View>
-      <Button title="Jogar Novamente" onPress={() => navigation.navigate('QuizStartScreen')} />
-      <Button title="Voltar ao início" onPress={() => navigation.navigate('MainMenuScreen')} />
-    </View>
-  )
-}
+      </div>
 
-const styles = StyleSheet.create({
-  mainView: {
-    padding: 10,
-    gap: 5
-  },
-  resultView: {
-    padding: 10,
-    gap: 10,
-    backgroundColor: '#ddd',
-    borderRadius: 5
-  },
-  viewRow: {
-    flexDirection: 'row',
-    gap: 5,
-    alignItems: 'flex-end'
-  },
-  textTitle: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    includeFontPadding: false,
-    textAlignVertical: 'center'
-  },
-  textTotalCorrect: {
-    fontWeight: 'bold',
-    fontSize: 25,
-    includeFontPadding: false,
-    textAlignVertical: 'bottom'
-  }
-})
+      <div className="button-container">
+        <button
+          className="btn jogar-novamente"
+          onClick={() => navigation.navigate('QuizStartScreen')}
+        >
+          Jogar Novamente
+        </button>
 
-export default QuizResultScreen
+        <button
+          className="btn voltar-inicio"
+          onClick={() =>  navigation.navigate('MainMenuScreen')}
+        >
+          Voltar ao início
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default QuizResultScreen;

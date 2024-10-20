@@ -1,49 +1,61 @@
-import { Button, StyleSheet, View, Text } from 'react-native'
-import { useState } from 'react'
-import RNPickerSelect from 'react-native-picker-select'
-import { getQuiz } from '../../services/quiz/quisService'
-import { QUIZ_GAME_SCREEN } from '../../constants/screens'
+
+import { useState } from 'react';
+import { getQuiz } from '../../services/quiz/quisService';
+import { QUIZ_GAME_SCREEN } from '../../constants/screens';
+import '../../components/visual/QuizStartVisual.css'; 
+import infoIcon from '../../img/duvida.png'; 
 
 const QuizStartScreen = (props) => {
-  const navigation = props.navigation
-  const [selectedQuiz, setSelectedQuiz] = useState(null)
-  const quizList = [{ label: 'Capitais', value: 'quiz01' }]
+  const navigation = props.navigation;
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [showInfo, setShowInfo] = useState(false); 
+  const quizList = [{ label: 'Capitais', value: 'quiz01' }];
 
   const startQuiz = async () => {
-    const quiz = await getQuiz('quiz01')
-    navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz })
-  }
+    const quiz = await getQuiz('quiz01');
+    navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz });
+  };
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
+  };
 
   return (
-    <View style={styles.mainView}>
-      <Text style={styles.title}>QUIZ</Text>
+    <div className="quiz-container">
+      <div className="info-icon" onClick={toggleInfo}>
+        <img src={infoIcon} alt="Informação" />
+      </div>
 
-      <Text>Responda as perguntas escolhendo a alternativa correta entre as opções. </Text>
 
-      <Text>Selecione o tema: </Text>
+      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
+        <p>Responda as perguntas escolhendo a alternativa correta entre as opções.</p>
+      </div>
+      <h1 className="quiz-title">QUIZ</h1>
 
-      <RNPickerSelect
-        placeholder={{ label: 'Selecione um tema...' }}
-        onValueChange={setSelectedQuiz}
-        items={quizList}
-      />
-      <Button title="Iniciar Quiz" disabled={!selectedQuiz} onPress={startQuiz} />
-    </View>
-  )
-}
+      <p className="quiz-label">Selecione o tema:</p>
 
-const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    gap: 3,
-    padding: 10,
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-})
+      <select
+        className="picker-quiz"
+        value={selectedQuiz}
+        onChange={(e) => setSelectedQuiz(e.target.value)}
+      >
+        <option value="">Selecione um tema</option>
+        {quizList.map((quiz, index) => (
+          <option key={index} value={quiz.value}>
+            {quiz.label}
+          </option>
+        ))}
+      </select>
+       
+      <button
+        className="quiz-button"
+        disabled={!selectedQuiz}
+        onClick={startQuiz}
+      >
+        Iniciar Quiz
+      </button>
+    </div>
+  );
+};
 
-export default QuizStartScreen
+export default QuizStartScreen;

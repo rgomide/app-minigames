@@ -53,7 +53,7 @@ export default function App() {
           <Stack.Screen
             name={ANAGRAMA_GAME_SCREEN}
             component={AnagramaGameScreen}
-            options={{ title: 'Anagrama', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ANAGRAMA_RESULT_SCREEN}
@@ -70,7 +70,7 @@ export default function App() {
           <Stack.Screen
             name={ASSOCIACAO_GAME_SCREEN}
             component={AssociacaoGameScreen}
-            options={{ title: 'Associação', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ASSOCIACAO_RESULT_SCREEN}
@@ -92,7 +92,7 @@ export default function App() {
           <Stack.Screen 
           name={FORCA_END_SCREEN} 
           component={ForcaEndScreen} 
-          options={{ title: 'Forca', headerLeft: () => <></> }}
+          options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>
@@ -104,12 +104,12 @@ export default function App() {
           <Stack.Screen
             name={QUIZ_GAME_SCREEN}
             component={QuizGameScreen}
-            options={{ title: 'Quiz', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name={QUIZ_RESULT_SCREEN}
             component={QuizResultScreen}
-            options={{ title: 'Quiz', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
       </Stack.Navigator>

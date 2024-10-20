@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import '../components/visual/MainMenuScreenVisual.css';
-import { FontAwesome5 } from '@expo/vector-icons';
 import {
   ANAGRAMA_START_SCREEN,
   ASSOCIACAO_START_SCREEN,
   FORCA_START_SCREEN,
   QUIZ_START_SCREEN
-} from '../constants/screens.js'
+} from '../constants/screens.js';
 
-const GameCard = ({ gameName, iconName, description, onPlay, bgColor, gradientColor }) => {
+const GameCard = ({ gameName, iconSrc, description, onPlay, bgColor, gradientColor }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpand = () => {
@@ -22,7 +21,7 @@ const GameCard = ({ gameName, iconName, description, onPlay, bgColor, gradientCo
       style={{ background: `linear-gradient(145deg, ${bgColor}, ${gradientColor})` }}
     >
       <div className="game-icon">
-        <FontAwesome5 name={iconName} size={48} color="white" />
+        <img src={require(`../img/${iconSrc}`)} alt={gameName} className="game-icon-img" />
       </div>
       <h3 className="game-title">{gameName}</h3>
 
@@ -49,29 +48,28 @@ const MainMenuScreen = ({ navigation }) => {
     <div className="game-menu">
       <GameCard
         gameName="Anagrama"
-        iconName="puzzle-piece"
+        iconSrc="icone_anagrama.png" // Imagem para o Anagrama
         description="Forme palavras a partir de letras embaralhadas."
         onPlay={() => navigation.navigate(ANAGRAMA_START_SCREEN)}
       />
 
       <GameCard
         gameName="Associação"
-        iconName="project-diagram" 
+        iconSrc="icone_associacao.png" // Imagem para o Associação
         description="Associe corretamente os pares."
         onPlay={() => navigation.navigate(ASSOCIACAO_START_SCREEN)}
       />
 
-  
       <GameCard
         gameName="Forca"
-        iconName="gavel"
+        iconSrc="icone_forca.png" // Imagem para o Forca
         description="Adivinhe a palavra oculta antes que o boneco seja enforcado."
         onPlay={() => navigation.navigate(FORCA_START_SCREEN)}
       />
 
       <GameCard
         gameName="Quiz"
-        iconName="question"
+        iconSrc="icone_quiz.png" // Imagem para o Quiz
         description="Responda perguntas e teste seus conhecimentos."
         onPlay={() => navigation.navigate(QUIZ_START_SCREEN)}
       />

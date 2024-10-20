@@ -94,6 +94,11 @@ body {
   margin-bottom: 20px;
 }
 
+.game-icon-img {
+  width: 100px; /* Tamanho ajustado para os ícones */
+  height: 100px;
+}
+
 .game-title {
   font-size: 22px;
   font-weight: 600;

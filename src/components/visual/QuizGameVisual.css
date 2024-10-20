@@ -1,0 +1,76 @@
+/* Estilo da tela principal do QuizGameScreen */
+.quiz-game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box; /* Inclui padding e bordas no cálculo de altura */
+    background-color: #F2E8DF; /* Cor de fundo roxa suave */
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+  }
+  
+  /* Título do tema do quiz */
+  .quiz-topic {
+    font-size: 28px; /* Reduzi o tamanho do título para melhor encaixe */
+    color: #a99be0;
+    margin-bottom: 10px;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  /* Contador de questões */
+  .quiz-counter {
+    font-size: 18px;
+    color: #b3a8e0;
+    margin-bottom: 15px;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  /* Cartão de Pergunta - Ajustes para melhor responsividade */
+  .quiz-card-container {
+    width: 100%;
+     max-width: 600px; /* Limita a largura máxima do cartão de perguntas */
+    margin-bottom: 20px;
+  }
+  
+  /* Botão de próximo ou finalizar */
+  .quiz-next-button {
+    background-color: #433d59;
+    font-family: 'Fredoka One', cursive;
+    color: #fff;
+    padding: 10px 20px; /* Reduzi o padding para caber melhor */
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .quiz-next-button:disabled {
+    background-color: #877cb3;
+    cursor: not-allowed;
+  }
+  
+  .quiz-next-button:hover:not(:disabled) {
+    background-color: #655d86;
+    transform: translateY(-3px);
+  }
+  
+  /* Responsividade para dispositivos móveis */
+  @media (max-width: 768px) {
+    .quiz-topic {
+      font-size: 24px; /* Ajusta o tamanho do título em telas menores */
+    }
+  
+    .quiz-next-button {
+      width: 100%; /* Botão ocupa toda a largura no mobile */
+    }
+  
+    .quiz-card-container {
+      max-width: 90%; /* Ajusta a largura do cartão de perguntas no mobile */
+    }
+  }
+  
