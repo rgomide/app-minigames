@@ -43,7 +43,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={MAIN_MENU_SCREEN} screenOptions={{ contentStyle: { backgroundColor: "#F2E8DF" } }}>
-        <Stack.Screen name={MAIN_MENU_SCREEN} component={MainMenuScreen} options={{ title: 'Menu' }} />
+        <Stack.Screen name={MAIN_MENU_SCREEN} component={MainMenuScreen} options={{ headerShown: false }} />
         <Stack.Group>
           <Stack.Screen
             name={ANAGRAMA_START_SCREEN}

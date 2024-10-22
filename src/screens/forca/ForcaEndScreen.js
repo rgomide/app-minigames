@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import '../../components/visual/ForcaEndVisual.css';
 import confeteGif from '../../img/confete.gif';
-import vitoriaIcon from '../../img/vitoriaIcon.png';  // Ícone de vitória
-import derrotaIcon from '../../img/derrotaIcon.png';  // Ícone de derrota
+import vitoriaIcon from '../../img/vitoriaIcon.png';  
+import derrotaIcon from '../../img/derrotaIcon.png'; 
 import vitoriaSound from '../../sounds/vitoria.mp3';
 import derrotaSound from '../../sounds/derrota.mp3';
 
@@ -26,7 +26,7 @@ const ForcaEndScreen = () => {
     <div className="end-screen-container">
 
       {resultado=== 'ganhou' && (
-        <div><img src={vitoriaIcon} alt="Vitória" className="resultado-icone" /> {/* Ícone de vitória */}</div>   
+        <div><img src={vitoriaIcon} alt="Vitória" className="resultado-icone" /></div>   
       )}
       {resultado === 'ganhou' && (
         <div className="confetti-wrapper">
@@ -39,7 +39,7 @@ const ForcaEndScreen = () => {
 
       {resultado === 'perdeu' && (
         <div>
-          <img src={derrotaIcon} alt="Derrota" className="resultado-icone" /> {/* Ícone de derrota */}
+          <img src={derrotaIcon} alt="Derrota" className="resultado-icone" />
           <h1 className="quiz-result-title-derrota">Você perdeu!</h1>       
         </div>
       )}
