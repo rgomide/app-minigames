@@ -1,5 +1,12 @@
-import QuizResultCard from '../../components/quiz/QuizResultCard';
-import '../../components/visual/QuizEndVisual.css'; // Importa o arquivo CSS
+import QuizResultCard from '../../components/quiz/QuizResultCard'
+import React, { useEffect } from 'react'
+import '../../components/visual/QuizEndVisual.css'
+import vitoriaSound from '../../sounds/vitoria.mp3'
+import derrotaSound from '../../sounds/derrota.mp3'
+import confeteGif from '../../img/confete.gif'
+
+const vitoriaAudio = new Audio(vitoriaSound)
+const derrotaAudio = new Audio(derrotaSound)
 
 const QuizResultScreen = (props) => {
   const {
@@ -7,32 +14,45 @@ const QuizResultScreen = (props) => {
     route: {
       params: { topic, answers, questions }
     }
-  } = props;
+  } = props
 
   const totalCorrectAnswers = answers.reduce((acc, answer) => {
-    return answer.correct ? acc + 1 : acc;
-  }, 0);
+    return answer.correct ? acc + 1 : acc
+  }, 0)
 
   const totalCorrectAnswerTitle =
-    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas';
+    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas'
 
-  const score = Math.floor(totalCorrectAnswers * (100 / questions.length));
+  const score = Math.floor(totalCorrectAnswers * (100 / questions.length))
+  
+
+  useEffect(() => {
+    if (totalCorrectAnswers > 0) {
+      vitoriaAudio.play()
+    } else if (totalCorrectAnswers < 1) {
+      derrotaAudio.play()
+    }
+  }, [totalCorrectAnswers])
 
   return (
-    <div className="quiz-result-container">
-      <h1 className="quiz-result-title">Resultado</h1>
+    <div className="end-screen-container">
+      {totalCorrectAnswers > 0 && (
+        <div className="confetti-wrapper">
+          <img src={confeteGif} alt="Confete" className="confetti-gif-left" />
+          <h1 className="quiz-result-title-vitoria">Você ganhou!</h1>
+          <img src={confeteGif} alt="Confete" className="confetti-gif-right" />
+        </div>
+      )}
 
-      <div className="quiz-result-row">
-        <span className="quiz-result-label">Tema: {topic}</span>
-      </div>
+      {totalCorrectAnswers === 0 && (
+        <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
+      )}
 
       <div className="quiz-result-row">
         <span className="quiz-result-total">{totalCorrectAnswers} {totalCorrectAnswerTitle}</span>
       </div>
-
-      <div className="quiz-result-row">
-        <span className="quiz-result-label">Pontuação Final: {score}</span>
-      </div>
+        <p className="pontuacao">Pontuação Final: {score}</p>
+ 
 
       <div className="quiz-result-list">
         {questions.map((question, index) => (
@@ -56,7 +76,7 @@ const QuizResultScreen = (props) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default QuizResultScreen;
+export default QuizResultScreen

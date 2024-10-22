@@ -22,7 +22,7 @@ body {
   padding-top: 20px;
 }
 
-/* Barra de menu */
+
 .menu-bar {
   background-color: #F2C6C2; 
   padding: 20px;
@@ -50,7 +50,6 @@ body {
 
 .game-card {
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
   padding: 30px;
   text-align: center;
   transition: transform 0.3s, height 0.3s ease-in-out;
@@ -95,7 +94,7 @@ body {
 }
 
 .game-icon-img {
-  width: 100px; /* Tamanho ajustado para os ícones */
+  width: 100px;
   height: 100px;
 }
 

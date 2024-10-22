@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import '../../components/visual/AnagramaImagem.css'
 
 const ImagemIcone = ({ imagens = [] }) => {
   if (imagens.length === 0) {
@@ -7,21 +7,17 @@ const ImagemIcone = ({ imagens = [] }) => {
   }
 
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' , marginVertical: 8 }}>
+    <div className="imagemIconeContainer">
       {imagens.map((imagem, index) => (
-        <Image
+        <img
           key={index}
-          source={{ uri: imagem }}
-          style={{
-            width: 50,
-            height: 50,
-            marginHorizontal: 4,
-            borderRadius: 6
-          }}
+          src={imagem}
+          alt={`Ícone ${index}`}
+          className="imagemIcone"
           onError={(e) => console.log(`Erro ao carregar imagem ${imagem}:`, e.nativeEvent.error)}
         />
       ))}
-    </View>
+    </div>
   );
 };
 

@@ -58,7 +58,7 @@ export default function App() {
           <Stack.Screen
             name={ANAGRAMA_RESULT_SCREEN}
             component={AnagramaResultScreen}
-            options={{ title: 'Anagrama', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>
@@ -75,7 +75,7 @@ export default function App() {
           <Stack.Screen
             name={ASSOCIACAO_RESULT_SCREEN}
             component={AssociacaoResultScreen}
-            options={{ title: 'Associação', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>

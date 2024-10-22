@@ -5,14 +5,9 @@
         "tema": "Animais",
         "grupos": [
           {
-            "dica": "Mamíferos",
-            "imagem": "https://picsum.photos/id/200/200/300",
-            "palavras": ["elefante", "gato", "cachorro", "leao", "girafa"]
-          },
-          {
             "dica": "Aves",
             "imagem": "https://picsum.photos/id/200/200/300",
-            "palavras": ["papagaio", "coruja", "pombo", "aguia", "galinha"]
+            "palavras": ["papagaio"]
           }
         ]
       },

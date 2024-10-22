@@ -48,28 +48,28 @@ const MainMenuScreen = ({ navigation }) => {
     <div className="game-menu">
       <GameCard
         gameName="Anagrama"
-        iconSrc="icone_anagrama.png" // Imagem para o Anagrama
+        iconSrc="icone_anagrama.png"
         description="Forme palavras a partir de letras embaralhadas."
         onPlay={() => navigation.navigate(ANAGRAMA_START_SCREEN)}
       />
 
       <GameCard
         gameName="Associação"
-        iconSrc="icone_associacao.png" // Imagem para o Associação
+        iconSrc="icone_associacao.png"
         description="Associe corretamente os pares."
         onPlay={() => navigation.navigate(ASSOCIACAO_START_SCREEN)}
       />
 
       <GameCard
         gameName="Forca"
-        iconSrc="icone_forca.png" // Imagem para o Forca
-        description="Adivinhe a palavra oculta antes que o boneco seja enforcado."
+        iconSrc="icone_forca.png"
+        description="Acerte a palavra oculta antes que seja enforcado."
         onPlay={() => navigation.navigate(FORCA_START_SCREEN)}
       />
 
       <GameCard
         gameName="Quiz"
-        iconSrc="icone_quiz.png" // Imagem para o Quiz
+        iconSrc="icone_quiz.png"
         description="Responda perguntas e teste seus conhecimentos."
         onPlay={() => navigation.navigate(QUIZ_START_SCREEN)}
       />

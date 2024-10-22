@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import forcaData from '../../db/forca/forca01.json';
-import '../../components/visual/ForcaStartVisual.css'; 
-import infoIcon from '../../img/duvida.png'; 
+import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import forcaData from '../../db/forca/forca01.json'
+import '../../components/visual/ForcaStartVisual.css'
+import infoIcon from '../../img/duvida.png' 
 
 const SelectForcaThemeScreen = () => {
-  const navigation = useNavigation();
-  const [selectedTheme, setSelectedTheme] = useState('');
-  const [showInfo, setShowInfo] = useState(false); 
+  const navigation = useNavigation()
+  const [selectedTheme, setSelectedTheme] = useState('')
+  const [showInfo, setShowInfo] = useState(false)
   const handleStartGame = () => {
-    const temaSelecionado = forcaData.forca.temas.find((t) => t.tema === selectedTheme);
+    const temaSelecionado = forcaData.forca.temas.find((t) => t.tema === selectedTheme)
     if (temaSelecionado) {
-      navigation.navigate('ForcaGameScreen', { tema: temaSelecionado });
+      navigation.navigate('ForcaGameScreen', { tema: temaSelecionado })
     }
-  };
+  }
 
   const toggleInfo = () => {
-    setShowInfo(!showInfo);
-  };
+    setShowInfo(!showInfo)
+  }
 
   return (
     <div className="container">
@@ -55,7 +55,7 @@ const SelectForcaThemeScreen = () => {
         Iniciar Forca
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default SelectForcaThemeScreen;
+export default SelectForcaThemeScreen

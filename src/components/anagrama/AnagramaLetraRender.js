@@ -1,29 +1,24 @@
-import React from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import React from 'react';
+import '../../components/visual/AnagramaBotao.css'
 
 const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
   if (!letrasEmbaralhadas || !Array.isArray(letrasEmbaralhadas)) {
-    return null
+    return null;
   }
 
   return (
-    <View style={{ flexDirection: 'row', marginVertical: 18 }}>
+    <div className="letrasContainer">
       {letrasEmbaralhadas.map((letra, index) => (
-        <TouchableOpacity
+        <button
           key={index}
-          style={{
-            marginHorizontal: 16,
-            padding: 12,
-            backgroundColor: 'lightgray',
-            borderRadius: 10
-          }}
-          onPress={() => onLetraPress(letra)}
+          className="letraButton"
+          onClick={() => onLetraPress(letra)}
         >
-          <Text style={{ fontSize: 18 }}>{letra}</Text>
-        </TouchableOpacity>
+          {letra}
+        </button>
       ))}
-    </View>
-  )
-}
+    </div>
+  );
+};
 
-export default RenderizarLetras
+export default RenderizarLetras;

@@ -62,20 +62,10 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
-.description {
-  font-size: 16px;
-  margin-bottom: 16px;
-  color: #333333;
-  text-align: center;
-  font-family: 'Fredoka One', cursive;
-  max-width: 90%;
-  line-height: 1.5;
-}
 
 .label {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 16px;
   color: #333333; 
   font-family: 'Fredoka One', cursive; 
 }

@@ -21,7 +21,7 @@ const QuizStartScreen = (props) => {
   };
 
   return (
-    <div className="quiz-container">
+    <div className="container">
       <div className="info-icon" onClick={toggleInfo}>
         <img src={infoIcon} alt="Informação" />
       </div>
@@ -32,7 +32,7 @@ const QuizStartScreen = (props) => {
       </div>
       <h1 className="quiz-title">QUIZ</h1>
 
-      <p className="quiz-label">Selecione o tema:</p>
+      <p className="label">Selecione o tema:</p>
 
       <select
         className="picker-quiz"

@@ -1,19 +1,34 @@
-.quiz-result-container {
-    padding: 20px;
-    background-color: #F2E8DF;
-    min-height: 100vh;
+  .confetti-wrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Fredoka One', cursive;
+    margin-bottom: 30px
   }
   
-  .quiz-result-title {
+  .confetti-gif-left {
+    width: 120px;
+    height: 120px;
+    transform: scaleX(-1);
+    margin-top: -100px;
+    position: relative
+  }
+  
+  .confetti-gif-right {
+    width: 120px;
+    height: 120px;
+    margin-top: -100px
+  }
+
+  .quiz-result-title-vitoria {
     font-size: 40px;
-    color: #a99be0;
-    margin-bottom: 30px;
-    font-family: 'Fredoka One', cursive;
+    color: #4caf50;
+    font-family: 'Fredoka One', cursive  
+  }
+
+  .quiz-result-title-derrota {
+    font-size: 40px;
+    color: #f44336;
+    font-family: 'Fredoka One', cursive  
   }
   
   .quiz-result-row {
@@ -21,14 +36,7 @@
     justify-content: center;
     width: 100%;
     max-width: 600px;
-    margin-bottom: 15px;
-  }
-  
-  .quiz-result-label {
-    font-size: 18px;
-    color: #433d59;
-    font-weight: bold;
-    font-family: 'Fredoka One', cursive;
+    margin-bottom: 15px
   }
   
   .quiz-result-total {

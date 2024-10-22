@@ -1,53 +1,64 @@
-import { Button, StyleSheet, View, Text } from 'react-native'
-import { useState } from 'react'
-import RNPickerSelect from 'react-native-picker-select'
+import React, { useState } from 'react'
+import '../../components/visual/AnagramaStartVisual.css'
 import { getAnagrama } from '../../services/anagrama/anagramaService'
 import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens'
+import infoIcon from '../../img/duvida.png'
 
 const AnagramaStartScreen = (props) => {
   const navigation = props.navigation
   const [selectedAnagrama, setSelectedAnagrama] = useState(null)
+  const [showInfo, setShowInfo] = useState(false)
+
   const anagramaList = [
     { label: 'Geral 1', value: 'anagrama01' },
     { label: 'Geral 2', value: 'anagrama02' },
     { label: 'Geral 3', value: 'anagrama03' }
-  ];
+  ]
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo)
+  }
 
   const startAnagrama = async () => {
     const anagrama = await getAnagrama(selectedAnagrama)
     navigation.navigate(ANAGRAMA_GAME_SCREEN, { anagramaSettings: anagrama })
-  };
+  }
 
   return (
-    <View style={styles.mainView}>
-      <Text style={styles.title}>ANAGRAMA</Text>
+    <div className="container">
+      <div className="info-icon" onClick={toggleInfo}>
+        <img src={infoIcon} alt="Informação" />
+      </div>
+      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
+        <p>Reorganize as letras embaralhadas para formar palavras válidas.</p>
+      </div>
 
-      <Text>Reorganize as letras embaralhadas para formar palavras válidas. </Text>
+      <h1 className="anagrama-title">ANAGRAMA</h1>
 
-      <Text>Selecione o tema: </Text>
+      <p className="label">Selecione o tema:</p>
 
-      <RNPickerSelect
-        placeholder={{ label: 'Selecione um tema...' }}
-        onValueChange={setSelectedAnagrama}
-        items={anagramaList}
-      />
-      <Button title="Iniciar Anagrama" disabled={!selectedAnagrama} onPress={startAnagrama} />
-    </View>
+      <select
+        className="anagrama-picker"
+        value={selectedAnagrama}
+        onChange={(e) => setSelectedAnagrama(e.target.value)}
+      >
+        <option value="">Selecione um tema...</option>
+        {anagramaList.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      <button
+        className="anagrama-start-button"
+        disabled={!selectedAnagrama}
+        onClick={startAnagrama}
+      >
+        Iniciar Anagrama
+      </button>
+    </div>
   )
 }
-
-const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    gap: 3,
-    padding: 10,
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-})
 
 export default AnagramaStartScreen

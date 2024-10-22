@@ -1,57 +1,18 @@
-import React from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native'
+import React from 'react';
+import '../../components/visual/AnagramaBotao.css'
 
 const AnagramaBotoes = ({ onEnviarPress, onApagarPress }) => {
   return (
-    <View style={styles.buttonRow}>
-      
-      <TouchableOpacity style={[styles.enviarButton]} onPress={onEnviarPress}>
-        <Text style={styles.enviarButtonText}>Enviar Palavra</Text> 
-      </TouchableOpacity>
+    <div className="buttonRow">
+      <button className="enviarButton" onClick={onEnviarPress}>
+        Enviar Palavra
+      </button>
 
-      
-      <TouchableOpacity style={[styles.iconButton, styles.apagarButton]} onPress={onApagarPress}>
-        <Image source={require('../../../assets/backspace.png')} style={styles.iconImage} />
-      </TouchableOpacity>
-    </View>
-  )
-}
+      <button className="iconButton apagarButton" onClick={onApagarPress}>
+        <img src={require('../../../assets/backspace.png')} alt="Apagar" className="iconImage" />
+      </button>
+    </div>
+  );
+};
 
-const styles = StyleSheet.create({
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 12,
-    width: '100%'
-  },
-  iconButton: {
-    padding: 12,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  iconImage: {
-    width: 20,
-    height: 20,
-  },
-  apagarButton: {
-    backgroundColor: 'red'
-  },
-  enviarButton: {
-    backgroundColor: '#007bff',
-    paddingVertical: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1, 
-    marginRight: 8, 
-    borderRadius: 8
-  },
-  enviarButtonText: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center'
-  }
-})
-
-export default AnagramaBotoes
+export default AnagramaBotoes;
