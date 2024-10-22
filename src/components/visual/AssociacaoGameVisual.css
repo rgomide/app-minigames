@@ -1,84 +1,88 @@
-.anagrama-game-container {
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.associacao-game-container {
+  background-color: #F2E8DF;
   padding: 20px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f7d0a1;
-  min-height: 100vh;
 }
 
-.game-header {
+.associacao-game-area {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.associacao-column-container {
+  display: flex;
+  align-items: stretch;
   justify-content: space-between;
   width: 100%;
-  max-width: 600px;
-  margin-bottom: 15px;
+  max-width: 800px;
 }
 
-.header-text {
-  font-size: 18px;
-  font-weight: bold;
-  color: #916a3b;
-}
-
-.game-enunciado {
-  font-size: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #f4c182;
-}
-
-.hidden-words-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #c18e4f;
-}
-
-.hidden-words-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  max-width: 600px;
-  background-color: #f9e0c0;
+.associacao-column {
+  flex: 1;
   padding: 10px;
-  border-radius: 10px;
-}
-
-.current-word {
-  padding: 10px;
-  background-color: #f2b263;
-  border-radius: 10px;
-  min-height: 50px;
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-  font-size: 24px;
-  color: white;
-  margin-bottom: 20px;
-}
-
-.letras-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
-button {
-  background-color: #916a3b;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+.associacao-divider {
+  width: 2px;
+  background-color: #433d59;
+}
+
+.associacao-item {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #7c9a96;
   color: white;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: none;
+  transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
 }
 
-button:hover {
-  background-color: #c18e4f;
+.associacao-item:hover:not(.disabled) {
+  background-color: #1e2625;
+}
+
+/* Efeito de feedback */
+.associacao-item.incorrect {
+  box-shadow: 0 0 15px red;
+  border: 2px solid red;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.associacao-item.correct {
+  box-shadow: 0 0 15px green;
+  border: 2px solid green;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.associacao-item.disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.associacao-image {
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+}
+
+.disabled-image {
+  opacity: 0.5;
+}
+
+.associacao-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

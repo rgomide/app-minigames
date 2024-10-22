@@ -25,17 +25,16 @@ const ForcaEndScreen = () => {
       {resultado === 'ganhou' && (
           <div className="confetti-wrapper">
           <img src={confeteGif} alt="Confete" className="confetti-gif-left" />
-          <h1 className="quiz-result-title">
-            {resultado ==='ganhou' ? 'Você ganhou!' : 'Você perdeu!'}
-          </h1>
+          <h1 className="quiz-result-title-vitoria">Você ganhou!</h1>
           <img src={confeteGif} alt="Confete" className="confetti-gif-right" />
         </div>
-      )}
+        )}
+
+        {resultado === 'perdeu' && (
+        <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
+        )}
       <p className="pontuacao">Pontuação Final: {pontuacao}</p>
 
-      {resultado === 'perdeu' && (
-        <p className="palavra-correta">A palavra correta era: {palavraAtual}</p>
-      )}
 
       <div className="button-container">
         <button
