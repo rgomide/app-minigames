@@ -4,6 +4,8 @@ import '../../components/visual/QuizEndVisual.css'
 import vitoriaSound from '../../sounds/vitoria.mp3'
 import derrotaSound from '../../sounds/derrota.mp3'
 import confeteGif from '../../img/confete.gif'
+import vitoriaIcon from '../../img/vitoriaIcon.png';  
+import derrotaIcon from '../../img/derrotaIcon.png';
 
 const vitoriaAudio = new Audio(vitoriaSound)
 const derrotaAudio = new Audio(derrotaSound)
@@ -36,6 +38,11 @@ const QuizResultScreen = (props) => {
 
   return (
     <div className="end-screen-container">
+
+      {totalCorrectAnswers > 0 && (
+        <div><img src={vitoriaIcon} alt="Vitória" className="resultado-icone" /></div>   
+      )}
+
       {totalCorrectAnswers > 0 && (
         <div className="confetti-wrapper">
           <img src={confeteGif} alt="Confete" className="confetti-gif-left" />
@@ -44,8 +51,11 @@ const QuizResultScreen = (props) => {
         </div>
       )}
 
-      {totalCorrectAnswers === 0 && (
-        <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
+      {totalCorrectAnswerTitle === 0 && (
+          <div>
+            <img src={derrotaIcon} alt="Derrota" className="resultado-icone" />
+            <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
+          </div>
       )}
 
       <div className="quiz-result-row">

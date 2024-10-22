@@ -3,6 +3,8 @@ import '../../components/visual/AssociacaoEndVisual.css';
 import vitoriaSound from '../../sounds/vitoria.mp3';
 import derrotaSound from '../../sounds/derrota.mp3';
 import confeteGif from '../../img/confete.gif';
+import vitoriaIcon from '../../img/vitoriaIcon.png';  
+import derrotaIcon from '../../img/derrotaIcon.png';
 
 const vitoriaAudio = new Audio(vitoriaSound);
 const derrotaAudio = new Audio(derrotaSound);
@@ -21,6 +23,9 @@ const AssociacaoResultScreen = ({ route, navigation }) => {
 
   return (
     <div className="end-screen-container">
+        {displayScore > 0 && (
+        <div><img src={vitoriaIcon} alt="Vitória" className="resultado-icone" /></div>   
+        )}
 
         {displayScore > 0 && (
           <div className="confetti-wrapper">
@@ -31,10 +36,12 @@ const AssociacaoResultScreen = ({ route, navigation }) => {
         )}
 
         {displayScore === 0 && (
-        <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
+          <div>
+            <img src={derrotaIcon} alt="Derrota" className="resultado-icone" />
+            <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
+          </div>
         )}
 
-      
         <p className="pontuacao">Pontuação Final: {displayScore}</p>
       
 

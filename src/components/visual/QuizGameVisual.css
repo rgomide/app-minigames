@@ -1,4 +1,3 @@
-/* Estilo da tela principal do QuizGameScreen */
 .quiz-game-container {
     display: flex;
     flex-direction: column;
@@ -6,21 +5,19 @@
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    box-sizing: border-box; /* Inclui padding e bordas no cálculo de altura */
-    background-color: #F2E8DF; /* Cor de fundo roxa suave */
+    box-sizing: border-box;
+    background-color: #F2E8DF;
     font-family: 'Fredoka One', cursive;
     text-align: center;
   }
   
-  /* Título do tema do quiz */
   .quiz-topic {
-    font-size: 28px; /* Reduzi o tamanho do título para melhor encaixe */
+    font-size: 28px;
     color: #a99be0;
     margin-bottom: 10px;
     font-family: 'Fredoka One', cursive;
   }
   
-  /* Contador de questões */
   .quiz-counter {
     font-size: 18px;
     color: #b3a8e0;
@@ -28,19 +25,18 @@
     font-family: 'Fredoka One', cursive;
   }
   
-  /* Cartão de Pergunta - Ajustes para melhor responsividade */
+  
   .quiz-card-container {
     width: 100%;
-     max-width: 600px; /* Limita a largura máxima do cartão de perguntas */
+     max-width: 600px;
     margin-bottom: 20px;
   }
   
-  /* Botão de próximo ou finalizar */
   .quiz-next-button {
     background-color: #433d59;
     font-family: 'Fredoka One', cursive;
     color: #fff;
-    padding: 10px 20px; /* Reduzi o padding para caber melhor */
+    padding: 10px 20px;
     border-radius: 8px;
     border: none;
     font-size: 18px;
@@ -59,18 +55,93 @@
     transform: translateY(-3px);
   }
   
-  /* Responsividade para dispositivos móveis */
+  .quiz-card-main-view {
+    background-color: #877cb3; 
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    max-width: 800px; 
+    margin: 0 auto;
+  }
+  
+
+  
+  .quiz-card-title {
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
+  }
+  
+  .quiz-card-images-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
+    margin-bottom: 35px;
+  }
+  
+  .quiz-card-image {
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  .quiz-card-alternatives-label {
+    font-size: 20px;
+    color: #ffffff; 
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Fredoka One', cursive; 
+    margin-top: 35px; 
+  }
+  
+  .quiz-card-check-button-group-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
   @media (max-width: 768px) {
+    .quiz-card-main-view {
+      padding: 20px;
+      max-width: 100%;
+    }
+  
+    .quiz-card-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+  
+    .quiz-card-images-view {
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+  
+    .quiz-card-alternatives-label {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  
+    .quiz-card-check-button-group-container {
+      margin-top: 20px;
+      gap: 8px;
+    }
+
     .quiz-topic {
-      font-size: 24px; /* Ajusta o tamanho do título em telas menores */
+      font-size: 24px; 
     }
   
     .quiz-next-button {
-      width: 100%; /* Botão ocupa toda a largura no mobile */
+      width: 100%; 
     }
   
     .quiz-card-container {
-      max-width: 90%; /* Ajusta a largura do cartão de perguntas no mobile */
+      max-width: 90%;
     }
   }
-  

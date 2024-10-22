@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../components/visual/AnagramaImagem.css'
+import React from 'react'
+import '../../components/visual/AnagramaGameVisual.css'
 
 const ImagemIcone = ({ imagens = [] }) => {
   if (imagens.length === 0) {
@@ -7,14 +7,13 @@ const ImagemIcone = ({ imagens = [] }) => {
   }
 
   return (
-    <div className="imagemIconeContainer">
+    <div className="anagrama-imagem-container">
       {imagens.map((imagem, index) => (
         <img
           key={index}
           src={imagem}
           alt={`Ícone ${index}`}
-          className="imagemIcone"
-          onError={(e) => console.log(`Erro ao carregar imagem ${imagem}:`, e.nativeEvent.error)}
+          className="anagrama-imagem"
         />
       ))}
     </div>

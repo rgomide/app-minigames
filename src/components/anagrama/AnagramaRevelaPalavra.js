@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../components/visual/AnagramaImagem.css'
+import '../../components/visual/AnagramaGameVisual.css'
 
 const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada, resetDicas }) => {
   const [dicaVisivel, setDicaVisivel] = useState(false);

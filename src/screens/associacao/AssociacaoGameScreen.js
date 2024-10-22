@@ -29,6 +29,7 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
       erradoAudio.play()
     }
   }
+  
   const toggleInfo = () => {
     setShowInfo(!showInfo)
   }
@@ -53,17 +54,22 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
   useEffect(() => {
     if (selectedItem && selectedRelacao) {
       const isCorrect = selectedItem.id === selectedRelacao.id;
-      setFeedbackClass(isCorrect ? 'correct' : 'incorrect'); 
+      if (isCorrect) {
+        playSound(true)
+        setFeedbackClass('correct');
+      } else {
+        playSound(false)
+        setFeedbackClass('incorrect');
+      }
+      
       setIsClickable(false);
 
       const pointsPerWrong = 100 / (2 * associacaoSettings.items.length);
 
       const timeout = setTimeout(() => {
         if (isCorrect) {
-          playSound(true)
           setCorrectMatches((prevMatches) => [...prevMatches, selectedItem.id]);         
         } else {
-          playSound(false)
           setScore((prevScore) => Math.max(prevScore - pointsPerWrong, 0));          
         }
         setSelectedItem(null);

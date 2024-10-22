@@ -1,21 +1,17 @@
-import React from 'react';
-import '../../components/visual/AnagramaBotao.css'
+import React from 'react'
+import '../../components/visual/AnagramaGameVisual.css'
 
 const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
-  if (!letrasEmbaralhadas || !Array.isArray(letrasEmbaralhadas)) {
-    return null;
-  }
-
   return (
-    <div className="letrasContainer">
+    <div className="letras-container">
       {letrasEmbaralhadas.map((letra, index) => (
-        <button
+        <div
           key={index}
-          className="letraButton"
+          className="letra-item"
           onClick={() => onLetraPress(letra)}
         >
           {letra}
-        </button>
+        </div>
       ))}
     </div>
   );

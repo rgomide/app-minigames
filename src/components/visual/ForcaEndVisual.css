@@ -12,10 +12,16 @@
 
   .resultado {
     font-size: 36px;
-    margin-bottom: 20px;
+
     font-family: 'Fredoka One', cursive;
   }
-  
+
+  .resultado-icone {
+    width: 260px; 
+    height: 150px; 
+    
+  }
+
   .resultado.ganhou {
     color: #4caf50;
     font-family: 'Fredoka One', cursive;

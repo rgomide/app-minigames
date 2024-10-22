@@ -1,43 +1,20 @@
-import { Text, View, StyleSheet } from 'react-native'
+import React from 'react';
+import '../../components/visual/QuizEndVisual.css';
 
 const QuizResultCard = ({ answer, question }) => {
-  const { title, answers: questionAnswers } = question
-  const correctAnswer = questionAnswers.find((questionAnswer) => questionAnswer.correct)
-  const isCorrect = correctAnswer.id === answer.id
+  const { title, answers: questionAnswers } = question;
+  const correctAnswer = questionAnswers.find((questionAnswer) => questionAnswer.correct);
+  const isCorrect = correctAnswer.id === answer.id;
 
-  const answerStyle = isCorrect ? styles.correctText : styles.wrongText
+  const answerStyle = isCorrect ? 'correct-text' : 'wrong-text';
 
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.titleText}>{title}</Text>
-      <Text style={[answerStyle]}>Respondida: {answer.answer}</Text>
-      {!isCorrect && <Text style={[styles.suggestionText]}>Correta: {correctAnswer.answer}</Text>}
-    </View>
-  )
-}
+    <div className="quiz-card-container">
+      <p className="quiz-card-title">{title}</p>
+      <p className={answerStyle}>Respondida: {answer.answer}</p>
+      {!isCorrect && <p className="suggestion-text">Correta: {correctAnswer.answer}</p>}
+    </div>
+  );
+};
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    padding: 10,
-    backgroundColor: 'white',
-    borderColor: 'lightgray',
-    borderWidth: 1,
-    borderRadius: 5
-  },
-  titleText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 3
-  },
-  correctText: {
-    color: 'green'
-  },
-  suggestionText: {
-    color: '#999'
-  },
-  wrongText: {
-    color: 'red'
-  }
-})
-
-export default QuizResultCard
+export default QuizResultCard;

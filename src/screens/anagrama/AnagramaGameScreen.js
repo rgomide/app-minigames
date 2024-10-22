@@ -1,26 +1,50 @@
 import React, { useState, useEffect } from 'react';
+import { FlatList } from 'react-native';
 import RenderizarLetras from '../../components/anagrama/AnagramaLetraRender';
 import RenderizarPalavrasEscondidas from '../../components/anagrama/AnagramaRevelaPalavra';
 import ImagemIcone from '../../components/anagrama/AnagramaImagemIcone';
 import AnagramaBotoes from '../../components/anagrama/AnagramaBotoes';
 import { ANAGRAMA_RESULT_SCREEN } from '../../constants/screens';
-import '../../components/visual/AnagramaBotao.css';
+import '../../components/visual/AnagramaGameVisual.css';
+import infoIcon from '../../img/duvida.png';
+import corretoSound from '../../sounds/correto.mp3';
+import erradoSound from '../../sounds/errado.mp3';
 
 const AnagramaGameScreen = ({ navigation, route }) => {
   const { anagramaSettings } = route.params;
-
+  const [showInfo, setShowInfo] = useState(false);
   const [pontuacao, setPontuacao] = useState(anagramaSettings.pontuacaoMaxima);
   const [letrasEmbaralhadas, setLetrasEmbaralhadas] = useState(anagramaSettings.letras);
   const [palavraAtual, setPalavraAtual] = useState('');
   const [erros, setErros] = useState(0);
   const [palavrasDescobertas, setPalavrasDescobertas] = useState([]);
   const [dicasUsadas, setDicasUsadas] = useState(0);
+  const [mensagem, setMensagem] = useState(''); // Estado para a mensagem
+  const [showMensagem, setShowMensagem] = useState(false); // Controla a exibição do balão
+  const corretoAudio = new Audio(corretoSound);
+  const erradoAudio = new Audio(erradoSound);
+
+  const playSound = (isCorrect) => {
+    if (isCorrect) {
+      corretoAudio.play();
+    } else {
+      erradoAudio.play();
+    }
+  };
 
   useEffect(() => {
     if (palavrasDescobertas.length === anagramaSettings.palavrasEscondidas.length) {
       navigation.navigate(ANAGRAMA_RESULT_SCREEN, { pontuacao });
     }
   }, [palavrasDescobertas, anagramaSettings.palavrasEscondidas.length, pontuacao, navigation]);
+
+  const exibirMensagem = (texto) => {
+    setMensagem(texto);
+    setShowMensagem(true);
+    setTimeout(() => {
+      setShowMensagem(false);
+    }, 3000); // Mostra a mensagem por 3 segundos
+  };
 
   const verificarPalavra = () => {
     const palavraFormada = palavraAtual.toUpperCase();
@@ -30,17 +54,25 @@ const AnagramaGameScreen = ({ navigation, route }) => {
 
     if (palavraEscondida) {
       if (!palavrasDescobertas.includes(palavraFormada)) {
+        playSound(true);
         setPalavrasDescobertas([...palavrasDescobertas, palavraFormada]);
+        exibirMensagem('Você Acertou!');
       } else {
-        alert('Você já descobriu essa palavra.');
+        playSound(false);
+        exibirMensagem('Você já descobriu essa palavra.');
       }
     } else {
+      playSound(false);
       setErros((prevErros) => prevErros + 1);
       setPontuacao((prevPontuacao) => Math.max(0, prevPontuacao - anagramaSettings.perdaPorErro));
-      alert('Palavra incorreta.');
+      exibirMensagem('Palavra incorreta.');
     }
 
     setPalavraAtual('');
+  };
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
   };
 
   const incrementarDicasUsadas = () => {
@@ -50,32 +82,39 @@ const AnagramaGameScreen = ({ navigation, route }) => {
 
   return (
     <div className="anagrama-game-container">
-      <div className="game-header">
-        <p className="header-text">Tema: {anagramaSettings.tema}</p>
-        <p className="header-text">Erros: {erros}</p>
-        <p className="header-text">Dicas usadas: {dicasUsadas}</p>
+      <div className="info-icon" onClick={toggleInfo}>
+        <img src={infoIcon} alt="Informação" />
+      </div>
+      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
+        <p>Reorganize as letras embaralhadas para formar palavras válidas.</p>
       </div>
 
-      <p className="game-enunciado">{anagramaSettings.enunciado}</p>
+      <p className='texto'>Tema: {anagramaSettings.tema}</p>
+      <p className='texto'>Erros: {erros}</p>
+
+      <p className='texto'> Dicas usadas: {dicasUsadas}</p>
 
       <ImagemIcone imagens={anagramaSettings.imagens} />
 
       <p className="hidden-words-title">Palavras Escondidas:</p>
 
       <div className="hidden-words-container">
-        {anagramaSettings.palavrasEscondidas.map((item, index) => (
-          <RenderizarPalavrasEscondidas
-            key={index}
-            item={item}
-            palavrasDescobertas={palavrasDescobertas}
-            onDicaUsada={incrementarDicasUsadas}
-            resetDicas={dicasUsadas === 0}
-          />
-        ))}
+        <FlatList
+          data={anagramaSettings.palavrasEscondidas}
+          keyExtractor={(item) => item.palavra}
+          renderItem={({ item }) => (
+            <RenderizarPalavrasEscondidas
+              item={item}
+              palavrasDescobertas={palavrasDescobertas}
+              onDicaUsada={incrementarDicasUsadas}
+              resetDicas={dicasUsadas === 0}
+            />
+          )}
+        />
       </div>
 
       <div className="current-word">
-        <span>{palavraAtual || ' '}</span>
+        {palavraAtual || ' '}
       </div>
 
       <div className="letras-container">
@@ -89,6 +128,13 @@ const AnagramaGameScreen = ({ navigation, route }) => {
         onEnviarPress={verificarPalavra}
         onApagarPress={() => setPalavraAtual('')}
       />
+
+      {/* Balão de mensagem */}
+      {showMensagem && (
+        <div className="message-balloon">
+          <p>{mensagem}</p>
+        </div>
+      )}
     </div>
   );
 };
