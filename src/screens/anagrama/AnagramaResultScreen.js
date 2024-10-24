@@ -1,20 +1,17 @@
 import React, { useEffect } from 'react';
-import vitoriaSound from '../../sounds/vitoria.mp3';
-import derrotaSound from '../../sounds/derrota.mp3'; 
 import confeteGif from '../../img/confete.gif';
 import vitoriaIcon from '../../img/vitoriaIcon.png';  
 import derrotaIcon from '../../img/derrotaIcon.png';
+import { playWinGameSound, playLoseGameSound } from '../../services/util/audio';
 
 const AnagramaResultScreen = ({ route, navigation }) => {
   const { pontuacao } = route.params;
 
   useEffect(() => {
     if (pontuacao > 0) {
-      const audio = new Audio(vitoriaSound);
-      audio.play();
+      playWinGameSound();
     } else {
-      const audio = new Audio(derrotaSound);
-      audio.play();
+      playLoseGameSound();
     }
   }, [pontuacao]);
 

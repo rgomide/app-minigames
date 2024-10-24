@@ -28,6 +28,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./src/assets/fonts/Poppins-Regular.ttf",
+            "./src/assets/fonts/Fredoka.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }

@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
+import { Text, TouchableOpacity, Image, View, ScrollView, StyleSheet } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import img0 from '../../img/img0.png'
-import img1 from '../../img/img1.png'
-import img2 from '../../img/img2.png'
-import img3 from '../../img/img3.png'
-import img4 from '../../img/img4.png'
-import img5 from '../../img/img5.png'
-import img6 from '../../img/img6.png'
-import '../../components/visual/ForcaGameVisual.css'
-import infoIcon from '../../img/duvida.png'
-import corretoSound from '../../sounds/correto.mp3'
-import erradoSound from '../../sounds/errado.mp3'
+import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio';
+
+const img0 = require('../../img/img0.png')
+const img1 = require('../../img/img1.png')
+const img2 = require('../../img/img2.png')
+const img3 = require('../../img/img3.png')
+const img4 = require('../../img/img4.png')
+const img5 = require('../../img/img5.png')
+const img6 = require('../../img/img6.png')
+
+const infoIcon = require('../../img/duvida.png')
+
 
 const ForcaGameScreen = () => {
   const route = useRoute()
@@ -46,9 +48,6 @@ const ForcaGameScreen = () => {
     { letra: 'Z', clicado: false }
   ]);
 
-  const corretoAudio = new Audio(corretoSound)
-  const erradoAudio = new Audio(erradoSound)
-
   const [grupoAtual] = useState(tema.grupos[Math.floor(Math.random() * tema.grupos.length)])
   const [palavraAtual] = useState(
     grupoAtual.palavras[Math.floor(Math.random() * grupoAtual.palavras.length)]
@@ -70,9 +69,9 @@ const ForcaGameScreen = () => {
 
   const playSound = (isCorrect) => {
     if (isCorrect) {
-      corretoAudio.play();
+      playCorrectAnswerSound();
     } else {
-      erradoAudio.play()
+      playWrongAnswerSound();
     }
   }
 
@@ -129,42 +128,152 @@ const ForcaGameScreen = () => {
   }
 
   return (
-    <div className="forca-container">
-      
-      <div className="info-icon" onClick={toggleInfo}>
-        <img src={infoIcon} alt="Informação" />
-      </div>
+    <ScrollView style={styles.forcaContainer} contentContainerStyle={styles.forcaContent}>
+
+      <TouchableOpacity style={styles.infoIcon} onPress={toggleInfo}>
+        <Image style={styles.infoIcon} source={infoIcon} alt="Informação" />
+      </TouchableOpacity>
 
 
-      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
-        <p>Adivinhe a palavra secreta, antes de atingir os seis erros.</p>
-      </div>
+      <View style={showInfo ? styles.infoBubbleShow : styles.infoBubble}>
+        <Text>Adivinhe a palavra secreta, antes de atingir os seis erros.</Text>
+      </View>
 
-      <img
-        src={forcaImagens[erros]} 
+      <Image
+        source={forcaImagens[erros]}
         alt="Imagem da Forca"
-        className="forca-imagem"
+        style={styles.forcaImagem}
       />
-      <p className="dica">Dica: {grupoAtual.dica}</p>
-      <p className="palavra">Palavra: {renderPalavra()}</p>
-      <p className="erros">Erros: {erros} de 6</p>
+      <Text style={styles.dica}>Dica: {grupoAtual.dica}</Text>
+      <Text style={styles.palavra}>Palavra: {renderPalavra()}</Text>
+      <Text style={styles.erros}>Erros: {erros} de 6</Text>
 
-      <div className="teclado">
+      <View style={styles.teclado}>
         {teclas.map((tecla, index) => (
-          <button
+          <TouchableOpacity
             key={index}
-            className="tecla"
+            style={tecla.clicado ? styles.teclaDisabled : styles.tecla}
             disabled={tecla.clicado || erros >= 6}
-            onClick={() => onClickTecla(tecla)}
+            onPress={() => onClickTecla(tecla)}
           >
-            {tecla.letra}
-          </button>
+            <Text>{tecla.letra}</Text>
+          </TouchableOpacity>
         ))}
-      </div>
+      </View>
 
-      {mensagem && <p className="mensagem">{mensagem}</p>}
-    </div>
+      {mensagem && <Text className="mensagem">{mensagem}</Text>}
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  forcaContainer: {
+    flex: 1,
+    backgroundColor: '#F2E8DF',
+  },
+  forcaContent: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+  },
+  infoIcon: {
+    alignSelf: 'flex-end',
+    width: 40,
+    height: 40,
+    cursor: 'pointer',
+  },
+  infoBubble: {
+    top: 60,
+    right: 20,
+    backgroundColor: '#FFEE81',
+    fontFamily: 'Fredoka',
+    color: '#333333',
+    padding: 10,
+    paddingRight: 20,
+    borderRadius: 8,
+    width: 250,
+    opacity: 0
+  },
+  infoBubbleShow: {
+    top: 0,
+    right: 0,
+    backgroundColor: '#FFEE81',
+    fontFamily: 'Fredoka',
+    color: '#333333',
+    padding: 10,
+    paddingRight: 20,
+    borderRadius: 8,
+    width: 250,
+    opacity: 1
+  },
+  forcaImagem: {
+    width: 400,
+    height: 300,
+    objectFit: 'contain',
+    marginBottom: 10,
+  },
+  teclado: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 6,
+    maxWidth: '100%',
+  },
+  tecla: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#f2bcbc',
+    border: '2px solid #333333',
+    fontFamily: 'Fredoka',
+    borderRadius: 8,
+    padding: 8,
+    fontSize: 14,
+    cursor: 'pointer',
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  teclaDisabled: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#dddddd',
+    border: '2px solid #333333',
+    fontFamily: 'Fredoka',
+    borderRadius: 8,
+    padding: 8,
+    fontSize: 14,
+    cursor: 'not-allowed',
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  dica: {
+    fontSize: 14,
+    fontFamily: 'Fredoka',
+    color: '#333333',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  palavra: {
+    fontSize: 16,
+    fontFamily: 'Fredoka',
+    color: '#333333',
+    letterSpacing: 4,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  erros: {
+    fontSize: 14,
+    fontFamily: 'Fredoka',
+    color: '#f28585',
+    marginBottom: 10,
+    textAlign: 'center',
+  }
+});
 
 export default ForcaGameScreen

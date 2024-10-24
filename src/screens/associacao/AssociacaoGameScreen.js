@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../../components/visual/AssociacaoGameVisual.css'
 import infoIcon from '../../img/duvida.png'
-import corretoSound from '../../sounds/correto.mp3'
-import erradoSound from '../../sounds/errado.mp3'
+import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio';
 
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
@@ -19,17 +18,15 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
   const [isClickable, setIsClickable] = useState(true);
   const [score, setScore] = useState(100);
   const [showInfo, setShowInfo] = useState(false)
-  const corretoAudio = new Audio(corretoSound)
-  const erradoAudio = new Audio(erradoSound)
 
   const playSound = (isCorrect) => {
     if (isCorrect) {
-      corretoAudio.play();
+      playCorrectAnswerSound();
     } else {
-      erradoAudio.play()
+      playWrongAnswerSound();
     }
   }
-  
+
   const toggleInfo = () => {
     setShowInfo(!showInfo)
   }
@@ -61,16 +58,16 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
         playSound(false)
         setFeedbackClass('incorrect');
       }
-      
+
       setIsClickable(false);
 
       const pointsPerWrong = 100 / (2 * associacaoSettings.items.length);
 
       const timeout = setTimeout(() => {
         if (isCorrect) {
-          setCorrectMatches((prevMatches) => [...prevMatches, selectedItem.id]);         
+          setCorrectMatches((prevMatches) => [...prevMatches, selectedItem.id]);
         } else {
-          setScore((prevScore) => Math.max(prevScore - pointsPerWrong, 0));          
+          setScore((prevScore) => Math.max(prevScore - pointsPerWrong, 0));
         }
         setSelectedItem(null);
         setSelectedRelacao(null);
