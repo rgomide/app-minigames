@@ -2,8 +2,20 @@
   "topic": "Capitais",
   "questions": [
     {
-      "title": "Qual é a capital da França?",
-      "images": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+      "title": [
+        {
+          "type": "text",
+          "value": "Qual é a capital da França?"
+        },
+        {
+          "type": "image",
+          "value": "https://picsum.photos/id/152/200/300"
+        },
+        {
+          "type": "text",
+          "value": "Teste"
+        }
+      ],
       "answers": [
         {
           "id": 1,
@@ -11,11 +23,7 @@
           "correct": true,
           "images": [
             "https://picsum.photos/id/200/200/300",
-            "https://picsum.photos/id/201/300/300",
-            "https://picsum.photos/id/198/200/300",
-            "https://picsum.photos/id/100/400/300",
-            "https://picsum.photos/id/23/800/300",
-            "https://picsum.photos/id/50/900/300"
+            "https://picsum.photos/id/201/300/300"
           ]
         },
         {
@@ -36,7 +44,12 @@
       ]
     },
     {
-      "title": "Qual é a capital da Alemanha?",
+      "title": [
+        {
+          "type": "text",
+          "value": "Qual é a capital da Alemanha?"
+        }
+      ],
       "answers": [
         {
           "id": 1,
@@ -61,7 +74,12 @@
       ]
     },
     {
-      "title": "Qual é a capital da Espanha?",
+      "title": [
+        {
+          "type": "text",
+          "value": "Qual é a capital da Espanha?"
+        }
+      ],
       "answers": [
         {
           "id": 1,

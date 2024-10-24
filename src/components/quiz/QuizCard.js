@@ -32,7 +32,17 @@ const QuizCard = ({ question, onChange }) => {
 
   return (
     <div className="quiz-card-main-view">
-      <h2 className="quiz-card-title">{title}</h2>
+      {title.map((titleItem, index) => (
+        titleItem.type === 'text' ? (
+          <h2 key={index} className="quiz-card-title">{titleItem.value}</h2>
+        ) : (
+          <img
+            key={index}
+            src={titleItem.value}
+            alt={`Imagem ${index}`}
+          />
+        )
+      ))}
       <div className="quiz-card-images-view">
         {images.map((image, index) => (
           <img
