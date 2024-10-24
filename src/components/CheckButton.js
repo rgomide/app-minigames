@@ -19,7 +19,7 @@ const CheckButton = ({ titleFieldName, imagesFieldName, pressed, data, onChange 
       image,
       (width, height) => {
         let higherDimension = width > height ? width : height
-        const maxDimension = 260
+        const maxDimension = 200
 
         if (higherDimension > maxDimension) {
           const ratio = maxDimension / higherDimension
@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
     gap: 5
   },
   image: {
-    borderRadius: 5
+    borderRadius: 5,
+    objectFit: 'contain'
   }
 })
 

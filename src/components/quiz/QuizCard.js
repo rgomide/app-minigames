@@ -1,74 +1,111 @@
 import React, { useState } from 'react';
-import '../../components/visual/QuizGameVisual.css'; // Importação do arquivo CSS
+import { View, Image, Text, StyleSheet } from 'react-native';
+// import '../../components/visual/QuizGameVisual.css'; // Importação do arquivo CSS
 import CheckButtonGroup from '../CheckButtonGroup';
 
 const QuizCard = ({ question, onChange }) => {
   const { title, answers } = question;
-  const images = question.images || [];
 
   const [imageDimensions, setImageDimensions] = useState({});
 
   const handleImageLoadedEvent = (image, index) => {
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-      let width = img.width;
-      let height = img.height;
-      let higherDimension = width > height ? width : height;
-      const maxDimension = 260;
+    Image.getSize(
+      image,
+      (width, height) => {
+        let higherDimension = width > height ? width : height
+        const maxDimension = 200
 
-      if (higherDimension > maxDimension) {
-        const ratio = maxDimension / higherDimension;
-        width *= ratio;
-        height *= ratio;
+        if (higherDimension > maxDimension) {
+          const ratio = maxDimension / higherDimension;
+          width *= ratio;
+          height *= ratio;
+        }
+
+        setImageDimensions((prevState) => ({
+          ...prevState,
+          [index]: { width, height },
+        }));
+      },
+      (error) => {
+        console.error(`Couldn't get the image size: ${error.message}`)
       }
-
-      setImageDimensions((prevState) => ({
-        ...prevState,
-        [index]: { width, height },
-      }));
-    };
+    );
   };
 
   return (
-    <div className="quiz-card-main-view">
+    <View style={styles.quizCardMainView}>
       {title.map((titleItem, index) => (
         titleItem.type === 'text' ? (
-          <h2 key={index} className="quiz-card-title">{titleItem.value}</h2>
+          <Text key={index} style={styles.quizCardTitle}>{titleItem.value}</Text>
         ) : (
-          <img
+          <Image
             key={index}
-            src={titleItem.value}
-            alt={`Imagem ${index}`}
+            source={titleItem.value}
+            onLoad={() => handleImageLoadedEvent(titleItem.value, index)}
+            style={[{
+              width: imageDimensions[index]?.width || 80,
+              height: imageDimensions[index]?.height || 80,
+
+            }, styles.image]}
           />
         )
       ))}
-      <div className="quiz-card-images-view">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Imagem ${index}`}
-            onLoad={() => handleImageLoadedEvent(image, index)}
-            style={{
-              width: imageDimensions[index]?.width || 80,
-              height: imageDimensions[index]?.height || 80,
-            }}
-            className="quiz-card-image"
-          />
-        ))}
-      </div>
-      <p className="quiz-card-alternatives-label">Escolha uma das alternativas:</p>
-      <div className="quiz-card-check-button-group-container">
+      <Text style={styles.quizCardAlternativesLabel}>Escolha uma das alternativas:</Text>
+      <View style={styles.quizCardCheckButtonGroupContainer}>
         <CheckButtonGroup
           data={answers}
           imagesFieldName="images"
           titleFieldName="answer"
           onChange={onChange}
         />
-      </div>
-    </div>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  quizCardMainView: {
+    backgroundColor: '#877cb3',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 15,
+    width: '100%',
+    gap: 15
+  },
+  quizCardTitle: {
+    fontSize: 26,
+    color: '#ffffff',
+    textAlign: 'center',
+    fontFamily: 'Fredoka'
+  },
+  quizCardImage: {
+    width: 80,
+    height: 80,
+    resizeMode: 'cover'
+  },
+  quizCardImagesView: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 10,
+  },
+  quizCardAlternativesLabel: {
+    fontSize: 20,
+    color: '#ffffff',
+    textAlign: 'center',
+    fontFamily: 'Fredoka',
+  },
+  quizCardCheckButtonGroupContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    width: '100%',
+    gap: 10
+  },
+  image: {
+    borderRadius: 5,
+    objectFit: 'contain'
+  }
+})
 
 export default QuizCard;

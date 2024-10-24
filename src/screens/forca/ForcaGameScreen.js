@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image, View, ScrollView, StyleSheet } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio';
+import TooltipIcon from '../../components/TooltipIcon';
 
 const img0 = require('../../img/img0.png')
 const img1 = require('../../img/img1.png')
@@ -10,9 +11,6 @@ const img3 = require('../../img/img3.png')
 const img4 = require('../../img/img4.png')
 const img5 = require('../../img/img5.png')
 const img6 = require('../../img/img6.png')
-
-const infoIcon = require('../../img/duvida.png')
-
 
 const ForcaGameScreen = () => {
   const route = useRoute()
@@ -55,7 +53,6 @@ const ForcaGameScreen = () => {
   const [tentativas, setTentativas] = useState([])
   const [erros, setErros] = useState(0)
   const [mensagem, setMensagem] = useState('')
-  const [showInfo, setShowInfo] = useState(false)
 
   const forcaImagens = [img0, img1, img2, img3, img4, img5, img6]
 
@@ -123,21 +120,10 @@ const ForcaGameScreen = () => {
     }
   }
 
-  const toggleInfo = () => {
-    setShowInfo(!showInfo)
-  }
-
   return (
     <ScrollView style={styles.forcaContainer} contentContainerStyle={styles.forcaContent}>
 
-      <TouchableOpacity style={styles.infoIcon} onPress={toggleInfo}>
-        <Image style={styles.infoIcon} source={infoIcon} alt="Informação" />
-      </TouchableOpacity>
-
-
-      <View style={showInfo ? styles.infoBubbleShow : styles.infoBubble}>
-        <Text>Adivinhe a palavra secreta, antes de atingir os seis erros.</Text>
-      </View>
+      <TooltipIcon text="Adivinhe a palavra secreta, antes de atingir os seis erros." />
 
       <Image
         source={forcaImagens[erros]}
@@ -177,36 +163,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 40,
     paddingHorizontal: 20,
-  },
-  infoIcon: {
-    alignSelf: 'flex-end',
-    width: 40,
-    height: 40,
-    cursor: 'pointer',
-  },
-  infoBubble: {
-    top: 60,
-    right: 20,
-    backgroundColor: '#FFEE81',
-    fontFamily: 'Fredoka',
-    color: '#333333',
-    padding: 10,
-    paddingRight: 20,
-    borderRadius: 8,
-    width: 250,
-    opacity: 0
-  },
-  infoBubbleShow: {
-    top: 0,
-    right: 0,
-    backgroundColor: '#FFEE81',
-    fontFamily: 'Fredoka',
-    color: '#333333',
-    padding: 10,
-    paddingRight: 20,
-    borderRadius: 8,
-    width: 250,
-    opacity: 1
   },
   forcaImagem: {
     width: 400,

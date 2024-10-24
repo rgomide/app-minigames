@@ -3,12 +3,11 @@ import { View, Image, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import { useNavigation } from '@react-navigation/native'
 import forcaData from '../../db/forca/forca01.json'
-import infoIcon from '../../img/duvida.png'
+import TooltipIcon from '../../components/TooltipIcon'
 
 const SelectForcaThemeScreen = () => {
   const navigation = useNavigation()
   const [selectedTheme, setSelectedTheme] = useState('')
-  const [showInfo, setShowInfo] = useState(false)
 
   const handleStartGame = () => {
     const temaSelecionado = forcaData.forca.temas.find((t) => t.tema === selectedTheme)
@@ -17,19 +16,9 @@ const SelectForcaThemeScreen = () => {
     }
   }
 
-  const toggleInfo = () => {
-    setShowInfo(!showInfo)
-  }
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.infoIcon} onPress={toggleInfo}>
-        <Image style={styles.infoIcon} source={infoIcon} alt="Informação" />
-      </TouchableOpacity>
-
-
-      <View style={showInfo ? styles.infoBubbleShow : styles.infoBubble}>
-        <Text>Adivinhe a palavra secreta, antes de atingir os seis erros.</Text>
-      </View>
+      <TooltipIcon text="Adivinhe a palavra secreta, antes de atingir os seis erros." />
 
       <Text style={styles.title}>FORCA</Text>
 
@@ -67,36 +56,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#F2E8DF',
     fontFamily: 'Fredoka',
-  },
-  infoIcon: {
-    alignSelf: 'flex-end',
-    width: 40,
-    height: 40,
-    cursor: 'pointer',
-  },
-  infoBubble: {
-    top: 60,
-    right: 20,
-    backgroundColor: '#FFEE81',
-    fontFamily: 'Fredoka',
-    color: '#333333',
-    padding: 10,
-    paddingRight: 20,
-    borderRadius: 8,
-    width: 250,
-    opacity: 0
-  },
-  infoBubbleShow: {
-    top: 0,
-    right: 0,
-    backgroundColor: '#FFEE81',
-    fontFamily: 'Fredoka',
-    color: '#333333',
-    padding: 10,
-    paddingRight: 20,
-    borderRadius: 8,
-    width: 250,
-    opacity: 1
   },
   title: {
     fontSize: 50,
