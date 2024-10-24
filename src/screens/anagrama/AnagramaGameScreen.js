@@ -7,8 +7,7 @@ import AnagramaBotoes from '../../components/anagrama/AnagramaBotoes';
 import { ANAGRAMA_RESULT_SCREEN } from '../../constants/screens';
 import '../../components/visual/AnagramaGameVisual.css';
 import infoIcon from '../../img/duvida.png';
-import corretoSound from '../../sounds/correto.mp3';
-import erradoSound from '../../sounds/errado.mp3';
+import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio';
 
 const AnagramaGameScreen = ({ navigation, route }) => {
   const { anagramaSettings } = route.params;
@@ -21,14 +20,12 @@ const AnagramaGameScreen = ({ navigation, route }) => {
   const [dicasUsadas, setDicasUsadas] = useState(0);
   const [mensagem, setMensagem] = useState(''); // Estado para a mensagem
   const [showMensagem, setShowMensagem] = useState(false); // Controla a exibição do balão
-  const corretoAudio = new Audio(corretoSound);
-  const erradoAudio = new Audio(erradoSound);
-
+  
   const playSound = (isCorrect) => {
     if (isCorrect) {
-      corretoAudio.play();
+      playCorrectAnswerSound();
     } else {
-      erradoAudio.play();
+      playWrongAnswerSound();
     }
   };
 
