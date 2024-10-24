@@ -76,7 +76,6 @@ const ForcaGameScreen = () => {
   }
 
   const onClickTecla = (teclaClicada) => {
-    console.log('teclaClicada', teclaClicada)
     const letraUpper = teclaClicada.letra.toUpperCase()
 
     const tentativasAtualizado = [...tentativas, letraUpper]
@@ -233,29 +232,25 @@ const styles = StyleSheet.create({
     padding: 8,
     fontSize: 14,
     cursor: 'pointer',
-    transition: 'transform 0.1s ease, box-shadow 0.1s ease',
     width: 40,
     height: 40,
     textAlign: 'center',
     lineHeight: 24,
-    boxShadow: '0px 4px 0px #b85a5a',
   },
   teclaDisabled: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#f2baba',
+    backgroundColor: '#dddddd',
     border: '2px solid #333333',
     fontFamily: 'Fredoka',
     borderRadius: 8,
     padding: 8,
     fontSize: 14,
     cursor: 'not-allowed',
-    transition: 'transform 0.1s ease, box-shadow 0.1s ease',
     width: 40,
     height: 40,
     textAlign: 'center',
     lineHeight: 24,
-    boxShadow: '0px 4px 0px #b85a5a',
   },
   dica: {
     fontSize: 14,
