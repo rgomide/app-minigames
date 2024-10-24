@@ -6,11 +6,11 @@ import '../../components/visual/QuizStartVisual.css';
 import infoIcon from '../../img/duvida.png';
 import { Image, ScrollView, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import TooltipIcon from '../../components/TooltipIcon';
 
 const QuizStartScreen = (props) => {
   const navigation = props.navigation;
   const [selectedQuiz, setSelectedQuiz] = useState('');
-  const [showInfo, setShowInfo] = useState(false);
   const quizList = [{ label: 'Capitais', value: 'quiz01' }];
 
   const handleStartGame = async () => {
@@ -18,20 +18,9 @@ const QuizStartScreen = (props) => {
     navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz });
   };
 
-  const toggleInfo = () => {
-    setShowInfo(!showInfo);
-  };
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.infoIcon} onPress={toggleInfo}>
-        <Image style={styles.infoIcon} source={infoIcon} alt="Informação" />
-      </TouchableOpacity>
-
-
-      <View style={showInfo ? styles.infoBubbleShow : styles.infoBubble}>
-        <Text>Responda as perguntas escolhendo a alternativa correta entre as opções.</Text>
-      </View>
+      <TooltipIcon text="Responda as perguntas escolhendo a alternativa correta entre as opções." />
 
       <Text style={styles.title}>QUIZ</Text>
 
@@ -69,36 +58,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#F2E8DF',
     fontFamily: 'Fredoka',
-  },
-  infoIcon: {
-    alignSelf: 'flex-end',
-    width: 40,
-    height: 40,
-    cursor: 'pointer',
-  },
-  infoBubble: {
-    top: 60,
-    right: 20,
-    backgroundColor: '#FFEE81',
-    fontFamily: 'Fredoka',
-    color: '#333333',
-    padding: 10,
-    paddingRight: 20,
-    borderRadius: 8,
-    width: 250,
-    opacity: 0
-  },
-  infoBubbleShow: {
-    top: 0,
-    right: 0,
-    backgroundColor: '#FFEE81',
-    fontFamily: 'Fredoka',
-    color: '#333333',
-    padding: 10,
-    paddingRight: 20,
-    borderRadius: 8,
-    width: 250,
-    opacity: 1
   },
   title: {
     fontSize: 50,

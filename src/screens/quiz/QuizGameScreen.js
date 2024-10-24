@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import QuizCard from '../../components/quiz/QuizCard';
 import { QUIZ_RESULT_SCREEN } from '../../constants/screens';
-import '../../components/visual/QuizGameVisual.css';
-import infoIcon from '../../img/duvida.png';
+// import '../../components/visual/QuizGameVisual.css';
+import TooltipIcon from '../../components/TooltipIcon';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const QuizGameScreen = (props) => {
   const {
@@ -18,14 +19,9 @@ const QuizGameScreen = (props) => {
   const [questionCounter, setQuestionCounter] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [answers, setAnswers] = useState([]);
-  const [showInfo, setShowInfo] = useState(false); 
 
   const onSelectAnswer = (answer) => {
     setSelectedAnswer(answer);
-  };
-
-  const toggleInfo = () => {
-    setShowInfo(!showInfo);
   };
 
   const onNextPressed = () => {
@@ -62,31 +58,67 @@ const QuizGameScreen = (props) => {
   };
 
   return (
-    <div className="quiz-game-container">
-      {/* <div className="info-icon" onClick={toggleInfo}>
-        <img src={infoIcon} alt="Informação" />
-      </div>
-
-
-      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
-        <p>Responda as perguntas escolhendo a alternativa correta entre as opções.</p>
-      </div> */}
-      <h2 className="quiz-topic">Tema: {topic}</h2>
-      <p className="quiz-counter">
+    <ScrollView contentContainerStyle={styles.quizGameContainer}>
+      <TooltipIcon text="Responda as perguntas escolhendo a alternativa correta entre as opções." />      
+      <Text style={styles.quizTopic}>Tema: {topic}</Text>
+      <Text style={styles.quizCounter}>
         Questões: {questionCounter + 1}/{questions.length}
-      </p>
+      </Text>
 
       <QuizCard question={currentQuestion} onChange={onSelectAnswer} />
 
-      <button
-        className="quiz-next-button"
-        onClick={onNextPressed}
+      <TouchableOpacity
+        style={[styles.quizNextButton, !selectedAnswer && styles.quizNextButtonDisabled]}
+        onPress={onNextPressed}
         disabled={!selectedAnswer}
       >
-        {getButtonTitle()}
-      </button>
-    </div>
+        <Text style={styles.quizNextButtonText}>{getButtonTitle()}</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  quizGameContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    backgroundColor: '#F2E8DF',
+    gap: 15
+  },
+  quizTopic: {
+    fontSize: 26,
+    color: '#a99be0',
+    textAlign: 'center',
+    fontFamily: 'Fredoka',
+  },
+  quizCounter: {
+    fontSize: 18,
+    color: '#b3a8e0',
+    fontFamily: 'Fredoka',
+  },
+  quizNextButton: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#433d59',
+    fontFamily: 'Fredoka',
+    color: '#fff',
+    padding: 10,
+    borderRadius: 8,
+    border: 'none',
+    cursor: 'pointer',
+  },
+  quizNextButtonDisabled: {
+    backgroundColor: '#877cb3',
+  },
+  quizNextButtonText: {
+    fontSize: 18,
+    fontFamily: 'Fredoka',
+    color: '#fff',
+  },
+})
 
 export default QuizGameScreen;

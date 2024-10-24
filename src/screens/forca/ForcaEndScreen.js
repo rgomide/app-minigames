@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   resultadoIcone: {
     width: 260,
     height: 150,
+    objectFit: 'contain'
   },
   quizResultTitleDerrota: {
     color: '#f44336',
