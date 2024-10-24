@@ -37,9 +37,26 @@ import {
   FORCA_END_SCREEN
 } from './src/constants/screens'
 
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react'
+
+SplashScreen.preventAutoHideAsync();
+
 const Stack = createNativeStackNavigator()
 
 export default function App() {
+  const [fontsLoaded, error] = useFonts({
+    'Poppins': require('./src/assets/fonts/Poppins-Regular.ttf'),
+    'Fredoka': require('./src/assets/fonts/Fredoka.ttf')
+  })
+
+  useEffect(() => {
+    if (fontsLoaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, error]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={MAIN_MENU_SCREEN} screenOptions={{ contentStyle: { backgroundColor: "#F2E8DF" } }}>
@@ -49,7 +66,7 @@ export default function App() {
             name={ANAGRAMA_START_SCREEN}
             component={AnagramaStartScreen}
             options={{ title: 'Anagrama' }}
-          />  
+          />
           <Stack.Screen
             name={ANAGRAMA_GAME_SCREEN}
             component={AnagramaGameScreen}
@@ -84,15 +101,15 @@ export default function App() {
             component={ForcaStartScreen}
             options={{ title: 'Forca' }}
           />
-          <Stack.Screen 
-          name={FORCA_GAME_SCREEN}
-          component={ForcaGameScreen} 
-          options={{ headerShown: false }}
+          <Stack.Screen
+            name={FORCA_GAME_SCREEN}
+            component={ForcaGameScreen}
+            options={{ headerShown: false }}
           />
-          <Stack.Screen 
-          name={FORCA_END_SCREEN} 
-          component={ForcaEndScreen} 
-          options={{ headerShown: false }}
+          <Stack.Screen
+            name={FORCA_END_SCREEN}
+            component={ForcaEndScreen}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>
