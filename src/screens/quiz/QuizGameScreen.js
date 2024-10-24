@@ -63,14 +63,14 @@ const QuizGameScreen = (props) => {
 
   return (
     <div className="quiz-game-container">
-      <div className="info-icon" onClick={toggleInfo}>
+      {/* <div className="info-icon" onClick={toggleInfo}>
         <img src={infoIcon} alt="Informação" />
       </div>
 
 
       <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
         <p>Responda as perguntas escolhendo a alternativa correta entre as opções.</p>
-      </div>
+      </div> */}
       <h2 className="quiz-topic">Tema: {topic}</h2>
       <p className="quiz-counter">
         Questões: {questionCounter + 1}/{questions.length}
