@@ -1,54 +1,71 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio'
+import TooltipIcon from '../../components/TooltipIcon'
 
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5)
 }
 
 const AssociacaoGameScreen = ({ route, navigation }) => {
-  const { associacaoSettings } = route.params
+  const { associacaoSettings, selectedTheme } = route.params
   const [itens, setItens] = useState([])
   const [relacoes, setRelacoes] = useState([])
   const [selectedItem, setSelectedItem] = useState(null)
   const [selectedRelacao, setSelectedRelacao] = useState(null)
   const [correctMatches, setCorrectMatches] = useState([])
-  const [feedbackColor, setFeedbackColor] = useState('#ddd')
+  const [feedbackClass, setFeedbackClass] = useState('')
   const [isClickable, setIsClickable] = useState(true)
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(100)
+  const [showInfo, setShowInfo] = useState(false)
+
+  const playSound = (isCorrect) => {
+    if (isCorrect) {
+      playCorrectAnswerSound()
+    } else {
+      playWrongAnswerSound()
+    }
+  }
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo)
+  }
 
   useEffect(() => {
     const itemsList = associacaoSettings.items.map((item) => ({
       id: item.id,
       content: item.associar[0].titulo,
-      imagem: item.associar[0].imagem,
+      imagem: item.associar[0].imagem
     }))
 
     const relationsList = associacaoSettings.items.map((item) => ({
       id: item.id,
       content: item.associar[1].titulo,
-      imagem: item.associar[1].imagem,
+      imagem: item.associar[1].imagem
     }))
 
-    setItens(shuffleArray(itemsList));
-    setRelacoes(shuffleArray(relationsList));
+    setItens(shuffleArray(itemsList))
+    setRelacoes(shuffleArray(relationsList))
   }, [associacaoSettings])
 
   useEffect(() => {
     if (selectedItem && selectedRelacao) {
       const isCorrect = selectedItem.id === selectedRelacao.id
-      setFeedbackColor(isCorrect ? 'green' : 'red')
+      playSound(isCorrect)
+      setFeedbackClass(isCorrect ? 'correct' : 'incorrect')
+
       setIsClickable(false)
+      const pointsPerWrong = 100 / (2 * associacaoSettings.items.length)
 
       const timeout = setTimeout(() => {
         if (isCorrect) {
           setCorrectMatches((prevMatches) => [...prevMatches, selectedItem.id])
-          setScore((prevScore) => prevScore + 10)
         } else {
-          setScore((prevScore) => prevScore - 5)
+          setScore((prevScore) => Math.max(prevScore - pointsPerWrong, 0))
         }
         setSelectedItem(null)
         setSelectedRelacao(null)
-        setFeedbackColor('#ddd')
+        setFeedbackClass('')
         setIsClickable(true)
       }, 1000)
 
@@ -58,133 +75,167 @@ const AssociacaoGameScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     if (correctMatches.length === associacaoSettings.items.length) {
-      navigation.navigate('AssociacaoResultScreen', { finalScore: score })
+      const finalScore = Math.max(Math.round(score), 0)
+      navigation.navigate('AssociacaoResultScreen', { finalScore })
     }
   }, [correctMatches, associacaoSettings.items.length, navigation, score])
 
   const isItemDisabled = (id) => correctMatches.includes(id)
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{associacaoSettings.topic}</Text>
+    <ScrollView contentContainerStyle={styles.associacaoGameContainer}>
+      <TooltipIcon text="Relacione os itens da coluna da direita com os itens da coluna da esquerda." />
 
-      <Text style={styles.instructions}>
-        Toque em um item da coluna da esquerda e associe-o com um item da coluna da direita. 
-      </Text>
+      <Text style={styles.associacaoTitle}>{selectedTheme}</Text>
 
-      <View style={styles.gameArea}>
-        <View style={styles.columnContainer}>
-          <View style={styles.column}>
-            <FlatList
-              data={itens}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.itemContainer,
-                    selectedItem && selectedItem.id === item.id ? { backgroundColor: feedbackColor } : null,
-                    isItemDisabled(item.id) ? styles.disabled : null, 
-                  ]}
-                  onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)}
-                >
-                  <View style={styles.contentContainer}>
-                    {item.content && <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>}
-                    {item.imagem && <Image source={{ uri: item.imagem }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />}
-                  </View>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.id.toString()}
-            />
+      <View style={styles.associacaoGameArea}>
+        <View style={styles.associacaoColumnContainer}>
+          <View style={styles.associacaoColumn}>
+            {itens.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                style={[
+                  styles.associacaoItem,
+                  selectedItem && selectedItem.id === item.id && styles.selected,
+                  feedbackClass === 'correct' && selectedItem && selectedItem.id === item.id
+                    ? styles.correct
+                    : feedbackClass === 'incorrect' && selectedItem && selectedItem.id === item.id
+                      ? styles.incorrect
+                      : null,
+                  isItemDisabled(item.id) && styles.disabled
+                ]}
+                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedItem(item)}
+                disabled={isItemDisabled(item.id)}
+              >
+                <View style={styles.associacaoContentContainer}>
+                  {item.content && <Text>{item.content}</Text>}
+                  {item.imagem && (
+                    <Image
+                      source={{ uri: item.imagem }}
+                      style={[
+                        styles.associacaoImage,
+                        isItemDisabled(item.id) && styles.disabledImage
+                      ]}
+                    />
+                  )}
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
 
-          <View style={styles.divider} />
+          <View style={styles.associacaoDivider} />
 
-          <View style={styles.column}>
-            <FlatList
-              data={relacoes}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.itemContainer,
-                    selectedRelacao && selectedRelacao.id === item.id ? { backgroundColor: feedbackColor } : null,
-                    isItemDisabled(item.id) ? styles.disabled : null, // Estilo desativado
-                  ]}
-                  onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)} // Desativar clique se já foi usado ou se está no intervalo de feedback
-                >
-                  <View style={styles.contentContainer}>
-                    {item.content && <Text style={isItemDisabled(item.id) ? styles.disabledText : null}>{item.content}</Text>}
-                    {item.imagem && <Image source={{ uri: item.imagem }} style={[styles.image, isItemDisabled(item.id) ? styles.disabledImage : null]} />}
-                  </View>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.id.toString()}
-            />
+          <View style={styles.associacaoColumn}>
+            {relacoes.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                style={[
+                  styles.associacaoItem,
+                  selectedRelacao && selectedRelacao.id === item.id && styles.selected,
+                  feedbackClass === 'correct' && selectedRelacao && selectedRelacao.id === item.id
+                    ? styles.correct
+                    : feedbackClass === 'incorrect' &&
+                        selectedRelacao &&
+                        selectedRelacao.id === item.id
+                      ? styles.incorrect
+                      : null,
+                  isItemDisabled(item.id) && styles.disabled
+                ]}
+                onPress={() => isClickable && !isItemDisabled(item.id) && setSelectedRelacao(item)}
+                disabled={isItemDisabled(item.id)}
+              >
+                <View style={styles.associacaoContentContainer}>
+                  {item.content && <Text>{item.content}</Text>}
+                  {item.imagem && (
+                    <Image
+                      source={{ uri: item.imagem }}
+                      style={[
+                        styles.associacaoImage,
+                        isItemDisabled(item.id) && styles.disabledImage
+                      ]}
+                    />
+                  )}
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
+  associacaoGameContainer: {
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    backgroundColor: '#F2E8DF'
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
+  associacaoGameArea: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
   },
-  instructions: {
-    fontSize: 16,
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  gameArea: {
-    flex: 1,
-  },
-  columnContainer: {
+  associacaoColumnContainer: {
     flexDirection: 'row',
     alignItems: 'stretch',
-    justifyContent: 'center', 
+    justifyContent: 'space-between',
+    width: '100%',
+    maxWidth: 800
   },
-  column: {
+  associacaoColumn: {
     flex: 1,
-    paddingHorizontal: 10,
+    padding: 10,
+    flexDirection: 'column',
+    gap: 10
   },
-  divider: {
-    width: 2,  
-    backgroundColor: '#000',
-    marginHorizontal: 10,
+  associacaoDivider: {
+    width: 2,
+    backgroundColor: '#433d59'
   },
-  itemContainer: {
-    padding: 8,
-    borderWidth: 1,
-    borderColor: '#000',
-    marginVertical: 5,
-    alignItems: 'center',
-    height: 100, 
-    justifyContent: 'center', 
+  associacaoItem: {
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#7c9a96',
+    color: 'white',
+    textAlign: 'center'
   },
-  contentContainer: {
-    alignItems: 'center', 
+  selected: {
+    backgroundColor: '#4e6f6a'
   },
-  image: {
-    width: 80,
-    height: 80,
-    resizeMode: 'contain',
+  correct: {
+    borderColor: 'green',
+    borderWidth: 2
+  },
+  incorrect: {
+    borderColor: 'red',
+    borderWidth: 2
   },
   disabled: {
-    backgroundColor: '#e0e0e0', 
+    backgroundColor: '#e0e0e0'
   },
-  disabledText: {
-    color: '#a0a0a0', 
+  associacaoImage: {
+    width: 80,
+    height: 80,
+    marginTop: 10
   },
   disabledImage: {
-    tintColor: '#a0a0a0', 
+    opacity: 0.5
   },
+  associacaoContentContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  associacaoTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20
+  }
 })
 
 export default AssociacaoGameScreen

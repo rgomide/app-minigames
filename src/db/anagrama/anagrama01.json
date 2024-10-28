@@ -1,35 +1,18 @@
 {
-  "dificuldade": "Facil",
-  "letras": ["C", "R", "M", "A", "O"],
+  "tema": "Animais",
+  "letras": ["G", "R", "T", "A", "O"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+  "imagens": ["https://picsum.photos/id/40/200/300"],
   "pontuacaoMaxima": 100,
-  "perdaPorDica": 5,
-  "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
-      "palavra": "ROMA",
-      "dica": "Uma cidade famosa.",
+      "palavra": "GATO",
+      "dica": "Felino doméstico.",
       "tamanho": 4
     },
     {
-      "palavra": "AMOR",
-      "dica": "Um sentimento de afeição.",
-      "tamanho": 4
-    },
-    {
-      "palavra": "ARCO",
-      "dica": "Utiliza flechas.",
-      "tamanho": 4
-    },
-    {
-      "palavra": "MAR",
-      "dica": "Montante de água salgada.",
-      "tamanho": 3
-    },
-    {
-      "palavra": "CARO",
-      "dica": "Algo que não é barato.",
+      "palavra": "RATO",
+      "dica": "Roedor.",
       "tamanho": 4
     }
   ]

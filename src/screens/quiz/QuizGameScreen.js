@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
 import QuizCard from '../../components/quiz/QuizCard'
 import { QUIZ_RESULT_SCREEN } from '../../constants/screens'
+import TooltipIcon from '../../components/TooltipIcon'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const QuizGameScreen = (props) => {
   const {
@@ -56,24 +57,66 @@ const QuizGameScreen = (props) => {
   }
 
   return (
-    <View style={styles.mainView}>
-      <Text>Tema: {topic}</Text>
-      <Text>
+    <ScrollView contentContainerStyle={styles.quizGameContainer}>
+      <TooltipIcon text="Responda as perguntas escolhendo a alternativa correta entre as opções." />
+      <Text style={styles.quizTopic}>Tema: {topic}</Text>
+      <Text style={styles.quizCounter}>
         Questões: {questionCounter + 1}/{questions.length}
       </Text>
 
       <QuizCard question={currentQuestion} onChange={onSelectAnswer} />
 
-      <Button onPress={onNextPressed} disabled={!selectedAnswer} title={getButtonTitle()} />
-    </View>
+      <TouchableOpacity
+        style={[styles.quizNextButton, !selectedAnswer && styles.quizNextButtonDisabled]}
+        onPress={onNextPressed}
+        disabled={!selectedAnswer}
+      >
+        <Text style={styles.quizNextButtonText}>{getButtonTitle()}</Text>
+      </TouchableOpacity>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  mainView: {
-    gap: 5,
+  quizGameContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 20,
+    backgroundColor: '#F2E8DF',
+    gap: 15
+  },
+  quizTopic: {
+    fontSize: 26,
+    color: '#a99be0',
+    textAlign: 'center',
+    fontFamily: 'Poppins'
+  },
+  quizCounter: {
+    fontSize: 18,
+    color: '#b3a8e0',
+    fontFamily: 'Poppins'
+  },
+  quizNextButton: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#433d59',
+    fontFamily: 'Fredoka',
+    color: '#fff',
     padding: 10,
-    backgroundColor: 'white'
+    borderRadius: 8,
+    border: 'none',
+    cursor: 'pointer'
+  },
+  quizNextButtonDisabled: {
+    backgroundColor: '#877cb3'
+  },
+  quizNextButtonText: {
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    color: '#fff'
   }
 })
 

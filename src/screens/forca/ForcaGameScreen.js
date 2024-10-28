@@ -1,6 +1,16 @@
 import React, { useState } from 'react'
-import { View, Text, Button, Image, TouchableNativeFeedbackBase } from 'react-native'
+import { Text, TouchableOpacity, Image, View, ScrollView, StyleSheet } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
+import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio'
+import TooltipIcon from '../../components/TooltipIcon'
+
+const img0 = require('../../img/img0.png')
+const img1 = require('../../img/img1.png')
+const img2 = require('../../img/img2.png')
+const img3 = require('../../img/img3.png')
+const img4 = require('../../img/img4.png')
+const img5 = require('../../img/img5.png')
+const img6 = require('../../img/img6.png')
 
 const ForcaGameScreen = () => {
   const route = useRoute()
@@ -44,12 +54,22 @@ const ForcaGameScreen = () => {
   const [erros, setErros] = useState(0)
   const [mensagem, setMensagem] = useState('')
 
+  const forcaImagens = [img0, img1, img2, img3, img4, img5, img6]
+
   const renderPalavra = () => {
     return palavraAtual
       .toUpperCase()
       .split('')
       .map((letra) => (tentativas.includes(letra) ? letra : '_'))
       .join(' ')
+  }
+
+  const playSound = (isCorrect) => {
+    if (isCorrect) {
+      playCorrectAnswerSound()
+    } else {
+      playWrongAnswerSound()
+    }
   }
 
   const onClickTecla = (teclaClicada) => {
@@ -62,11 +82,13 @@ const ForcaGameScreen = () => {
     if (palavraAtual.toUpperCase().includes(letraUpper)) {
       setTentativas(tentativasAtualizado)
       setMensagem(`A letra ${letraUpper} está correta!`)
+      playSound(true)
     } else {
       erroAtualizado = erros + 1
       setErros(erroAtualizado)
       setTentativas(tentativasAtualizado)
       setMensagem(`A letra ${letraUpper} está incorreta.`)
+      playSound(false)
     }
 
     const teclasAtualizadas = teclas.map((teclaOriginal) => {
@@ -79,50 +101,130 @@ const ForcaGameScreen = () => {
 
     setTeclas(teclasAtualizadas)
 
-    // Cálculo da pontuação
-    const pontuacaoMaxima = 120
-    const pontosPerdidos = erroAtualizado * 20
-    const pontuacao = pontuacaoMaxima - pontosPerdidos
+    const pontuacaoMaxima = 100
+    const pontosPerdidosPorErro = pontuacaoMaxima / 6
+    const pontosPerdidos = erroAtualizado * pontosPerdidosPorErro
+    const pontuacao = Math.floor(pontuacaoMaxima - pontosPerdidos)
 
     if (erroAtualizado >= 6) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao }) // Passa a pontuação
+      setTimeout(() => {
+        navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual })
+      }, 1000)
     } else if (
       palavraAtual
         .toUpperCase()
         .split('')
         .every((l) => tentativasAtualizado.includes(l))
     ) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao }) // Passa a pontuação
+      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao, palavraAtual })
     }
   }
 
   return (
-    <View>
-      <Text>Tema: {tema.tema}</Text>
-      <Text>Dica: {grupoAtual.dica}</Text>
+    <ScrollView style={styles.forcaContainer} contentContainerStyle={styles.forcaContent}>
+      <TooltipIcon text="Adivinhe a palavra secreta, antes de atingir os seis erros." />
 
-      {grupoAtual.imagem ? (
-        <Image
-          source={{ uri: grupoAtual.imagem }}
-          style={{ width: 200, height: 200, marginBottom: 20 }}
-          resizeMode="contain"
-        />
-      ) : null}
+      <Image source={forcaImagens[erros]} alt="Imagem da Forca" style={styles.forcaImagem} />
+      <Text style={styles.dica}>Dica: {grupoAtual.dica}</Text>
+      <Text style={styles.palavra}>Palavra: {renderPalavra()}</Text>
+      <Text style={styles.erros}>Erros: {erros} de 6</Text>
 
-      <Text>Palavra: {renderPalavra()}</Text>
-      <Text>Erros: {erros} de 6</Text>
-
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
-        {teclas.map((tecla) => (
-          <Button
-            title={tecla.letra}
-            disabled={tecla.clicado}
+      <View style={styles.teclado}>
+        {teclas.map((tecla, index) => (
+          <TouchableOpacity
+            key={index}
+            style={tecla.clicado ? styles.teclaDisabled : styles.tecla}
+            disabled={tecla.clicado || erros >= 6}
             onPress={() => onClickTecla(tecla)}
-          />
+          >
+            <Text>{tecla.letra}</Text>
+          </TouchableOpacity>
         ))}
       </View>
-    </View>
+
+      {mensagem && <Text className="mensagem">{mensagem}</Text>}
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  forcaContainer: {
+    flex: 1,
+    backgroundColor: '#F2E8DF'
+  },
+  forcaContent: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 40,
+    paddingHorizontal: 20
+  },
+  forcaImagem: {
+    width: 400,
+    height: 300,
+    objectFit: 'contain',
+    marginBottom: 10
+  },
+  teclado: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 6,
+    maxWidth: '100%'
+  },
+  tecla: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#f2bcbc',
+    border: '2px solid #333333',
+    fontFamily: 'Poppins',
+    borderRadius: 8,
+    padding: 8,
+    fontSize: 14,
+    cursor: 'pointer',
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+    lineHeight: 24
+  },
+  teclaDisabled: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#dddddd',
+    border: '2px solid #333333',
+    fontFamily: 'Poppins',
+    borderRadius: 8,
+    padding: 8,
+    fontSize: 14,
+    cursor: 'not-allowed',
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+    lineHeight: 24
+  },
+  dica: {
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    color: '#333333',
+    marginBottom: 10,
+    textAlign: 'center'
+  },
+  palavra: {
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    color: '#333333',
+    letterSpacing: 4,
+    marginBottom: 10,
+    textAlign: 'center'
+  },
+  erros: {
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    color: '#f28585',
+    marginBottom: 10,
+    textAlign: 'center'
+  }
+})
 
 export default ForcaGameScreen

@@ -1,29 +1,50 @@
 import React from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
-  if (!letrasEmbaralhadas || !Array.isArray(letrasEmbaralhadas)) {
-    return null
-  }
-
   return (
-    <View style={{ flexDirection: 'row', marginVertical: 20 }}>
-      {letrasEmbaralhadas.map((letra, index) => (
-        <TouchableOpacity
-          key={index}
-          style={{
-            marginHorizontal: 16,
-            padding: 10,
-            backgroundColor: 'lightgray',
-            borderRadius: 10
-          }}
-          onPress={() => onLetraPress(letra)}
-        >
-          <Text style={{ fontSize: 20 }}>{letra}</Text>
-        </TouchableOpacity>
-      ))}
+    <View style={styles.letrasContainer}>
+      {letrasEmbaralhadas.map((letra, index) => {
+        return (
+          <TouchableOpacity
+            key={index}
+            style={styles.letraItem}
+            onPress={() => onLetraPress(letra)}
+          >
+            <Text style={styles.letraTexto}>{letra}</Text>
+          </TouchableOpacity>
+        )
+      })}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  letrasContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 10,
+    marginBottom: 20
+  },
+  letraItem: {
+    backgroundColor: '#f4c182',
+    fontFamily: 'Poppins',
+    borderRadius: 8,
+    textAlign: 'center',
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxShadow: '0px 4px 0px #b88e5b',
+    cursor: 'pointer',
+    transition: 'transform 0.1s ease, box-shadow 0.1s ease'
+  },
+  letraTexto: {
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    color: '#333'
+  }
+})
 
 export default RenderizarLetras

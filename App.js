@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import MainMenuScreen from './src/screens/MainMenuScreen'
 
+
 import AnagramaStartScreen from './src/screens/anagrama/AnagramaStartScreen'
 import AnagramaGameScreen from './src/screens/anagrama/AnagramaGameScreen'
 import AnagramaResultScreen from './src/screens/anagrama/AnagramaResultScreen'
@@ -36,28 +37,45 @@ import {
   FORCA_END_SCREEN
 } from './src/constants/screens'
 
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react'
+
+SplashScreen.preventAutoHideAsync();
+
 const Stack = createNativeStackNavigator()
 
 export default function App() {
+  const [fontsLoaded, error] = useFonts({
+    'Poppins': require('./src/assets/fonts/Poppins-Regular.ttf'),
+    'Fredoka': require('./src/assets/fonts/Fredoka.ttf')
+  })
+
+  useEffect(() => {
+    if (fontsLoaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, error]);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={MAIN_MENU_SCREEN} screenOptions={{ contentStyle: { backgroundColor: "#eee" } }}>
-        <Stack.Screen name={MAIN_MENU_SCREEN} component={MainMenuScreen} options={{ title: 'Menu' }} />
+      <Stack.Navigator initialRouteName={MAIN_MENU_SCREEN} screenOptions={{ contentStyle: { backgroundColor: "#F2E8DF" } }}>
+        <Stack.Screen name={MAIN_MENU_SCREEN} component={MainMenuScreen} options={{ headerShown: false }} />
         <Stack.Group>
           <Stack.Screen
             name={ANAGRAMA_START_SCREEN}
             component={AnagramaStartScreen}
             options={{ title: 'Anagrama' }}
-          />  
+          />
           <Stack.Screen
             name={ANAGRAMA_GAME_SCREEN}
             component={AnagramaGameScreen}
-            options={{ title: 'Anagrama', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ANAGRAMA_RESULT_SCREEN}
             component={AnagramaResultScreen}
-            options={{ title: 'Anagrama', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>
@@ -69,12 +87,12 @@ export default function App() {
           <Stack.Screen
             name={ASSOCIACAO_GAME_SCREEN}
             component={AssociacaoGameScreen}
-            options={{ title: 'Associação', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name={ASSOCIACAO_RESULT_SCREEN}
             component={AssociacaoResultScreen}
-            options={{ title: 'Associação', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>
@@ -83,15 +101,15 @@ export default function App() {
             component={ForcaStartScreen}
             options={{ title: 'Forca' }}
           />
-          <Stack.Screen 
-          name={FORCA_GAME_SCREEN}
-          component={ForcaGameScreen} 
-          options={{ title: 'Forca', headerLeft: () => <></> }}
+          <Stack.Screen
+            name={FORCA_GAME_SCREEN}
+            component={ForcaGameScreen}
+            options={{ headerShown: false }}
           />
-          <Stack.Screen 
-          name={FORCA_END_SCREEN} 
-          component={ForcaEndScreen} 
-          options={{ title: 'Forca', headerLeft: () => <></> }}
+          <Stack.Screen
+            name={FORCA_END_SCREEN}
+            component={ForcaEndScreen}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
         <Stack.Group>
@@ -103,16 +121,15 @@ export default function App() {
           <Stack.Screen
             name={QUIZ_GAME_SCREEN}
             component={QuizGameScreen}
-            options={{ title: 'Quiz', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name={QUIZ_RESULT_SCREEN}
             component={QuizResultScreen}
-            options={{ title: 'Quiz', headerLeft: () => <></> }}
+            options={{ headerShown: false }}
           />
         </Stack.Group>
       </Stack.Navigator>
-      <StatusBar style="auto" />
     </NavigationContainer>
   )
 }

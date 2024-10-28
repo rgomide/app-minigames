@@ -1,44 +1,44 @@
 {
-    "topic": "Instrumentos Musicais",
-    "items": [
+  "topic": "Instrumentos Musicais",
+  "items": [
+    {
+      "id": 1,
+      "associar": [
         {
-            "id": 1,
-            "associar": [
-                {
-                    "titulo": "Violino",
-                    "imagem": null
-                },
-                {
-                    "titulo": "Cordas",
-                    "imagem": null
-                }
-            ]
+          "titulo": "Violino",
+          "imagem": null
         },
         {
-            "id": 2,
-            "associar": [
-                {
-                    "titulo": "Piano",
-                    "imagem": null
-                },
-                {
-                    "titulo": "Teclas",
-                    "imagem": null
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "associar": [
-                {
-                    "titulo": "Flauta",
-                    "imagem": null
-                },
-                {
-                    "titulo": "Sopro",
-                    "imagem": null
-                }
-            ]
+          "titulo": "Cordas",
+          "imagem": null
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "associar": [
+        {
+          "titulo": "Piano",
+          "imagem": null
+        },
+        {
+          "titulo": "Teclas",
+          "imagem": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "associar": [
+        {
+          "titulo": "Flauta",
+          "imagem": null
+        },
+        {
+          "titulo": "Sopro",
+          "imagem": null
+        }
+      ]
+    }
+  ]
 }

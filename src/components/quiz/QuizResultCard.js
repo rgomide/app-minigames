@@ -1,42 +1,57 @@
-import { Text, View, StyleSheet } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 const QuizResultCard = ({ answer, question }) => {
   const { title, answers: questionAnswers } = question
   const correctAnswer = questionAnswers.find((questionAnswer) => questionAnswer.correct)
   const isCorrect = correctAnswer.id === answer.id
 
-  const answerStyle = isCorrect ? styles.correctText : styles.wrongText
-
   return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.titleText}>{title}</Text>
-      <Text style={[answerStyle]}>Respondida: {answer.answer}</Text>
+    <View style={styles.quizCardContainer}>
+      <Text style={styles.quizCardTitle}>{title[0].value}</Text>
+      <Text style={[styles.answerText, isCorrect ? styles.correctText : styles.wrongText]}>
+        Respondida: {answer.answer}
+      </Text>
       {!isCorrect && <Text style={[styles.suggestionText]}>Correta: {correctAnswer.answer}</Text>}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    padding: 10,
-    backgroundColor: 'white',
-    borderColor: 'lightgray',
-    borderWidth: 1,
-    borderRadius: 5
+  quizCardContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 15,
+    backgroundColor: '#d4d2da',
+    borderWidth: 2,
+    borderColor: '#877cb3',
+    borderRadius: 12,
+    marginBottom: 15,
+    maxWidth: 800,
+    width: '100%'
   },
-  titleText: {
+  quizCardTitle: {
     fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 8,
+    color: '#433d59',
+    fontFamily: 'Fredoka'
+  },
+  answerText: {
     fontSize: 16,
-    marginBottom: 3
+    marginBottom: 5
   },
   correctText: {
-    color: 'green'
-  },
-  suggestionText: {
-    color: '#999'
+    color: '#7c9a96'
   },
   wrongText: {
-    color: 'red'
+    color: '#f28585'
+  },
+  suggestionText: {
+    color: '#655d86',
+    fontStyle: 'italic',
+    fontSize: 15,
+    fontFamily: 'Fredoka'
   }
 })
 

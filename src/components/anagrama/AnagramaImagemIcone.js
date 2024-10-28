@@ -1,28 +1,34 @@
-import React from 'react';
-import { View, Image } from 'react-native';
+import React from 'react'
+import { View, Image, StyleSheet } from 'react-native'
 
 const ImagemIcone = ({ imagens = [] }) => {
   if (imagens.length === 0) {
-    return null;
+    return null
   }
 
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' , marginVertical: 10 }}>
+    <View style={styles.imagemContainer}>
       {imagens.map((imagem, index) => (
-        <Image
-          key={index}
-          source={{ uri: imagem }}
-          style={{
-            width: 50,
-            height: 50,
-            marginHorizontal: 5,
-            borderRadius: 5
-          }}
-          onError={(e) => console.log(`Erro ao carregar imagem ${imagem}:`, e.nativeEvent.error)}
-        />
+        <Image key={index} source={{ uri: imagem }} style={styles.imagem} alt={`Ícone ${index}`} />
       ))}
     </View>
-  );
-};
+  )
+}
 
-export default ImagemIcone;
+const styles = StyleSheet.create({
+  imagemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 20,
+    padding: 10
+  },
+  imagem: {
+    width: 50,
+    height: 50,
+    borderRadius: 8
+  }
+})
+
+export default ImagemIcone
