@@ -79,7 +79,7 @@ const AnagramaGameScreen = ({ navigation, route }) => {
       <Text style={styles.texto}>Erros: {erros}</Text>
       <Text style={styles.texto}>Dicas usadas: {dicasUsadas}</Text>
 
-      <ImagemIcone imagens={anagramaSettings.imagens} />
+      <ImagemIcone imagens={anagramaSettings.imagens} resizeMode="contain" style={styles.infoImage} />
 
       <Text style={styles.hiddenWordsTitle}>Palavras Escondidas:</Text>
 
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   infoImage: {
-    width: 30,
-    height: 30,
+    width: 60,
+    height: 60,
   },
   infoBubble: {
     backgroundColor: '#F9E0C0',

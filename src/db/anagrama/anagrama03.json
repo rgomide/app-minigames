@@ -1,35 +1,20 @@
 {
-  "tema": "Geral 3",
-  "letras": ["C", "I", "R", "S", "T", "O", "L", "A"],
+  "tema": "Frutas",
+  "letras": ["M", "A", "P", "G", "N", "O"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+  "imagens": [""],
   "pontuacaoMaxima": 100,
   "perdaPorDica": 5,
   "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
-      "palavra": "CRISTA",
-      "dica": "Parte superior da cabeça de algumas aves.",
-      "tamanho": 6
-    },
-    {
-      "palavra": "LISTAR",
-      "dica": "Organizar ou dispor itens em sequência.",
-      "tamanho": 6
-    },
-    {
-      "palavra": "TIRAS",
-      "dica": "Pequenos pedaços cortados de algo.",
+      "palavra": "MAMAO",
+      "dica": "Fruto do mamoeiro.",
       "tamanho": 5
     },
     {
-      "palavra": "SALTO",
-      "dica": "Parte do calçado que faz altear o calcanhar.",
-      "tamanho": 5
-    },
-    {
-      "palavra": "TALIS",
-      "dica": "Termo relacionado a sacerdotes e rituais.",
+      "palavra": "MANGA",
+      "dica": "Fruto da mangueira.",
       "tamanho": 5
     }
   ]

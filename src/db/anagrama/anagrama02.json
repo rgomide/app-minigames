@@ -1,36 +1,21 @@
 {
-  "tema": "Geral 2",
-  "letras": ["L", "S", "P", "E", "A"],
+  "tema": "Países",
+  "letras": ["I", "R", "L", "N", "A", "T", "F", "C"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+  "imagens": ["https://picsum.photos/id/164/200/300", "https://picsum.photos/id/234/200/300"],
   "pontuacaoMaxima": 100,
   "perdaPorDica": 5,
   "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
-      "palavra": "PELA",
-      "dica": "Preposição usada em português.",
-      "tamanho": 4
+      "palavra": "ITALIA",
+      "dica": "Sua capital é Roma.",
+      "tamanho": 6
     },
     {
-      "palavra": "SELA",
-      "dica": "Equipamento para montar cavalos.",
-      "tamanho": 4
-    },
-    {
-      "palavra": "PAES",
-      "dica": "Alimento vendido em padarias.",
-      "tamanho": 4
-    },
-    {
-      "palavra": "PESA",
-      "dica": "Palavra que indica peso.",
-      "tamanho": 4
-    },
-    {
-      "palavra": "LESA",
-      "dica": "Sinônimo de prejudicar.",
-      "tamanho": 4
+      "palavra": "FRANCA",
+      "dica": "Sua capital é Paris.",
+      "tamanho": 6
     }
   ]
 }

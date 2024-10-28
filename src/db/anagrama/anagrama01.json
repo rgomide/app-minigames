@@ -1,15 +1,20 @@
 {
-  "tema": "Geral 1",
-  "letras": ["C", "R", "M", "A", "O"],
+  "tema": "Animais",
+  "letras": ["G", "R", "T", "A", "O"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": ["https://picsum.photos/id/152/200/300", "https://picsum.photos/id/195/200/300"],
+  "imagens": [""],
   "pontuacaoMaxima": 100,
   "perdaPorDica": 5,
   "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
-      "palavra": "ROMA",
-      "dica": "Uma cidade famosa.",
+      "palavra": "GATO",
+      "dica": "Felino doméstico.",
+      "tamanho": 4
+    },
+    {
+      "palavra": "RATO",
+      "dica": "Roedor.",
       "tamanho": 4
     }
   ]
