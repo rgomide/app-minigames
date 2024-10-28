@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 .associacao-game-container {
-  background-color: #F2E8DF;
+  background-color: #f2e8df;
   padding: 20px;
   min-height: 100vh;
   display: flex;
@@ -46,7 +46,9 @@
   text-align: center;
   cursor: pointer;
   border: none;
-  transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s ease-in-out;
 }
 
 .associacao-item:hover:not(.disabled) {
@@ -57,13 +59,17 @@
 .associacao-item.incorrect {
   box-shadow: 0 0 15px red;
   border: 2px solid red;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .associacao-item.correct {
   box-shadow: 0 0 15px green;
   border: 2px solid green;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .associacao-item.disabled {

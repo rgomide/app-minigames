@@ -1,37 +1,37 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { playWinGameSound, playLoseGameSound } from '../../services/util/audio';
+import React, { useEffect } from 'react'
+import { StyleSheet, View, Image, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { useRoute, useNavigation } from '@react-navigation/native'
+import { playWinGameSound, playLoseGameSound } from '../../services/util/audio'
 
 const derrotaIcon = require('../../img/derrotaIcon.png')
 const confeteGif = require('../../img/confete.gif')
 const vitoriaIcon = require('../../img/vitoriaIcon.png')
 
 const ForcaEndScreen = () => {
-  const route = useRoute();
-  const navigation = useNavigation();
-  const { resultado, pontuacao } = route.params;
+  const route = useRoute()
+  const navigation = useNavigation()
+  const { resultado, pontuacao } = route.params
 
   useEffect(() => {
     if (resultado === 'ganhou') {
-      playWinGameSound();
+      playWinGameSound()
     } else if (resultado === 'perdeu') {
-      playLoseGameSound();
+      playLoseGameSound()
     }
-  }, [resultado]);
+  }, [resultado])
 
   return (
     <ScrollView contentContainerStyle={styles.endScreenContainer}>
-
       {resultado === 'ganhou' && (
-        <View><Image source={vitoriaIcon} alt="Vitória" style={styles.resultadoIcone} /></View>
+        <View>
+          <Image source={vitoriaIcon} alt="Vitória" style={styles.resultadoIcone} />
+        </View>
       )}
       {resultado === 'ganhou' && (
         <View style={styles.confettiWrapper}>
           <Image source={confeteGif} alt="Confete" style={styles.confettiGif} />
           <Text style={[styles.quizResultTitle, styles.quizResultTitleVitoria]}>Você ganhou!</Text>
           <Image source={confeteGif} alt="Confete" style={styles.confettiGif} />
-
         </View>
       )}
 
@@ -49,23 +49,19 @@ const ForcaEndScreen = () => {
           style={[styles.button, styles.buttonJogarNovamente]}
           onPress={() => navigation.navigate('ForcaStartScreen')}
         >
-          <Text style={styles.buttonTextJogarNovamente}>
-            Jogar Novamente
-          </Text>
+          <Text style={styles.buttonTextJogarNovamente}>Jogar Novamente</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.buttonVoltarInicio]}
           onPress={() => navigation.navigate('MainMenuScreen')}
         >
-          <Text style={styles.buttonTextInicio}>
-            Voltar ao início
-          </Text>
+          <Text style={styles.buttonTextInicio}>Voltar ao início</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   endScreenContainer: {
@@ -94,10 +90,10 @@ const styles = StyleSheet.create({
     objectFit: 'contain'
   },
   quizResultTitleDerrota: {
-    color: '#f44336',
+    color: '#f44336'
   },
   quizResultTitleVitoria: {
-    color: '#4caf50',
+    color: '#4caf50'
   },
   quizResultTitle: {
     fontSize: 36,
@@ -108,7 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   button: {
     display: 'flex',
@@ -118,7 +114,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: '100%',
     cursor: 'pointer',
-    border: 'none',
+    border: 'none'
   },
   buttonContainer: {
     display: 'flex',
@@ -127,25 +123,25 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   buttonJogarNovamente: {
-    backgroundColor: '#4caf50',
+    backgroundColor: '#4caf50'
   },
   buttonVoltarInicio: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#f44336'
   },
   buttonTextJogarNovamente: {
     color: 'white',
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   buttonTextInicio: {
     color: 'white',
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   }
 })
 
-export default ForcaEndScreen;
+export default ForcaEndScreen

@@ -1,64 +1,64 @@
-import { useState } from 'react';
-import QuizCard from '../../components/quiz/QuizCard';
-import { QUIZ_RESULT_SCREEN } from '../../constants/screens';
-import TooltipIcon from '../../components/TooltipIcon';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react'
+import QuizCard from '../../components/quiz/QuizCard'
+import { QUIZ_RESULT_SCREEN } from '../../constants/screens'
+import TooltipIcon from '../../components/TooltipIcon'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const QuizGameScreen = (props) => {
   const {
     navigation,
     route: {
       params: {
-        quizSettings: { topic, questions },
-      },
-    },
-  } = props;
+        quizSettings: { topic, questions }
+      }
+    }
+  } = props
 
-  const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
-  const [questionCounter, setQuestionCounter] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [answers, setAnswers] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(questions[0])
+  const [questionCounter, setQuestionCounter] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [answers, setAnswers] = useState([])
 
   const onSelectAnswer = (answer) => {
-    setSelectedAnswer(answer);
-  };
+    setSelectedAnswer(answer)
+  }
 
   const onNextPressed = () => {
     if (questionCounter < questions.length - 1) {
-      processNextQuestion();
+      processNextQuestion()
     } else {
-      processEndGame();
+      processEndGame()
     }
-  };
+  }
 
   const processNextQuestion = () => {
-    setAnswers([...answers, selectedAnswer]);
-    setQuestionCounter(questionCounter + 1);
-    setCurrentQuestion(questions[questionCounter + 1]);
-    setSelectedAnswer(null);
-  };
+    setAnswers([...answers, selectedAnswer])
+    setQuestionCounter(questionCounter + 1)
+    setCurrentQuestion(questions[questionCounter + 1])
+    setSelectedAnswer(null)
+  }
 
   const processEndGame = () => {
-    const allAnswers = [...answers, selectedAnswer];
+    const allAnswers = [...answers, selectedAnswer]
 
-    setCurrentQuestion(questions[0]);
-    setQuestionCounter(0);
-    setSelectedAnswer(null);
-    setAnswers([]);
+    setCurrentQuestion(questions[0])
+    setQuestionCounter(0)
+    setSelectedAnswer(null)
+    setAnswers([])
 
-    navigation.navigate(QUIZ_RESULT_SCREEN, { topic, questions, answers: allAnswers });
-  };
+    navigation.navigate(QUIZ_RESULT_SCREEN, { topic, questions, answers: allAnswers })
+  }
 
   const getButtonTitle = () => {
     if (questionCounter === questions.length - 1) {
-      return 'Finalizar';
+      return 'Finalizar'
     }
-    return 'Próxima';
-  };
+    return 'Próxima'
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.quizGameContainer}>
-      <TooltipIcon text="Responda as perguntas escolhendo a alternativa correta entre as opções." />      
+      <TooltipIcon text="Responda as perguntas escolhendo a alternativa correta entre as opções." />
       <Text style={styles.quizTopic}>Tema: {topic}</Text>
       <Text style={styles.quizCounter}>
         Questões: {questionCounter + 1}/{questions.length}
@@ -74,8 +74,8 @@ const QuizGameScreen = (props) => {
         <Text style={styles.quizNextButtonText}>{getButtonTitle()}</Text>
       </TouchableOpacity>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   quizGameContainer: {
@@ -91,12 +91,12 @@ const styles = StyleSheet.create({
     fontSize: 26,
     color: '#a99be0',
     textAlign: 'center',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   quizCounter: {
     fontSize: 18,
     color: '#b3a8e0',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   quizNextButton: {
     display: 'flex',
@@ -108,16 +108,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     border: 'none',
-    cursor: 'pointer',
+    cursor: 'pointer'
   },
   quizNextButtonDisabled: {
-    backgroundColor: '#877cb3',
+    backgroundColor: '#877cb3'
   },
   quizNextButtonText: {
     fontSize: 18,
     fontFamily: 'Poppins',
-    color: '#fff',
-  },
+    color: '#fff'
+  }
 })
 
-export default QuizGameScreen;
+export default QuizGameScreen

@@ -1,35 +1,35 @@
-import QuizResultCard from '../../components/quiz/QuizResultCard';
-import React, { useEffect } from 'react';
-import confeteGif from '../../img/confete.gif';
-import vitoriaIcon from '../../img/vitoriaIcon.png';
-import derrotaIcon from '../../img/derrotaIcon.png';
-import { playWinGameSound, playLoseGameSound } from '../../services/util/audio';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import QuizResultCard from '../../components/quiz/QuizResultCard'
+import React, { useEffect } from 'react'
+import confeteGif from '../../img/confete.gif'
+import vitoriaIcon from '../../img/vitoriaIcon.png'
+import derrotaIcon from '../../img/derrotaIcon.png'
+import { playWinGameSound, playLoseGameSound } from '../../services/util/audio'
+import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
 
 const QuizResultScreen = (props) => {
   const {
     navigation,
     route: {
-      params: { topic, answers, questions },
-    },
-  } = props;
+      params: { topic, answers, questions }
+    }
+  } = props
 
   const totalCorrectAnswers = answers.reduce((acc, answer) => {
-    return answer.correct ? acc + 1 : acc;
-  }, 0);
+    return answer.correct ? acc + 1 : acc
+  }, 0)
 
   const totalCorrectAnswerTitle =
-    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas';
+    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas'
 
-  const score = Math.floor(totalCorrectAnswers * (100 / questions.length));
+  const score = Math.floor(totalCorrectAnswers * (100 / questions.length))
 
   useEffect(() => {
     if (totalCorrectAnswers > 0) {
-      playWinGameSound();
+      playWinGameSound()
     } else if (totalCorrectAnswers < 1) {
-      playLoseGameSound();
+      playLoseGameSound()
     }
-  }, [totalCorrectAnswers]);
+  }, [totalCorrectAnswers])
 
   return (
     <ScrollView contentContainerStyle={styles.endScreenContainer}>
@@ -55,7 +55,9 @@ const QuizResultScreen = (props) => {
       )}
 
       <View style={styles.quizResultRow}>
-        <Text style={styles.quizResultTotal}>{totalCorrectAnswers} {totalCorrectAnswerTitle}</Text>
+        <Text style={styles.quizResultTotal}>
+          {totalCorrectAnswers} {totalCorrectAnswerTitle}
+        </Text>
       </View>
       <Text style={styles.pontuacao}>Pontuação Final: {score}</Text>
 
@@ -81,8 +83,8 @@ const QuizResultScreen = (props) => {
         </TouchableOpacity>
       </View>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   endScreenContainer: {
@@ -94,80 +96,80 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2E8DF',
     textAlign: 'center',
     gap: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   quizResultList: {
-    width: '100%',
+    width: '100%'
   },
   quizResultTotal: {
     fontSize: 24,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   resultadoIcone: {
     width: 260,
     height: 150,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   confettiWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   confettiGif: {
     width: 70,
-    height: 70,
+    height: 70
   },
   quizResultTitleDerrota: {
     fontSize: 36,
     color: '#f44336',
     fontFamily: 'Poppins',
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 20
   },
   quizResultTitleVitoria: {
     fontSize: 36,
     color: '#4caf50',
     fontFamily: 'Poppins',
     textAlign: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 10
   },
   quizResultTitle: {
     fontSize: 36,
     fontFamily: 'Poppins',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   pontuacao: {
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   buttonContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     gap: 15,
-    width: '100%',
+    width: '100%'
   },
   button: {
     width: '100%',
     paddingVertical: 15,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonJogarNovamente: {
     backgroundColor: '#4caf50',
-    marginBottom: 15,
+    marginBottom: 15
   },
   buttonVoltarInicio: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#f44336'
   },
   buttonText: {
     color: 'white',
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Poppins',
-  },
-});
+    fontFamily: 'Poppins'
+  }
+})
 
-export default QuizResultScreen;
+export default QuizResultScreen

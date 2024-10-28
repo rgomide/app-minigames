@@ -1,6 +1,6 @@
 /* AnagramaGameScreen.css */
 .anagrama-game-container {
-  background-color: #F2E8DF;
+  background-color: #f2e8df;
   padding: 20px;
   border-radius: 12px;
   max-width: 800px;
@@ -10,7 +10,7 @@
 .texto {
   display: flex;
   justify-content: baseline;
-  
+
   align-items: center;
   margin-bottom: 8px;
   font-size: 20px;
@@ -38,7 +38,6 @@
   max-width: 800px;
   margin: 0 auto;
 }
-
 
 .current-word {
   padding: 10px;
@@ -141,11 +140,13 @@
   border: 2px solid #333333;
   font-family: 'Fredoka One', cursive;
   border-radius: 8px;
-  padding: 8px; 
-  font-size: 14px; 
+  padding: 8px;
+  font-size: 14px;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  width: 40px; 
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+  width: 40px;
   height: 40px;
   text-align: center;
   line-height: 24px;
@@ -162,8 +163,8 @@
   align-items: center;
   margin-top: 20px;
   width: 100%;
-  max-width: 400px; 
-  margin: 0 auto; 
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .enviar-button {
@@ -226,10 +227,18 @@
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -252,5 +261,4 @@
   .dica-texto-container {
     font-size: 12px;
   }
-  
 }

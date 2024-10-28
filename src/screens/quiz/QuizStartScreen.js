@@ -1,20 +1,19 @@
-import { useState } from 'react';
-import { getQuiz } from '../../services/quiz/quisService';
-import { QUIZ_GAME_SCREEN } from '../../constants/screens';
-import '../../components/visual/QuizStartVisual.css';
-import { Image, ScrollView, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import TooltipIcon from '../../components/TooltipIcon';
+import { useState } from 'react'
+import { getQuiz } from '../../services/quiz/quisService'
+import { QUIZ_GAME_SCREEN } from '../../constants/screens'
+import { ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Picker } from '@react-native-picker/picker'
+import TooltipIcon from '../../components/TooltipIcon'
 
 const QuizStartScreen = (props) => {
-  const navigation = props.navigation;
-  const [selectedQuiz, setSelectedQuiz] = useState('');
-  const quizList = [{ label: 'Capitais', value: 'quiz01' }];
+  const navigation = props.navigation
+  const [selectedQuiz, setSelectedQuiz] = useState('')
+  const quizList = [{ label: 'Capitais', value: 'quiz01' }]
 
   const handleStartGame = async () => {
-    const quiz = await getQuiz('quiz01');
-    navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz });
-  };
+    const quiz = await getQuiz('quiz01')
+    navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz })
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -28,7 +27,7 @@ const QuizStartScreen = (props) => {
         style={styles.picker}
         selectedValue={selectedQuiz}
         onValueChange={(itemValue) => {
-          setSelectedQuiz(itemValue);
+          setSelectedQuiz(itemValue)
         }}
       >
         <Picker.Item label="Selecione um tema" value="" />
@@ -45,8 +44,8 @@ const QuizStartScreen = (props) => {
         <Text style={styles.buttonText}>Iniciar Quiz</Text>
       </TouchableOpacity>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -54,19 +53,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#F2E8DF',
+    backgroundColor: '#F2E8DF'
   },
   title: {
     fontSize: 50,
     fontFamily: 'Poppins',
     marginBottom: 16,
-    color: '#a99be0',
+    color: '#a99be0'
   },
   label: {
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   picker: {
     height: 45,
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 5,
     fontSize: 16,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   startButton: {
     display: 'flex',
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     maxWidth: 350,
     width: '100%',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   startButtonDisabled: {
     display: 'flex',
@@ -103,14 +102,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     maxWidth: 350,
     width: '100%',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   buttonText: {
     color: '#ffffff',
     fontSize: 16,
     fontFamily: 'Poppins',
-    textAlign: 'center',
+    textAlign: 'center'
   }
-});
+})
 
-export default QuizStartScreen;
+export default QuizStartScreen

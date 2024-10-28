@@ -21,18 +21,18 @@
 }
 
 .anagrama-start-button {
-    background-color: #f2b263;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-    max-width: 350px;
-    width: 100%;
-    font-family: 'Fredoka One', cursive;
+  background-color: #f2b263;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  max-width: 350px;
+  width: 100%;
+  font-family: 'Fredoka One', cursive;
 }
 
 .anagrama-start-button:hover {

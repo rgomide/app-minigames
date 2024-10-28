@@ -1,24 +1,19 @@
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Image, StyleSheet } from 'react-native'
 
 const ImagemIcone = ({ imagens = [] }) => {
   if (imagens.length === 0) {
-    return null;
+    return null
   }
 
   return (
     <View style={styles.imagemContainer}>
       {imagens.map((imagem, index) => (
-        <Image
-          key={index}
-          source={{ uri: imagem }}
-          style={styles.imagem}
-          alt={`Ícone ${index}`}
-        />
+        <Image key={index} source={{ uri: imagem }} style={styles.imagem} alt={`Ícone ${index}`} />
       ))}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   imagemContainer: {
@@ -27,13 +22,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     marginBottom: 20,
-    padding: 10,
+    padding: 10
   },
   imagem: {
     width: 50,
     height: 50,
-    borderRadius: 8,
-  },
-});
+    borderRadius: 8
+  }
+})
 
-export default ImagemIcone;
+export default ImagemIcone

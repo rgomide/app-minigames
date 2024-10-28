@@ -1,44 +1,44 @@
 {
-    "topic": "Países e Continentes",
-    "items": [
+  "topic": "Países e Continentes",
+  "items": [
+    {
+      "id": 1,
+      "associar": [
         {
-            "id": 1,
-            "associar": [
-                {
-                    "titulo": "Brasil",
-                    "imagem": null
-                },
-                {
-                    "titulo": "América do Sul",
-                    "imagem": null
-                }
-            ]
+          "titulo": "Brasil",
+          "imagem": null
         },
         {
-            "id": 2,
-            "associar": [
-                {
-                    "titulo": "Alemanha",
-                    "imagem": null
-                },
-                {
-                    "titulo": "Europa",
-                    "imagem": null
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "associar": [
-                {
-                    "titulo": "China",
-                    "imagem": null
-                },
-                {
-                    "titulo": "Ásia",
-                    "imagem": null
-                }
-            ]
+          "titulo": "América do Sul",
+          "imagem": null
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "associar": [
+        {
+          "titulo": "Alemanha",
+          "imagem": null
+        },
+        {
+          "titulo": "Europa",
+          "imagem": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "associar": [
+        {
+          "titulo": "China",
+          "imagem": null
+        },
+        {
+          "titulo": "Ásia",
+          "imagem": null
+        }
+      ]
+    }
+  ]
 }

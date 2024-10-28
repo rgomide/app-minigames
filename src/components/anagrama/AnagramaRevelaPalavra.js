@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada }) => {
-  const [dicaVisivel, setDicaVisivel] = useState(false);
-  const palavraEncontrada = palavrasDescobertas.includes(item.palavra);
+  const [dicaVisivel, setDicaVisivel] = useState(false)
+  const palavraEncontrada = palavrasDescobertas.includes(item.palavra)
 
   const exibirDica = () => {
-    setDicaVisivel(true);
-    onDicaUsada();
-  };
+    setDicaVisivel(true)
+    onDicaUsada()
+  }
 
   return (
     <View style={styles.palavraEscondidaContainer}>
@@ -34,35 +34,33 @@ const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada }
         </View>
       )}
     </View>
-  );
-};
-
+  )
+}
 
 const styles = StyleSheet.create({
   palavraEscondidaContainer: {
     marginVertical: 8,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   palavraLetras: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 10
   },
   letraCaixa: {
-    padding: 12,
     backgroundColor: '#f7d0a1',
     borderRadius: 8,
     width: 40,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 5,
+    marginHorizontal: 5
   },
   letraTexto: {
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   dicaBotao: {
     backgroundColor: '#f4c182',
@@ -71,25 +69,25 @@ const styles = StyleSheet.create({
     height: 36,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 10,
+    marginLeft: 10
   },
   dicaDesabilitada: {
-    backgroundColor: 'gray',
+    backgroundColor: 'gray'
   },
   dicaTexto: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   dicaTextoContainer: {
-    marginTop: 5,
+    marginTop: 5
   },
   dicaTextoDescricao: {
     color: 'gray',
     fontStyle: 'italic',
     fontSize: 14,
-    fontFamily: 'Poppins',
-  },
-});
+    fontFamily: 'Poppins'
+  }
+})
 
-export default RenderizarPalavrasEscondidas;
+export default RenderizarPalavrasEscondidas

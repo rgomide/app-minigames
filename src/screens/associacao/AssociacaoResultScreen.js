@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import confeteGif from '../../img/confete.gif';
-import vitoriaIcon from '../../img/vitoriaIcon.png';
-import derrotaIcon from '../../img/derrotaIcon.png';
-import { playWinGameSound, playLoseGameSound } from '../../services/util/audio';
+import React, { useEffect } from 'react'
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import confeteGif from '../../img/confete.gif'
+import vitoriaIcon from '../../img/vitoriaIcon.png'
+import derrotaIcon from '../../img/derrotaIcon.png'
+import { playWinGameSound, playLoseGameSound } from '../../services/util/audio'
 
 const AssociacaoResultScreen = ({ route, navigation }) => {
-  const { finalScore } = route.params;
-  const displayScore = finalScore < 0 ? 0 : finalScore;
+  const { finalScore } = route.params
+  const displayScore = finalScore < 0 ? 0 : finalScore
 
   useEffect(() => {
     if (displayScore > 0) {
-      playWinGameSound();
+      playWinGameSound()
     } else {
-      playLoseGameSound();
+      playLoseGameSound()
     }
-  }, [displayScore]);
+  }, [displayScore])
 
   return (
     <ScrollView contentContainerStyle={styles.endScreenContainer}>
@@ -55,8 +55,8 @@ const AssociacaoResultScreen = ({ route, navigation }) => {
         </TouchableOpacity>
       </View>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   endScreenContainer: {
@@ -66,74 +66,74 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 50,
     backgroundColor: '#F2E8DF',
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   resultContainer: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 20
   },
   resultadoIcone: {
     width: 260,
     height: 150,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   confettiWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 20
   },
   confettiGif: {
     width: 70,
-    height: 70,
+    height: 70
   },
   quizResultTitleVitoria: {
     fontSize: 36,
     color: '#4caf50',
     fontFamily: 'Poppins',
     textAlign: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 10
   },
   quizResultTitleDerrota: {
     fontSize: 36,
     color: '#f44336',
     fontFamily: 'Poppins',
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 20
   },
   pontuacao: {
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   buttonContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     gap: 15,
-    width: '100%',
+    width: '100%'
   },
   button: {
     width: '100%',
     paddingVertical: 15,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonJogarNovamente: {
     backgroundColor: '#4caf50',
-    marginBottom: 15,
+    marginBottom: 15
   },
   buttonVoltarInicio: {
-    backgroundColor: '#f44336',
+    backgroundColor: '#f44336'
   },
   buttonText: {
     color: 'white',
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Poppins',
-  },
-});
+    fontFamily: 'Poppins'
+  }
+})
 
-export default AssociacaoResultScreen;
+export default AssociacaoResultScreen
