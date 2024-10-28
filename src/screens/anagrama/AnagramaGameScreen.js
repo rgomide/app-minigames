@@ -10,7 +10,6 @@ import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/uti
 
 const AnagramaGameScreen = ({ navigation, route }) => {
   const { anagramaSettings } = route.params;
-  const [showInfo, setShowInfo] = useState(false);
   const [pontuacao, setPontuacao] = useState(anagramaSettings.pontuacaoMaxima);
   const [letrasEmbaralhadas, setLetrasEmbaralhadas] = useState(anagramaSettings.letras);
   const [palavraAtual, setPalavraAtual] = useState('');
@@ -73,7 +72,7 @@ const AnagramaGameScreen = ({ navigation, route }) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.anagramaGameContainer}>
+    <View contentContainerStyle={styles.anagramaGameContainer}>
         <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
 
       <Text style={styles.texto}>Tema: {anagramaSettings.tema}</Text>
@@ -118,7 +117,7 @@ const AnagramaGameScreen = ({ navigation, route }) => {
           <Text style={styles.messageText}>{mensagem}</Text>
         </View>
       )}
-    </ScrollView>
+    </View>
   );
 };
 
