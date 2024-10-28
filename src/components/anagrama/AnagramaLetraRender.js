@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 10,
     marginBottom: 20,
+    
   },
   letraItem: {
     backgroundColor: '#f4c182',

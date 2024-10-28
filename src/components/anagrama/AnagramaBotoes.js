@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 400,
     marginHorizontal: 'auto',
+    
   },
   apagarButton: {
     backgroundColor: '#916a3b',
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     borderRadius: 8,
-    textAlign: 'center',
     flex: 1,
     marginRight: 8,
   },
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontFamily: 'Poppins',
+    textAlign: 'center',
   },
   apagarButtonImg: {
     width: 20,

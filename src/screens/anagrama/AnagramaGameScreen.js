@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import RenderizarLetras from '../../components/anagrama/AnagramaLetraRender';
 import RenderizarPalavrasEscondidas from '../../components/anagrama/AnagramaRevelaPalavra';
 import ImagemIcone from '../../components/anagrama/AnagramaImagemIcone';
@@ -10,12 +10,14 @@ import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/uti
 
 const AnagramaGameScreen = ({ navigation, route }) => {
   const { anagramaSettings } = route.params;
-  const [pontuacao, setPontuacao] = useState(anagramaSettings.pontuacaoMaxima);
+  const maxErros = anagramaSettings.palavrasEscondidas.length + 1;
+  const maxDicas = anagramaSettings.palavrasEscondidas.length;
+  const [pontuacao, setPontuacao] = useState(100);
   const [letrasEmbaralhadas, setLetrasEmbaralhadas] = useState(anagramaSettings.letras);
   const [palavraAtual, setPalavraAtual] = useState('');
   const [erros, setErros] = useState(0);
-  const [palavrasDescobertas, setPalavrasDescobertas] = useState([]);
   const [dicasUsadas, setDicasUsadas] = useState(0);
+  const [palavrasDescobertas, setPalavrasDescobertas] = useState([]);
   const [mensagem, setMensagem] = useState('');
   const [showMensagem, setShowMensagem] = useState(false);
 
@@ -33,12 +35,22 @@ const AnagramaGameScreen = ({ navigation, route }) => {
     }
   }, [palavrasDescobertas, anagramaSettings.palavrasEscondidas.length, pontuacao, navigation]);
 
+  useEffect(() => {
+    if (erros >= maxErros) {
+      navigation.navigate(ANAGRAMA_RESULT_SCREEN, { pontuacao: 0, mensagem: 'Você perdeu!' });
+    }
+  }, [erros, maxErros, navigation]);
+
   const exibirMensagem = (texto) => {
     setMensagem(texto);
     setShowMensagem(true);
     setTimeout(() => {
       setShowMensagem(false);
-    }, 3000);
+    }, 1000);
+  };
+
+  const calcularPerdaPorErro = () => {
+    return 100 / maxErros;
   };
 
   const verificarPalavra = () => {
@@ -51,15 +63,16 @@ const AnagramaGameScreen = ({ navigation, route }) => {
       if (!palavrasDescobertas.includes(palavraFormada)) {
         playSound(true);
         setPalavrasDescobertas([...palavrasDescobertas, palavraFormada]);
-        exibirMensagem('Você Acertou!');
+        exibirMensagem('Você acertou!');
       } else {
         playSound(false);
         exibirMensagem('Você já descobriu essa palavra.');
       }
     } else {
       playSound(false);
+      const perda = calcularPerdaPorErro();
       setErros((prevErros) => prevErros + 1);
-      setPontuacao((prevPontuacao) => Math.max(0, prevPontuacao - anagramaSettings.perdaPorErro));
+      setPontuacao((prevPontuacao) => Math.max(0, Math.ceil(prevPontuacao - perda)));
       exibirMensagem('Palavra incorreta.');
     }
 
@@ -68,18 +81,17 @@ const AnagramaGameScreen = ({ navigation, route }) => {
 
   const incrementarDicasUsadas = () => {
     setDicasUsadas((prevDicasUsadas) => prevDicasUsadas + 1);
-    setPontuacao((prevPontuacao) => Math.max(0, prevPontuacao - anagramaSettings.perdaPorDica));
   };
 
   return (
     <View contentContainerStyle={styles.anagramaGameContainer}>
-        <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
+      <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
 
       <Text style={styles.texto}>Tema: {anagramaSettings.tema}</Text>
-      <Text style={styles.texto}>Erros: {erros}</Text>
-      <Text style={styles.texto}>Dicas usadas: {dicasUsadas}</Text>
+      <Text style={styles.texto}>Erros: {erros}/{maxErros}</Text>
+      <Text style={styles.texto}>Dicas usadas: {dicasUsadas}/{maxDicas}</Text>
 
-      <ImagemIcone imagens={anagramaSettings.imagens} resizeMode="contain" style={styles.infoImage} />
+      <ImagemIcone imagens={anagramaSettings.imagens} />
 
       <Text style={styles.hiddenWordsTitle}>Palavras Escondidas:</Text>
 
@@ -92,7 +104,6 @@ const AnagramaGameScreen = ({ navigation, route }) => {
               item={item}
               palavrasDescobertas={palavrasDescobertas}
               onDicaUsada={incrementarDicasUsadas}
-              resetDicas={dicasUsadas === 0}
             />
           )}
         />

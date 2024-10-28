@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada, resetDicas }) => {
+const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada }) => {
   const [dicaVisivel, setDicaVisivel] = useState(false);
   const palavraEncontrada = palavrasDescobertas.includes(item.palavra);
-
-  useEffect(() => {
-    if (resetDicas) {
-      setDicaVisivel(false);
-    }
-  }, [resetDicas]);
 
   const exibirDica = () => {
     setDicaVisivel(true);
@@ -42,6 +36,7 @@ const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada, 
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   palavraEscondidaContainer: {

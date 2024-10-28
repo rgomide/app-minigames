@@ -2,10 +2,8 @@
   "tema": "Animais",
   "letras": ["G", "R", "T", "A", "O"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": [""],
+  "imagens": ["https://picsum.photos/id/40/200/300"],
   "pontuacaoMaxima": 100,
-  "perdaPorDica": 5,
-  "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
       "palavra": "GATO",

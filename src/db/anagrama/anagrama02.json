@@ -4,8 +4,6 @@
   "enunciado": "Forme palavras com as letras disponíveis.",
   "imagens": ["https://picsum.photos/id/164/200/300", "https://picsum.photos/id/234/200/300"],
   "pontuacaoMaxima": 100,
-  "perdaPorDica": 5,
-  "perdaPorErro": 7,
   "palavrasEscondidas": [
     {
       "palavra": "ITALIA",
