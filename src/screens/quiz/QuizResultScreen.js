@@ -88,7 +88,6 @@ const QuizResultScreen = (props) => {
 
 const styles = StyleSheet.create({
   endScreenContainer: {
-    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
