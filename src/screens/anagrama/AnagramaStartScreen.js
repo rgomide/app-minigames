@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Picker } from '@react-native-picker/picker'
 import { getAnagrama } from '../../services/anagrama/anagramaService';
 import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens';
 import TooltipIcon from '../../components/TooltipIcon';
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   startButton: {
     alignItems: 'center',
-    backgroundColor: '#7c9a96',
+    backgroundColor: '#f2b263',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   },
   startButtonDisabled: {
     alignItems: 'center',
-    backgroundColor: '#ccc',
+    backgroundColor: '#f9e0c0',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,

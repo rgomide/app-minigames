@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     color: 'gray',
     fontStyle: 'italic',
     fontSize: 14,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
 });
 

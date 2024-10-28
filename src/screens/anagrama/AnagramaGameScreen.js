@@ -67,10 +67,6 @@ const AnagramaGameScreen = ({ navigation, route }) => {
     setPalavraAtual('');
   };
 
-  const toggleInfo = () => {
-    setShowInfo(!showInfo);
-  };
-
   const incrementarDicasUsadas = () => {
     setDicasUsadas((prevDicasUsadas) => prevDicasUsadas + 1);
     setPontuacao((prevPontuacao) => Math.max(0, prevPontuacao - anagramaSettings.perdaPorDica));
@@ -155,7 +151,7 @@ const styles = StyleSheet.create({
   },
   texto: {
     fontSize: 18,
-    fontFamily: 'Poppins0',
+    fontFamily: 'Poppins',
     color: '#916a3b',
     marginBottom: 5,
   },
@@ -164,7 +160,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: '#916a3b',
     textAlign: 'center',
-    fontFamily: 'Poppins0',
+    fontFamily: 'Poppins',
   },
   hiddenWordsContainer: {
     backgroundColor: '#F9E0C0',
@@ -174,7 +170,7 @@ const styles = StyleSheet.create({
   },
   currentWord: {
     backgroundColor: '#F2B263',
-    fontFamily: 'Poppins0',
+    fontFamily: 'Poppins',
     borderRadius: 10,
     padding: 10,
     width: '100%',
@@ -197,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     textAlign: 'center',
-    fontFamily: 'Poppins0',
+    fontFamily: 'Poppins',
   },
 });
 

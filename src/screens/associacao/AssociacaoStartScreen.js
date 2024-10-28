@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Picker, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Picker } from '@react-native-picker/picker'
 import { getAssociacao } from '../../services/associacao/associacaoService';
 import { ASSOCIACAO_GAME_SCREEN } from '../../constants/screens';
 import TooltipIcon from '../../components/TooltipIcon';
