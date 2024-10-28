@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Image, TouchableOpacity, StyleSheet, ScrollView, View, Text } from 'react-native';
-// import '../components/visual/MainMenuScreenVisual.css';
 import {
   ANAGRAMA_START_SCREEN,
   ASSOCIACAO_START_SCREEN,

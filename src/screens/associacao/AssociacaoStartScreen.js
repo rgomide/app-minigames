@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Picker, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { getAssociacao } from '../../services/associacao/associacaoService';
 import { ASSOCIACAO_GAME_SCREEN } from '../../constants/screens';
-import TooltipIcon from '../../components/TooltipIcon'; // Substituição do ícone de dúvida
+import TooltipIcon from '../../components/TooltipIcon';
 
 const AssociacaoStartScreen = (props) => {
   const navigation = props.navigation;
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   startButton: {
     alignItems: 'center',
-    backgroundColor: '#91c1bb',
+    backgroundColor: '#5d7370',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
