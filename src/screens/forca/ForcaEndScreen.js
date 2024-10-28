@@ -101,14 +101,14 @@ const styles = StyleSheet.create({
   },
   quizResultTitle: {
     fontSize: 36,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
     textAlign: 'center'
   },
   pontuacao: {
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   },
   button: {
     display: 'flex',
@@ -137,14 +137,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   },
   buttonTextInicio: {
     color: 'white',
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   }
 })
 

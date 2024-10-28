@@ -80,12 +80,6 @@ const AnagramaGameScreen = ({ navigation, route }) => {
     <ScrollView contentContainerStyle={styles.anagramaGameContainer}>
         <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
 
-      {showInfo && (
-        <View style={styles.infoBubble}>
-          <Text style={styles.infoText}>Reorganize as letras embaralhadas para formar palavras válidas.</Text>
-        </View>
-      )}
-
       <Text style={styles.texto}>Tema: {anagramaSettings.tema}</Text>
       <Text style={styles.texto}>Erros: {erros}</Text>
       <Text style={styles.texto}>Dicas usadas: {dicasUsadas}</Text>
@@ -161,7 +155,7 @@ const styles = StyleSheet.create({
   },
   texto: {
     fontSize: 18,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins0',
     color: '#916a3b',
     marginBottom: 5,
   },
@@ -170,7 +164,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: '#916a3b',
     textAlign: 'center',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins0',
   },
   hiddenWordsContainer: {
     backgroundColor: '#F9E0C0',
@@ -180,7 +174,7 @@ const styles = StyleSheet.create({
   },
   currentWord: {
     backgroundColor: '#F2B263',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins0',
     borderRadius: 10,
     padding: 10,
     width: '100%',
@@ -203,7 +197,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
     textAlign: 'center',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins0',
   },
 });
 

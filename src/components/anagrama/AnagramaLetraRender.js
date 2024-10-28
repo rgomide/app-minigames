@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   letraItem: {
     backgroundColor: '#f4c182',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     borderRadius: 8,
     padding: 12,
     textAlign: 'center',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   letraTexto: {
     fontSize: 16,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     color: '#333',
     textAlign: 'center',
   },

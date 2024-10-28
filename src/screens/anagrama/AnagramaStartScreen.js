@@ -2,22 +2,17 @@ import React, { useState } from 'react';
 import { View, Text, Picker, TouchableOpacity, StyleSheet } from 'react-native';
 import { getAnagrama } from '../../services/anagrama/anagramaService';
 import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens';
-import TooltipIcon from '../../components/TooltipIcon'; // Substituição do ícone de dúvida
+import TooltipIcon from '../../components/TooltipIcon';
 
 const AnagramaStartScreen = (props) => {
   const navigation = props.navigation;
   const [selectedAnagrama, setSelectedAnagrama] = useState('');
-  const [showInfo, setShowInfo] = useState(false);
 
   const anagramaList = [
     { label: 'Geral 1', value: 'anagrama01' },
     { label: 'Geral 2', value: 'anagrama02' },
     { label: 'Geral 3', value: 'anagrama03' }
   ];
-
-  const toggleInfo = () => {
-    setShowInfo(!showInfo);
-  };
 
   const startAnagrama = async () => {
     const anagrama = await getAnagrama(selectedAnagrama);
@@ -64,7 +59,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 50,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     marginBottom: 16,
     color: '#f2b263',
   },
@@ -72,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   picker: {
     height: 45,
@@ -83,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     fontSize: 16,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   startButton: {
     alignItems: 'center',
@@ -108,7 +103,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#ffffff',
     fontSize: 16,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
 });
 

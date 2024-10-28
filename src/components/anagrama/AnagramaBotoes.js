@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     alignItems: 'center',
     marginTop: 20,
     width: '100%',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   enviarButton: {
     backgroundColor: '#f2b263',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     paddingVertical: 12,
     paddingHorizontal: 20,
     fontSize: 16,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   enviarButtonText: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   apagarButtonImg: {
     width: 20,

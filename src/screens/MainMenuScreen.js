@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '200',
     textTransform: 'uppercase',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     letterSpacing: 1.2,
     marginBottom: 10
   },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center'
   }
-})
+});
 
 
 const MainMenuScreen = ({ navigation }) => {

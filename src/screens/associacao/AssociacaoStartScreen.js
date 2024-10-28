@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 50,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     marginBottom: 16,
     color: '#5d7370',
   },
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   picker: {
     height: 45,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     fontSize: 16,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   startButton: {
     alignItems: 'center',
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#333',
     fontSize: 16,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   }
 });
 

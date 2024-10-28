@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   letraTexto: {
     fontSize: 16,
     fontWeight: 'bold',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   dicaBotao: {
     backgroundColor: '#f4c182',

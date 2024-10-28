@@ -55,11 +55,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#F2E8DF',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   },
   title: {
     fontSize: 50,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
     marginBottom: 16,
     color: '#F28585',
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   },
   picker: {
     height: 45,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 5,
     fontSize: 16,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   },
   startButton: {
     display: 'flex',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     maxWidth: 350,
     width: '100%',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   },
   startButtonDisabled: {
     display: 'flex',
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     maxWidth: 350,
     width: '100%',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Poppins',
   }
 })
 

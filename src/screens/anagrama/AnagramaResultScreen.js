@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   resultTitle: {
     fontSize: 36,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     textAlign: 'center',
   },
   resultTitleDerrota: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   buttonContainer: {
     flexDirection: 'column',
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
 });
 

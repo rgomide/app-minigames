@@ -91,12 +91,12 @@ const styles = StyleSheet.create({
     fontSize: 26,
     color: '#a99be0',
     textAlign: 'center',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   quizCounter: {
     fontSize: 18,
     color: '#b3a8e0',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   quizNextButton: {
     display: 'flex',
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   quizNextButtonText: {
     fontSize: 18,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     color: '#fff',
   },
 })

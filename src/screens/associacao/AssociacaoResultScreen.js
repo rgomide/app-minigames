@@ -91,14 +91,14 @@ const styles = StyleSheet.create({
   quizResultTitleVitoria: {
     fontSize: 36,
     color: '#4caf50',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     textAlign: 'center',
     marginHorizontal: 10,
   },
   quizResultTitleDerrota: {
     fontSize: 36,
     color: '#f44336',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     textAlign: 'center',
     marginVertical: 20,
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   buttonContainer: {
     flexDirection: 'column',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
 });
 

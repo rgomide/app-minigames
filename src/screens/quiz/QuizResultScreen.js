@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   quizResultTotal: {
     fontSize: 24,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   resultadoIcone: {
     width: 260,
@@ -120,27 +120,27 @@ const styles = StyleSheet.create({
   quizResultTitleDerrota: {
     fontSize: 36,
     color: '#f44336',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     textAlign: 'center',
     marginVertical: 20,
   },
   quizResultTitleVitoria: {
     fontSize: 36,
     color: '#4caf50',
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     textAlign: 'center',
     marginHorizontal: 10,
   },
   quizResultTitle: {
     fontSize: 36,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
     textAlign: 'center',
   },
   pontuacao: {
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
   buttonContainer: {
     flexDirection: 'column',
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Fredoka One',
+    fontFamily: 'Poppins',
   },
 });
 
