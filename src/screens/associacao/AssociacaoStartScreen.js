@@ -11,9 +11,9 @@ const AssociacaoStartScreen = (props) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const associacaoList = [
-    { label: 'Animais e Habitats', value: 'associacao01' },
-    { label: 'Instrumentos Musicais e Sons', value: 'associacao02' },
-    { label: 'Países e Continentes', value: 'associacao03' }
+    { label: 'Animais', value: 'associacao01' },
+    { label: 'Instrumentos Musicais', value: 'associacao02' },
+    { label: 'Países', value: 'associacao03' }
   ];
 
   const toggleInfo = () => {

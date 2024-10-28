@@ -10,9 +10,9 @@ const AnagramaStartScreen = (props) => {
   const [selectedAnagrama, setSelectedAnagrama] = useState('');
 
   const anagramaList = [
-    { label: 'Geral 1', value: 'anagrama01' },
-    { label: 'Geral 2', value: 'anagrama02' },
-    { label: 'Geral 3', value: 'anagrama03' }
+    { label: 'Animais', value: 'anagrama01' },
+    { label: 'Países', value: 'anagrama02' },
+    { label: 'Frutas', value: 'anagrama03' }
   ];
 
   const startAnagrama = async () => {
