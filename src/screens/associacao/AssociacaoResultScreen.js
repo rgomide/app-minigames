@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../../components/visual/AssociacaoEndVisual.css';
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import confeteGif from '../../img/confete.gif';
 import vitoriaIcon from '../../img/vitoriaIcon.png';
 import derrotaIcon from '../../img/derrotaIcon.png';
@@ -18,46 +18,122 @@ const AssociacaoResultScreen = ({ route, navigation }) => {
   }, [displayScore]);
 
   return (
-    <div className="end-screen-container">
+    <ScrollView contentContainerStyle={styles.endScreenContainer}>
       {displayScore > 0 && (
-        <div><img src={vitoriaIcon} alt="Vitória" className="resultado-icone" /></div>
-      )}
-
-      {displayScore > 0 && (
-        <div className="confetti-wrapper">
-          <img src={confeteGif} alt="Confete" className="confetti-gif-left" />
-          <h1 className="quiz-result-title-vitoria">Você ganhou!</h1>
-          <img src={confeteGif} alt="Confete" className="confetti-gif-right" />
-        </div>
+        <View style={styles.resultContainer}>
+          <Image source={vitoriaIcon} style={styles.resultadoIcone} />
+          <View style={styles.confettiWrapper}>
+            <Image source={confeteGif} style={styles.confettiGif} />
+            <Text style={styles.quizResultTitleVitoria}>Você ganhou!</Text>
+            <Image source={confeteGif} style={styles.confettiGif} />
+          </View>
+        </View>
       )}
 
       {displayScore === 0 && (
-        <div>
-          <img src={derrotaIcon} alt="Derrota" className="resultado-icone" />
-          <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
-        </div>
+        <View style={styles.resultContainer}>
+          <Image source={derrotaIcon} style={styles.resultadoIcone} />
+          <Text style={styles.quizResultTitleDerrota}>Você perdeu!</Text>
+        </View>
       )}
 
-      <p className="pontuacao">Pontuação Final: {displayScore}</p>
+      <Text style={styles.pontuacao}>Pontuação Final: {displayScore}</Text>
 
-
-      <div className="button-container">
-        <button
-          className="btn jogar-novamente"
-          onClick={() => navigation.navigate('AssociacaoStartScreen')}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonJogarNovamente]}
+          onPress={() => navigation.navigate('AssociacaoStartScreen')}
         >
-          Jogar Novamente
-        </button>
+          <Text style={styles.buttonText}>Jogar Novamente</Text>
+        </TouchableOpacity>
 
-        <button
-          className="btn voltar-inicio"
-          onClick={() => navigation.navigate('MainMenuScreen')}
+        <TouchableOpacity
+          style={[styles.button, styles.buttonVoltarInicio]}
+          onPress={() => navigation.navigate('MainMenuScreen')}
         >
-          Voltar ao início
-        </button>
-      </div>
-    </div>
+          <Text style={styles.buttonText}>Voltar ao início</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  endScreenContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 50,
+    backgroundColor: '#F2E8DF',
+    paddingHorizontal: 20,
+  },
+  resultContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  resultadoIcone: {
+    width: 260,
+    height: 150,
+    resizeMode: 'contain',
+  },
+  confettiWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  confettiGif: {
+    width: 70,
+    height: 70,
+  },
+  quizResultTitleVitoria: {
+    fontSize: 36,
+    color: '#4caf50',
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
+    marginHorizontal: 10,
+  },
+  quizResultTitleDerrota: {
+    fontSize: 36,
+    color: '#f44336',
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+  pontuacao: {
+    fontSize: 24,
+    color: '#333',
+    marginBottom: 15,
+    fontFamily: 'Fredoka One',
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 15,
+    width: '100%',
+  },
+  button: {
+    width: '100%',
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonJogarNovamente: {
+    backgroundColor: '#4caf50',
+    marginBottom: 15,
+  },
+  buttonVoltarInicio: {
+    backgroundColor: '#f44336',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+    fontFamily: 'Fredoka One',
+  },
+});
 
 export default AssociacaoResultScreen;

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import RenderizarLetras from '../../components/anagrama/AnagramaLetraRender';
 import RenderizarPalavrasEscondidas from '../../components/anagrama/AnagramaRevelaPalavra';
 import ImagemIcone from '../../components/anagrama/AnagramaImagemIcone';
 import AnagramaBotoes from '../../components/anagrama/AnagramaBotoes';
 import { ANAGRAMA_RESULT_SCREEN } from '../../constants/screens';
-import '../../components/visual/AnagramaGameVisual.css';
-import infoIcon from '../../img/duvida.png';
+import TooltipIcon from '../../components/TooltipIcon';
 import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio';
 
 const AnagramaGameScreen = ({ navigation, route }) => {
@@ -18,9 +17,9 @@ const AnagramaGameScreen = ({ navigation, route }) => {
   const [erros, setErros] = useState(0);
   const [palavrasDescobertas, setPalavrasDescobertas] = useState([]);
   const [dicasUsadas, setDicasUsadas] = useState(0);
-  const [mensagem, setMensagem] = useState(''); // Estado para a mensagem
-  const [showMensagem, setShowMensagem] = useState(false); // Controla a exibição do balão
-  
+  const [mensagem, setMensagem] = useState('');
+  const [showMensagem, setShowMensagem] = useState(false);
+
   const playSound = (isCorrect) => {
     if (isCorrect) {
       playCorrectAnswerSound();
@@ -40,7 +39,7 @@ const AnagramaGameScreen = ({ navigation, route }) => {
     setShowMensagem(true);
     setTimeout(() => {
       setShowMensagem(false);
-    }, 3000); // Mostra a mensagem por 3 segundos
+    }, 3000);
   };
 
   const verificarPalavra = () => {
@@ -78,24 +77,24 @@ const AnagramaGameScreen = ({ navigation, route }) => {
   };
 
   return (
-    <div className="anagrama-game-container">
-      <div className="info-icon" onClick={toggleInfo}>
-        <img src={infoIcon} alt="Informação" />
-      </div>
-      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
-        <p>Reorganize as letras embaralhadas para formar palavras válidas.</p>
-      </div>
+    <ScrollView contentContainerStyle={styles.anagramaGameContainer}>
+        <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
 
-      <p className='texto'>Tema: {anagramaSettings.tema}</p>
-      <p className='texto'>Erros: {erros}</p>
+      {showInfo && (
+        <View style={styles.infoBubble}>
+          <Text style={styles.infoText}>Reorganize as letras embaralhadas para formar palavras válidas.</Text>
+        </View>
+      )}
 
-      <p className='texto'> Dicas usadas: {dicasUsadas}</p>
+      <Text style={styles.texto}>Tema: {anagramaSettings.tema}</Text>
+      <Text style={styles.texto}>Erros: {erros}</Text>
+      <Text style={styles.texto}>Dicas usadas: {dicasUsadas}</Text>
 
       <ImagemIcone imagens={anagramaSettings.imagens} />
 
-      <p className="hidden-words-title">Palavras Escondidas:</p>
+      <Text style={styles.hiddenWordsTitle}>Palavras Escondidas:</Text>
 
-      <div className="hidden-words-container">
+      <View style={styles.hiddenWordsContainer}>
         <FlatList
           data={anagramaSettings.palavrasEscondidas}
           keyExtractor={(item) => item.palavra}
@@ -108,32 +107,104 @@ const AnagramaGameScreen = ({ navigation, route }) => {
             />
           )}
         />
-      </div>
+      </View>
 
-      <div className="current-word">
-        {palavraAtual || ' '}
-      </div>
+      <View style={styles.currentWord}>
+        <Text>{palavraAtual || ' '}</Text>
+      </View>
 
-      <div className="letras-container">
-        <RenderizarLetras
-          letrasEmbaralhadas={letrasEmbaralhadas}
-          onLetraPress={(letra) => setPalavraAtual(palavraAtual + letra)}
-        />
-      </div>
+      <RenderizarLetras
+        letrasEmbaralhadas={letrasEmbaralhadas}
+        onLetraPress={(letra) => setPalavraAtual(palavraAtual + letra)}
+      />
 
       <AnagramaBotoes
         onEnviarPress={verificarPalavra}
         onApagarPress={() => setPalavraAtual('')}
       />
 
-      {/* Balão de mensagem */}
       {showMensagem && (
-        <div className="message-balloon">
-          <p>{mensagem}</p>
-        </div>
+        <View style={styles.messageBalloon}>
+          <Text style={styles.messageText}>{mensagem}</Text>
+        </View>
       )}
-    </div>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  anagramaGameContainer: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#F2E8DF',
+  },
+  infoIcon: {
+    marginBottom: 10,
+  },
+  infoImage: {
+    width: 30,
+    height: 30,
+  },
+  infoBubble: {
+    backgroundColor: '#F9E0C0',
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  infoText: {
+    fontSize: 14,
+    color: '#916a3b',
+    textAlign: 'center',
+  },
+  texto: {
+    fontSize: 18,
+    fontFamily: 'Fredoka One',
+    color: '#916a3b',
+    marginBottom: 5,
+  },
+  hiddenWordsTitle: {
+    fontSize: 20,
+    marginBottom: 8,
+    color: '#916a3b',
+    textAlign: 'center',
+    fontFamily: 'Fredoka One',
+  },
+  hiddenWordsContainer: {
+    backgroundColor: '#F9E0C0',
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 20,
+  },
+  currentWord: {
+    backgroundColor: '#F2B263',
+    fontFamily: 'Fredoka One',
+    borderRadius: 10,
+    padding: 10,
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: 20,
+    color: 'white',
+  },
+  messageBalloon: {
+    position: 'absolute',
+    bottom: 20,
+    backgroundColor: 'rgba(238, 208, 170, 0.8)',
+    padding: 10,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    alignItems: 'center',
+  },
+  messageText: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
+    fontFamily: 'Fredoka One',
+  },
+});
 
 export default AnagramaGameScreen;

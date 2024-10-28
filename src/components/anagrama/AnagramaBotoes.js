@@ -1,17 +1,64 @@
 import React from 'react';
-import '../../components/visual/AnagramaGameVisual.css'; // Certifique-se que este arquivo está com os estilos atualizados
+import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 
 const AnagramaBotoes = ({ onEnviarPress, onApagarPress }) => {
   return (
-    <div className="button-row">
-      <button className="enviar-button" onClick={onEnviarPress}>
-        Enviar Palavra
-      </button>
-      <button className="apagar-button" onClick={onApagarPress}>
-        <img src={require('../../../assets/backspace.png')} alt="Apagar" className='apagar-button-img'/>
-      </button>
-    </div>
+    <View style={styles.buttonRow}>
+      <TouchableOpacity style={styles.enviarButton} onPress={onEnviarPress}>
+        <Text style={styles.enviarButtonText}>Enviar Palavra</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.apagarButton} onPress={onApagarPress}>
+        <Image
+          source={require('../../../assets/backspace.png')}
+          style={styles.apagarButtonImg}
+        />
+      </TouchableOpacity>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    fontFamily: 'Fredoka One',
+    alignItems: 'center',
+    marginTop: 20,
+    width: '100%',
+    maxWidth: 400,
+    marginHorizontal: 'auto',
+  },
+  apagarButton: {
+    backgroundColor: '#916a3b',
+    padding: 12,
+    borderRadius: 30,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 60,
+    height: 60,
+  },
+  enviarButton: {
+    backgroundColor: '#f2b263',
+    fontFamily: 'Fredoka One',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    fontSize: 16,
+    color: 'white',
+    borderRadius: 8,
+    textAlign: 'center',
+    flex: 1,
+    marginRight: 8,
+  },
+  enviarButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontFamily: 'Fredoka One',
+  },
+  apagarButtonImg: {
+    width: 20,
+    height: 20,
+  },
+});
 
 export default AnagramaBotoes;

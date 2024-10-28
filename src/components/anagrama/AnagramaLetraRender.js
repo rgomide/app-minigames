@@ -1,20 +1,50 @@
-import React from 'react'
-import '../../components/visual/AnagramaGameVisual.css'
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const RenderizarLetras = ({ letrasEmbaralhadas, onLetraPress }) => {
   return (
-    <div className="letras-container">
+    <View style={styles.letrasContainer}>
       {letrasEmbaralhadas.map((letra, index) => (
-        <div
+        <TouchableOpacity
           key={index}
-          className="letra-item"
-          onClick={() => onLetraPress(letra)}
+          style={styles.letraItem}
+          onPress={() => onLetraPress(letra)}
         >
-          {letra}
-        </div>
+          <Text style={styles.letraTexto}>{letra}</Text>
+        </TouchableOpacity>
       ))}
-    </div>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  letrasContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 10,
+    marginBottom: 20,
+  },
+  letraItem: {
+    backgroundColor: '#f4c182',
+    fontFamily: 'Fredoka One',
+    borderRadius: 8,
+    padding: 12,
+    textAlign: 'center',
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxShadow: '0px 4px 0px #b88e5b',
+    cursor: 'pointer',
+    transition: 'transform 0.1s ease, box-shadow 0.1s ease',
+  },
+  letraTexto: {
+    fontSize: 16,
+    fontFamily: 'Fredoka One',
+    color: '#333',
+    textAlign: 'center',
+  },
+});
 
 export default RenderizarLetras;

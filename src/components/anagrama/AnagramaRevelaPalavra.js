@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../components/visual/AnagramaGameVisual.css'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada, resetDicas }) => {
   const [dicaVisivel, setDicaVisivel] = useState(false);
@@ -7,38 +7,94 @@ const RenderizarPalavrasEscondidas = ({ item, palavrasDescobertas, onDicaUsada, 
 
   useEffect(() => {
     if (resetDicas) {
-      setDicaVisivel(false); 
+      setDicaVisivel(false);
     }
   }, [resetDicas]);
 
   const exibirDica = () => {
     setDicaVisivel(true);
-    onDicaUsada(); 
+    onDicaUsada();
   };
 
   return (
-    <div className="palavra-escondida-container">
-      <div className="palavra-letras">
+    <View style={styles.palavraEscondidaContainer}>
+      <View style={styles.palavraLetras}>
         {item.palavra.split('').map((letra, index) => (
-          <div key={index} className="letra-caixa">
-            <span className="letra-texto">{palavraEncontrada ? letra : '_'}</span>
-          </div>
+          <View key={index} style={styles.letraCaixa}>
+            <Text style={styles.letraTexto}>{palavraEncontrada ? letra : '_'}</Text>
+          </View>
         ))}
 
-        <button
-          onClick={exibirDica}
-          className={`dica-botao ${dicaVisivel ? 'dica-desabilitada' : 'dica-habilitada'}`}
+        <TouchableOpacity
+          onPress={exibirDica}
+          style={[styles.dicaBotao, dicaVisivel && styles.dicaDesabilitada]}
           disabled={dicaVisivel}
         >
-          ?
-        </button>
-      </div>
+          <Text style={styles.dicaTexto}>?</Text>
+        </TouchableOpacity>
+      </View>
 
-      <div className="dica-texto-container">
-        {dicaVisivel && <span className="dica-texto">{item.dica}</span>}
-      </div>
-    </div>
+      {dicaVisivel && (
+        <View style={styles.dicaTextoContainer}>
+          <Text style={styles.dicaTextoDescricao}>{item.dica}</Text>
+        </View>
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  palavraEscondidaContainer: {
+    marginVertical: 8,
+    alignItems: 'center',
+  },
+  palavraLetras: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+  letraCaixa: {
+    padding: 12,
+    backgroundColor: '#f7d0a1',
+    borderRadius: 8,
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  letraTexto: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'Fredoka One',
+  },
+  dicaBotao: {
+    backgroundColor: '#f4c182',
+    borderRadius: 50,
+    width: 36,
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  dicaDesabilitada: {
+    backgroundColor: 'gray',
+  },
+  dicaTexto: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  dicaTextoContainer: {
+    marginTop: 5,
+  },
+  dicaTextoDescricao: {
+    color: 'gray',
+    fontStyle: 'italic',
+    fontSize: 14,
+    fontFamily: 'Fredoka One',
+  },
+});
 
 export default RenderizarPalavrasEscondidas;

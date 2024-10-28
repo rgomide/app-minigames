@@ -1,9 +1,7 @@
-
 import { useState } from 'react';
 import { getQuiz } from '../../services/quiz/quisService';
 import { QUIZ_GAME_SCREEN } from '../../constants/screens';
 import '../../components/visual/QuizStartVisual.css';
-import infoIcon from '../../img/duvida.png';
 import { Image, ScrollView, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import TooltipIcon from '../../components/TooltipIcon';
@@ -30,7 +28,7 @@ const QuizStartScreen = (props) => {
         style={styles.picker}
         selectedValue={selectedQuiz}
         onValueChange={(itemValue) => {
-          setSelectedQuiz(itemValue)
+          setSelectedQuiz(itemValue);
         }}
       >
         <Picker.Item label="Selecione um tema" value="" />
@@ -44,7 +42,7 @@ const QuizStartScreen = (props) => {
         onPress={handleStartGame}
         disabled={!selectedQuiz}
       >
-        <Text>Iniciar Quiz</Text>
+        <Text style={styles.buttonText}>Iniciar Quiz</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -57,11 +55,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#F2E8DF',
-    fontFamily: 'Fredoka',
   },
   title: {
     fontSize: 50,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
     marginBottom: 16,
     color: '#F28585',
   },
@@ -69,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
   picker: {
     height: 45,
@@ -80,40 +77,40 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 5,
     fontSize: 16,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
   startButton: {
     display: 'flex',
     alignItems: 'center',
     backgroundColor: '#f28585',
-    color: '#ffffff',
     border: 'none',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
-    fontSize: 16,
-    cursor: 'pointer',
     marginTop: 10,
     maxWidth: 350,
     width: '100%',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
   startButtonDisabled: {
     display: 'flex',
     alignItems: 'center',
     backgroundColor: '#f2baba',
-    color: '#ffffff',
     border: 'none',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
-    fontSize: 16,
-    cursor: 'not-allowed',
     marginTop: 10,
     maxWidth: 350,
     width: '100%',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
   }
-})
+});
 
 export default QuizStartScreen;

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import confeteGif from '../../img/confete.gif';
 import vitoriaIcon from '../../img/vitoriaIcon.png';  
 import derrotaIcon from '../../img/derrotaIcon.png';
@@ -16,44 +17,117 @@ const AnagramaResultScreen = ({ route, navigation }) => {
   }, [pontuacao]);
 
   return (
-    <div className="end-screen-container">
+    <ScrollView contentContainerStyle={styles.endScreenContainer}>
       {pontuacao > 0 && (
-        <div><img src={vitoriaIcon} alt="Vitória" className="resultado-icone" /></div>   
+        <View>
+          <Image source={vitoriaIcon} style={styles.resultadoIcone} />
+        </View>   
       )}
       {pontuacao > 0 && (
-          <div className="confetti-wrapper">
-          <img src={confeteGif} alt="Confete" className="confetti-gif-left" />
-          <h1 className="quiz-result-title-vitoria">Você ganhou!</h1>
-          <img src={confeteGif} alt="Confete" className="confetti-gif-right" />
-        </div>
-        )}
+        <View style={styles.confettiWrapper}>
+          <Image source={confeteGif} style={styles.confettiGif} />
+          <Text style={[styles.resultTitle, styles.resultTitleVitoria]}>Você ganhou!</Text>
+          <Image source={confeteGif} style={styles.confettiGif} />
+        </View>
+      )}
 
       {pontuacao === 0 && (
-          <div>
-            <img src={derrotaIcon} alt="Derrota" className="resultado-icone" />
-            <h1 className="quiz-result-title-derrota">Você perdeu!</h1>
-          </div>
+        <View>
+          <Image source={derrotaIcon} style={styles.resultadoIcone} />
+          <Text style={[styles.resultTitle, styles.resultTitleDerrota]}>Você perdeu!</Text>
+        </View>
       )}
       
-      
-      <p className="pontuacao">Pontuação Final: {pontuacao}</p>
+      <Text style={styles.pontuacao}>Pontuação Final: {pontuacao}</Text>
 
-      <div className="button-container">
-        <button
-          className="btn jogar-novamente"
-          onClick={() => navigation.navigate('AnagramaStartScreen')}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonJogarNovamente]}
+          onPress={() => navigation.navigate('AnagramaStartScreen')}
         >
-          Jogar Novamente
-        </button>
-        <button
-          className="btn voltar-inicio"
-          onClick={() => navigation.navigate('MainMenuScreen')}
+          <Text style={styles.buttonText}>Jogar Novamente</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonVoltarInicio]}
+          onPress={() => navigation.navigate('MainMenuScreen')}
         >
-          Voltar ao início
-        </button>
-      </div>
-    </div>
+          <Text style={styles.buttonText}>Voltar ao início</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  endScreenContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 50,
+    backgroundColor: '#F2E8DF',
+    textAlign: 'center',
+    gap: 20,
+    paddingHorizontal: 20,
+  },
+  resultadoIcone: {
+    width: 260,
+    height: 150,
+    resizeMode: 'contain',
+  },
+  confettiWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  confettiGif: {
+    width: 70,
+    height: 70,
+  },
+  resultTitle: {
+    fontSize: 36,
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
+  },
+  resultTitleDerrota: {
+    color: '#f44336',
+  },
+  resultTitleVitoria: {
+    color: '#4caf50',
+    marginHorizontal: 10,
+  },
+  pontuacao: {
+    fontSize: 24,
+    color: '#333',
+    marginBottom: 15,
+    fontFamily: 'Fredoka One',
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 15,
+    width: '100%',
+  },
+  button: {
+    width: '100%',
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonJogarNovamente: {
+    backgroundColor: '#4caf50',
+    marginBottom: 15,
+  },
+  buttonVoltarInicio: {
+    backgroundColor: '#f44336',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+    fontFamily: 'Fredoka One',
+  },
+});
 
 export default AnagramaResultScreen;

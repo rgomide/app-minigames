@@ -1,64 +1,115 @@
-import React, { useState } from 'react'
-import '../../components/visual/AnagramaStartVisual.css'
-import { getAnagrama } from '../../services/anagrama/anagramaService'
-import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens'
-import infoIcon from '../../img/duvida.png'
+import React, { useState } from 'react';
+import { View, Text, Picker, TouchableOpacity, StyleSheet } from 'react-native';
+import { getAnagrama } from '../../services/anagrama/anagramaService';
+import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens';
+import TooltipIcon from '../../components/TooltipIcon'; // Substituição do ícone de dúvida
 
 const AnagramaStartScreen = (props) => {
-  const navigation = props.navigation
-  const [selectedAnagrama, setSelectedAnagrama] = useState(null)
-  const [showInfo, setShowInfo] = useState(false)
+  const navigation = props.navigation;
+  const [selectedAnagrama, setSelectedAnagrama] = useState('');
+  const [showInfo, setShowInfo] = useState(false);
 
   const anagramaList = [
     { label: 'Geral 1', value: 'anagrama01' },
     { label: 'Geral 2', value: 'anagrama02' },
     { label: 'Geral 3', value: 'anagrama03' }
-  ]
+  ];
 
   const toggleInfo = () => {
-    setShowInfo(!showInfo)
-  }
+    setShowInfo(!showInfo);
+  };
 
   const startAnagrama = async () => {
-    const anagrama = await getAnagrama(selectedAnagrama)
-    navigation.navigate(ANAGRAMA_GAME_SCREEN, { anagramaSettings: anagrama })
-  }
+    const anagrama = await getAnagrama(selectedAnagrama);
+    navigation.navigate(ANAGRAMA_GAME_SCREEN, { anagramaSettings: anagrama });
+  };
 
   return (
-    <div className="container">
-      <div className="info-icon" onClick={toggleInfo}>
-        <img src={infoIcon} alt="Informação" />
-      </div>
-      <div className={`info-bubble ${showInfo ? 'show' : ''}`}>
-        <p>Reorganize as letras embaralhadas para formar palavras válidas.</p>
-      </div>
+    <View style={styles.container}>
+        <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
 
-      <h1 className="anagrama-title">ANAGRAMA</h1>
+      <Text style={styles.title}>ANAGRAMA</Text>
 
-      <p className="label">Selecione o tema:</p>
+      <Text style={styles.label}>Selecione o tema:</Text>
 
-      <select
-        className="anagrama-picker"
-        value={selectedAnagrama}
-        onChange={(e) => setSelectedAnagrama(e.target.value)}
+      <Picker
+        selectedValue={selectedAnagrama}
+        style={styles.picker}
+        onValueChange={(itemValue) => setSelectedAnagrama(itemValue)}
       >
-        <option value="">Selecione um tema...</option>
+        <Picker.Item label="Selecione um tema..." value="" />
         {anagramaList.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.label}
-          </option>
+          <Picker.Item key={index} label={option.label} value={option.value} />
         ))}
-      </select>
+      </Picker>
 
-      <button
-        className="anagrama-start-button"
+      <TouchableOpacity
+        style={selectedAnagrama ? styles.startButton : styles.startButtonDisabled}
         disabled={!selectedAnagrama}
-        onClick={startAnagrama}
+        onPress={startAnagrama}
       >
-        Iniciar Anagrama
-      </button>
-    </div>
-  )
-}
+        <Text style={styles.buttonText}>Iniciar Anagrama</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
-export default AnagramaStartScreen
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#F2E8DF',
+  },
+  title: {
+    fontSize: 50,
+    fontFamily: 'Fredoka One',
+    marginBottom: 16,
+    color: '#f2b263',
+  },
+  label: {
+    fontSize: 20,
+    marginBottom: 16,
+    color: '#333333',
+    fontFamily: 'Fredoka One',
+  },
+  picker: {
+    height: 45,
+    width: '100%',
+    maxWidth: 350,
+    marginBottom: 20,
+    backgroundColor: '#f7d0a1',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    fontSize: 16,
+    fontFamily: 'Fredoka One',
+  },
+  startButton: {
+    alignItems: 'center',
+    backgroundColor: '#7c9a96',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    maxWidth: 350,
+    width: '100%',
+    marginTop: 10,
+  },
+  startButtonDisabled: {
+    alignItems: 'center',
+    backgroundColor: '#ccc',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    maxWidth: 350,
+    width: '100%',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontFamily: 'Fredoka One',
+  },
+});
+
+export default AnagramaStartScreen;

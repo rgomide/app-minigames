@@ -1,6 +1,6 @@
-import QuizResultCard from '../../components/quiz/QuizResultCard'
-import React, { useEffect } from 'react'
-import confeteGif from '../../img/confete.gif'
+import QuizResultCard from '../../components/quiz/QuizResultCard';
+import React, { useEffect } from 'react';
+import confeteGif from '../../img/confete.gif';
 import vitoriaIcon from '../../img/vitoriaIcon.png';
 import derrotaIcon from '../../img/derrotaIcon.png';
 import { playWinGameSound, playLoseGameSound } from '../../services/util/audio';
@@ -10,19 +10,18 @@ const QuizResultScreen = (props) => {
   const {
     navigation,
     route: {
-      params: { topic, answers, questions }
-    }
-  } = props
+      params: { topic, answers, questions },
+    },
+  } = props;
 
   const totalCorrectAnswers = answers.reduce((acc, answer) => {
-    return answer.correct ? acc + 1 : acc
-  }, 0)
+    return answer.correct ? acc + 1 : acc;
+  }, 0);
 
   const totalCorrectAnswerTitle =
-    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas'
+    totalCorrectAnswers === 1 ? 'resposta correta' : 'respostas corretas';
 
-  const score = Math.floor(totalCorrectAnswers * (100 / questions.length))
-
+  const score = Math.floor(totalCorrectAnswers * (100 / questions.length));
 
   useEffect(() => {
     if (totalCorrectAnswers > 0) {
@@ -30,13 +29,10 @@ const QuizResultScreen = (props) => {
     } else if (totalCorrectAnswers < 1) {
       playLoseGameSound();
     }
-  }, [totalCorrectAnswers])
-
-  console.log(totalCorrectAnswers)
+  }, [totalCorrectAnswers]);
 
   return (
     <ScrollView contentContainerStyle={styles.endScreenContainer}>
-
       {totalCorrectAnswers > 0 && (
         <View>
           <Image source={vitoriaIcon} alt="Vitória" style={styles.resultadoIcone} />
@@ -63,7 +59,6 @@ const QuizResultScreen = (props) => {
       </View>
       <Text style={styles.pontuacao}>Pontuação Final: {score}</Text>
 
-
       <View style={styles.quizResultList}>
         {questions.map((question, index) => (
           <QuizResultCard key={index} question={question} answer={answers[index]} />
@@ -75,25 +70,23 @@ const QuizResultScreen = (props) => {
           style={[styles.button, styles.buttonJogarNovamente]}
           onPress={() => navigation.navigate('QuizStartScreen')}
         >
-          <Text style={styles.buttonTextJogarNovamente}>
-            Jogar Novamente
-          </Text>
+          <Text style={styles.buttonText}>Jogar Novamente</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.buttonVoltarInicio]}
           onPress={() => navigation.navigate('MainMenuScreen')}
         >
-          <Text style={styles.buttonTextInicio}>Voltar ao início</Text>
+          <Text style={styles.buttonText}>Voltar ao início</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   endScreenContainer: {
-    display: 'flex',
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
@@ -101,82 +94,80 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2E8DF',
     textAlign: 'center',
     gap: 20,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   quizResultList: {
-    width: '100%'
+    width: '100%',
   },
   quizResultTotal: {
     fontSize: 24,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
   resultadoIcone: {
     width: 260,
     height: 150,
-    objectFit: 'contain'
+    resizeMode: 'contain',
   },
   confettiWrapper: {
-    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   confettiGif: {
     width: 70,
-    height: 70
+    height: 70,
   },
   quizResultTitleDerrota: {
+    fontSize: 36,
     color: '#f44336',
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
+    marginVertical: 20,
   },
   quizResultTitleVitoria: {
+    fontSize: 36,
     color: '#4caf50',
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
+    marginHorizontal: 10,
   },
   quizResultTitle: {
     fontSize: 36,
-    fontFamily: 'Fredoka',
-    textAlign: 'center'
+    fontFamily: 'Fredoka One',
+    textAlign: 'center',
   },
   pontuacao: {
     fontSize: 24,
     color: '#333',
     marginBottom: 15,
-    fontFamily: 'Fredoka',
-  },
-  button: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: 15,
-    borderRadius: 8,
-    textAlign: 'center',
-    width: '100%',
-    cursor: 'pointer',
-    border: 'none',
+    fontFamily: 'Fredoka One',
   },
   buttonContainer: {
-    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     gap: 15,
-    width: '100%'
+    width: '100%',
+  },
+  button: {
+    width: '100%',
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: 'center',
   },
   buttonJogarNovamente: {
     backgroundColor: '#4caf50',
+    marginBottom: 15,
   },
   buttonVoltarInicio: {
     backgroundColor: '#f44336',
   },
-  buttonTextJogarNovamente: {
+  buttonText: {
     color: 'white',
     fontSize: 18,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
-  buttonTextInicio: {
-    color: 'white',
-    fontSize: 18,
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
-    fontFamily: 'Fredoka',
-  }
-})
+});
 
-export default QuizResultScreen
+export default QuizResultScreen;

@@ -8,14 +8,12 @@ import {
   QUIZ_START_SCREEN
 } from '../constants/screens.js';
 
-// Import all images at the top of the file
 const iconeAnagrama = require('../img/icone_anagrama.png');
 const iconeAssociacao = require('../img/icone_associacao.png');
 const iconeForca = require('../img/icone_forca.png');
 const iconeQuiz = require('../img/icone_quiz.png');
 const playIcon = require('../img/play.png');
 
-// Create an object to map game names to their respective icons
 const gameIcons = {
   Anagrama: iconeAnagrama,
   Associação: iconeAssociacao,
@@ -94,10 +92,10 @@ const styles = StyleSheet.create({
     height: 100
   },
   gameTitle: {
-    fontSize: 22,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: '200',
     textTransform: 'uppercase',
-    fontFamily: 'Poppins',
+    fontFamily: 'Fredoka One',
     letterSpacing: 1.2,
     marginBottom: 10
   },

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import QuizCard from '../../components/quiz/QuizCard';
 import { QUIZ_RESULT_SCREEN } from '../../constants/screens';
-// import '../../components/visual/QuizGameVisual.css';
 import TooltipIcon from '../../components/TooltipIcon';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -92,12 +91,12 @@ const styles = StyleSheet.create({
     fontSize: 26,
     color: '#a99be0',
     textAlign: 'center',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
   quizCounter: {
     fontSize: 18,
     color: '#b3a8e0',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
   },
   quizNextButton: {
     display: 'flex',
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
   },
   quizNextButtonText: {
     fontSize: 18,
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka One',
     color: '#fff',
   },
 })
