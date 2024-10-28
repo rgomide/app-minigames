@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
-// import '../../components/visual/QuizGameVisual.css'; // Importação do arquivo CSS
-import CheckButtonGroup from '../CheckButtonGroup';
+import React, { useState } from 'react'
+import { View, Image, Text, StyleSheet } from 'react-native'
+import CheckButtonGroup from '../CheckButtonGroup'
 
 const QuizCard = ({ question, onChange }) => {
-  const { title, answers } = question;
+  const { title, answers } = question
 
-  const [imageDimensions, setImageDimensions] = useState({});
+  const [imageDimensions, setImageDimensions] = useState({})
 
   const handleImageLoadedEvent = (image, index) => {
     Image.getSize(
@@ -16,40 +15,44 @@ const QuizCard = ({ question, onChange }) => {
         const maxDimension = 200
 
         if (higherDimension > maxDimension) {
-          const ratio = maxDimension / higherDimension;
-          width *= ratio;
-          height *= ratio;
+          const ratio = maxDimension / higherDimension
+          width *= ratio
+          height *= ratio
         }
 
         setImageDimensions((prevState) => ({
           ...prevState,
-          [index]: { width, height },
-        }));
+          [index]: { width, height }
+        }))
       },
       (error) => {
         console.error(`Couldn't get the image size: ${error.message}`)
       }
-    );
-  };
+    )
+  }
 
   return (
     <View style={styles.quizCardMainView}>
-      {title.map((titleItem, index) => (
+      {title.map((titleItem, index) =>
         titleItem.type === 'text' ? (
-          <Text key={index} style={styles.quizCardTitle}>{titleItem.value}</Text>
+          <Text key={index} style={styles.quizCardTitle}>
+            {titleItem.value}
+          </Text>
         ) : (
           <Image
             key={index}
             source={titleItem.value}
             onLoad={() => handleImageLoadedEvent(titleItem.value, index)}
-            style={[{
-              width: imageDimensions[index]?.width || 80,
-              height: imageDimensions[index]?.height || 80,
-
-            }, styles.image]}
+            style={[
+              {
+                width: imageDimensions[index]?.width || 80,
+                height: imageDimensions[index]?.height || 80
+              },
+              styles.image
+            ]}
           />
         )
-      ))}
+      )}
       <Text style={styles.quizCardAlternativesLabel}>Escolha uma das alternativas:</Text>
       <View style={styles.quizCardCheckButtonGroupContainer}>
         <CheckButtonGroup
@@ -60,8 +63,8 @@ const QuizCard = ({ question, onChange }) => {
         />
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   quizCardMainView: {
@@ -87,13 +90,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: 10,
+    gap: 10
   },
   quizCardAlternativesLabel: {
     fontSize: 20,
     color: '#ffffff',
     textAlign: 'center',
-    fontFamily: 'Fredoka',
+    fontFamily: 'Fredoka'
   },
   quizCardCheckButtonGroupContainer: {
     display: 'flex',
@@ -108,4 +111,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default QuizCard;
+export default QuizCard

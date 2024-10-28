@@ -1,40 +1,36 @@
-import React, { useState } from 'react';
-import { Image, TouchableOpacity, StyleSheet, ScrollView, View, Text } from 'react-native';
+import React, { useState } from 'react'
+import { Image, TouchableOpacity, StyleSheet, ScrollView, View, Text } from 'react-native'
 import {
   ANAGRAMA_START_SCREEN,
   ASSOCIACAO_START_SCREEN,
   FORCA_START_SCREEN,
   QUIZ_START_SCREEN
-} from '../constants/screens.js';
+} from '../constants/screens.js'
 
-const iconeAnagrama = require('../img/icone_anagrama.png');
-const iconeAssociacao = require('../img/icone_associacao.png');
-const iconeForca = require('../img/icone_forca.png');
-const iconeQuiz = require('../img/icone_quiz.png');
-const playIcon = require('../img/play.png');
+const iconeAnagrama = require('../img/icone_anagrama.png')
+const iconeAssociacao = require('../img/icone_associacao.png')
+const iconeForca = require('../img/icone_forca.png')
+const iconeQuiz = require('../img/icone_quiz.png')
+const playIcon = require('../img/play.png')
 
 const gameIcons = {
   Anagrama: iconeAnagrama,
   Associação: iconeAssociacao,
   Forca: iconeForca,
-  Quiz: iconeQuiz,
-};
+  Quiz: iconeQuiz
+}
 
 const GameCard = ({ gameName, description, onPlay, bgColor }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const handleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+    setIsExpanded(!isExpanded)
+  }
 
   return (
-    <View>
+    <View style={styles.gameCardContainer}>
       <TouchableOpacity
-        style={[
-          styles.gameCard,
-          isExpanded && styles.expanded,
-          { backgroundColor: bgColor }
-        ]}
+        style={[styles.gameCard, isExpanded && styles.expanded, { backgroundColor: bgColor }]}
         onPress={handleExpand}
       >
         <View style={styles.gameIcon}>
@@ -45,35 +41,38 @@ const GameCard = ({ gameName, description, onPlay, bgColor }) => {
         {isExpanded && (
           <View style={styles.gameDescriptionContainer}>
             <Text style={styles.gameDescription}>{description}</Text>
-            <TouchableOpacity
-              onPress={onPlay}
-            >
+            <TouchableOpacity onPress={onPlay}>
               <Image source={playIcon} style={styles.playIcon} />
             </TouchableOpacity>
           </View>
         )}
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   gameMenu: {
+    paddingHorizontal: 30,
+    paddingVertical: 40,
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
+    height: '100%'
   },
   gameMenuContainer: {
     paddingVertical: 50,
     gap: 40,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
+  },
+  gameCardContainer: {
+    width: '100%'
   },
   gameCard: {
+    width: '100%',
     borderRadius: 20,
     padding: 30,
     textAlign: 'center',
-    width: 260,
     color: 'white',
     position: 'relative',
     overflow: 'hidden',
@@ -95,31 +94,29 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     textTransform: 'uppercase',
     fontFamily: 'Poppins',
-    letterSpacing: 1.2,
-    marginBottom: 10
+    letterSpacing: 1.2
   },
   gameDescription: {
     fontFamily: 'Poppins',
     borderRadius: 8,
-    color: 'white',
+    color: 'white'
   },
   playIcon: {
     width: 60,
     height: 60,
     cursor: 'pointer',
-    marginTop: 15,
+    marginTop: 15
   },
   gameDescriptionContainer: {
     width: '100%',
-    borderRadius: 8,    
+    borderRadius: 8,
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     padding: 15,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
   }
-});
-
+})
 
 const MainMenuScreen = ({ navigation }) => {
   return (
@@ -156,7 +153,7 @@ const MainMenuScreen = ({ navigation }) => {
         onPlay={() => navigation.navigate(QUIZ_START_SCREEN)}
       />
     </ScrollView>
-  );
-};
+  )
+}
 
-export default MainMenuScreen;
+export default MainMenuScreen

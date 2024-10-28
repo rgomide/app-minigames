@@ -1,35 +1,39 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
-import { getAssociacao } from '../../services/associacao/associacaoService';
-import { ASSOCIACAO_GAME_SCREEN } from '../../constants/screens';
-import TooltipIcon from '../../components/TooltipIcon';
+import { getAssociacao } from '../../services/associacao/associacaoService'
+import { ASSOCIACAO_GAME_SCREEN } from '../../constants/screens'
+import TooltipIcon from '../../components/TooltipIcon'
 
 const AssociacaoStartScreen = (props) => {
-  const navigation = props.navigation;
-  const [selectedAssociacao, setSelectedAssociacao] = useState('');
-  const [showInfo, setShowInfo] = useState(false);
+  const navigation = props.navigation
+  const [selectedAssociacao, setSelectedAssociacao] = useState('')
+  const [showInfo, setShowInfo] = useState(false)
 
   const associacaoList = [
     { label: 'Animais', value: 'associacao01' },
     { label: 'Instrumentos Musicais', value: 'associacao02' },
     { label: 'Países', value: 'associacao03' }
-  ];
+  ]
 
   const toggleInfo = () => {
-    setShowInfo(!showInfo);
-  };
+    setShowInfo(!showInfo)
+  }
 
   const startAssociacao = async () => {
-    const associacao = await getAssociacao(selectedAssociacao);
-    const selectedThemeLabel = associacaoList.find(option => option.value === selectedAssociacao)?.label;
-    navigation.navigate(ASSOCIACAO_GAME_SCREEN, { associacaoSettings: associacao, selectedTheme: selectedThemeLabel });
-  };
+    const associacao = await getAssociacao(selectedAssociacao)
+    const selectedThemeLabel = associacaoList.find(
+      (option) => option.value === selectedAssociacao
+    )?.label
+    navigation.navigate(ASSOCIACAO_GAME_SCREEN, {
+      associacaoSettings: associacao,
+      selectedTheme: selectedThemeLabel
+    })
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-        <TooltipIcon text="Relacione os itens da coluna da direita com os itens da coluna da esquerda." />
-      
+      <TooltipIcon text="Relacione os itens da coluna da direita com os itens da coluna da esquerda." />
 
       <Text style={styles.title}>ASSOCIAÇÃO</Text>
 
@@ -54,8 +58,8 @@ const AssociacaoStartScreen = (props) => {
         <Text style={styles.buttonText}>Iniciar Associação</Text>
       </TouchableOpacity>
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -63,19 +67,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#F2E8DF',   
+    backgroundColor: '#F2E8DF'
   },
   title: {
     fontSize: 50,
     fontFamily: 'Poppins',
     marginBottom: 16,
-    color: '#5d7370',
+    color: '#5d7370'
   },
   label: {
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   picker: {
     height: 45,
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     fontSize: 16,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   startButton: {
     alignItems: 'center',
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     maxWidth: 350,
     width: '100%',
-    marginTop: 10,
+    marginTop: 10
   },
   startButtonDisabled: {
     alignItems: 'center',
@@ -106,13 +110,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     maxWidth: 350,
     width: '100%',
-    marginTop: 10,
+    marginTop: 10
   },
   buttonText: {
     color: '#333',
     fontSize: 16,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   }
-});
+})
 
-export default AssociacaoStartScreen;
+export default AssociacaoStartScreen

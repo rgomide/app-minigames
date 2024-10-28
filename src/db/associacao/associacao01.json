@@ -1,44 +1,44 @@
 {
-    "topic": "Animais",
-    "items": [
+  "topic": "Animais",
+  "items": [
+    {
+      "id": 1,
+      "associar": [
         {
-            "id": 1,
-            "associar": [
-                {
-                    "titulo": "Morsa",
-                    "imagem": "https://picsum.photos/id/1084/300/200"
-                },
-                {
-                    "titulo": "Círculo Polar Ártico",
-                    "imagem": "https://picsum.photos/id/1036/300/200"
-                }
-            ]
+          "titulo": "Morsa",
+          "imagem": "https://picsum.photos/id/1084/300/200"
         },
         {
-            "id": 2,
-            "associar": [
-                {
-                    "titulo": "Onça-Pintada",
-                    "imagem": "https://picsum.photos/id/219/300/200"
-                },
-                {
-                    "titulo": "Floresta Tropical",
-                    "imagem": null
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "associar": [
-                {
-                    "titulo": "Hipopótomo",
-                    "imagem": null
-                },
-                {
-                    "titulo": "Savana Africana",
-                    "imagem": null
-                }
-            ]
+          "titulo": "Círculo Polar Ártico",
+          "imagem": "https://picsum.photos/id/1036/300/200"
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "associar": [
+        {
+          "titulo": "Onça-Pintada",
+          "imagem": "https://picsum.photos/id/219/300/200"
+        },
+        {
+          "titulo": "Floresta Tropical",
+          "imagem": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "associar": [
+        {
+          "titulo": "Hipopótomo",
+          "imagem": null
+        },
+        {
+          "titulo": "Savana Africana",
+          "imagem": null
+        }
+      ]
+    }
+  ]
 }

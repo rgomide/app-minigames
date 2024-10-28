@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
-import { getAnagrama } from '../../services/anagrama/anagramaService';
-import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens';
-import TooltipIcon from '../../components/TooltipIcon';
+import { getAnagrama } from '../../services/anagrama/anagramaService'
+import { ANAGRAMA_GAME_SCREEN } from '../../constants/screens'
+import TooltipIcon from '../../components/TooltipIcon'
 
 const AnagramaStartScreen = (props) => {
-  const navigation = props.navigation;
-  const [selectedAnagrama, setSelectedAnagrama] = useState('');
+  const navigation = props.navigation
+  const [selectedAnagrama, setSelectedAnagrama] = useState('')
 
   const anagramaList = [
     { label: 'Animais', value: 'anagrama01' },
     { label: 'Países', value: 'anagrama02' },
     { label: 'Frutas', value: 'anagrama03' }
-  ];
+  ]
 
   const startAnagrama = async () => {
-    const anagrama = await getAnagrama(selectedAnagrama);
-    navigation.navigate(ANAGRAMA_GAME_SCREEN, { anagramaSettings: anagrama });
-  };
+    const anagrama = await getAnagrama(selectedAnagrama)
+    navigation.navigate(ANAGRAMA_GAME_SCREEN, { anagramaSettings: anagrama })
+  }
 
   return (
     <View style={styles.container}>
-        <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
+      <TooltipIcon text="Reorganize as letras embaralhadas para formar palavras válidas." />
 
       <Text style={styles.title}>ANAGRAMA</Text>
 
@@ -47,8 +47,8 @@ const AnagramaStartScreen = (props) => {
         <Text style={styles.buttonText}>Iniciar Anagrama</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -56,19 +56,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#F2E8DF',
+    backgroundColor: '#F2E8DF'
   },
   title: {
     fontSize: 50,
     fontFamily: 'Poppins',
     marginBottom: 16,
-    color: '#f2b263',
+    color: '#f2b263'
   },
   label: {
     fontSize: 20,
     marginBottom: 16,
     color: '#333333',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   picker: {
     height: 45,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     fontSize: 16,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins'
   },
   startButton: {
     alignItems: 'center',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     maxWidth: 350,
     width: '100%',
-    marginTop: 10,
+    marginTop: 10
   },
   startButtonDisabled: {
     alignItems: 'center',
@@ -99,13 +99,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     maxWidth: 350,
     width: '100%',
-    marginTop: 10,
+    marginTop: 10
   },
   buttonText: {
     color: '#ffffff',
     fontSize: 16,
-    fontFamily: 'Poppins',
-  },
-});
+    fontFamily: 'Poppins'
+  }
+})
 
-export default AnagramaStartScreen;
+export default AnagramaStartScreen

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { View, TouchableOpacity, Image, Text, StyleSheet } from "react-native"
+import { useState } from 'react'
+import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 
 const infoIcon = require('../img/duvida.png')
 
 const TooltipIcon = ({ text }) => {
-  const [showInfo, setShowInfo] = useState(false);
+  const [showInfo, setShowInfo] = useState(false)
 
   const toggleInfo = () => {
     setShowInfo(!showInfo)
@@ -15,7 +15,6 @@ const TooltipIcon = ({ text }) => {
       <TouchableOpacity style={styles.infoIcon} onPress={toggleInfo}>
         <Image style={styles.infoIcon} source={infoIcon} alt="Informação" />
       </TouchableOpacity>
-
 
       <View style={showInfo ? styles.infoBubbleShow : styles.infoBubbleHidden}>
         <Text>{text}</Text>
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     width: 40,
     height: 40,
-    cursor: 'pointer',
+    cursor: 'pointer'
   },
   infoBubbleHidden: {
     display: 'none'
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: '100%',
     marginBottom: 20
-  },
+  }
 })
 
-export default TooltipIcon;
+export default TooltipIcon

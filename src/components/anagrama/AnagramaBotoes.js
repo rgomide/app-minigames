@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 
 const AnagramaBotoes = ({ onEnviarPress, onApagarPress }) => {
   return (
@@ -8,14 +8,11 @@ const AnagramaBotoes = ({ onEnviarPress, onApagarPress }) => {
         <Text style={styles.enviarButtonText}>Enviar Palavra</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.apagarButton} onPress={onApagarPress}>
-        <Image
-          source={require('../../../assets/backspace.png')}
-          style={styles.apagarButtonImg}
-        />
+        <Image source={require('../../../assets/backspace.png')} style={styles.apagarButtonImg} />
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   buttonRow: {
@@ -26,8 +23,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
     maxWidth: 400,
-    marginHorizontal: 'auto',
-    
+    marginHorizontal: 'auto'
   },
   apagarButton: {
     backgroundColor: '#916a3b',
@@ -37,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 60,
-    height: 60,
+    height: 60
   },
   enviarButton: {
     backgroundColor: '#f2b263',
@@ -48,18 +44,18 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 8,
     flex: 1,
-    marginRight: 8,
+    marginRight: 8
   },
   enviarButtonText: {
     color: 'white',
     fontSize: 16,
     fontFamily: 'Poppins',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   apagarButtonImg: {
     width: 20,
-    height: 20,
-  },
-});
+    height: 20
+  }
+})
 
-export default AnagramaBotoes;
+export default AnagramaBotoes

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image, View, ScrollView, StyleSheet } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
-import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio';
-import TooltipIcon from '../../components/TooltipIcon';
+import { playCorrectAnswerSound, playWrongAnswerSound } from '../../services/util/audio'
+import TooltipIcon from '../../components/TooltipIcon'
 
 const img0 = require('../../img/img0.png')
 const img1 = require('../../img/img1.png')
@@ -44,12 +44,12 @@ const ForcaGameScreen = () => {
     { letra: 'X', clicado: false },
     { letra: 'Y', clicado: false },
     { letra: 'Z', clicado: false }
-  ]);
+  ])
 
   const [grupoAtual] = useState(tema.grupos[Math.floor(Math.random() * tema.grupos.length)])
   const [palavraAtual] = useState(
     grupoAtual.palavras[Math.floor(Math.random() * grupoAtual.palavras.length)]
-  );
+  )
   const [tentativas, setTentativas] = useState([])
   const [erros, setErros] = useState(0)
   const [mensagem, setMensagem] = useState('')
@@ -62,13 +62,13 @@ const ForcaGameScreen = () => {
       .split('')
       .map((letra) => (tentativas.includes(letra) ? letra : '_'))
       .join(' ')
-  };
+  }
 
   const playSound = (isCorrect) => {
     if (isCorrect) {
-      playCorrectAnswerSound();
+      playCorrectAnswerSound()
     } else {
-      playWrongAnswerSound();
+      playWrongAnswerSound()
     }
   }
 
@@ -97,7 +97,7 @@ const ForcaGameScreen = () => {
       } else {
         return teclaOriginal
       }
-    });
+    })
 
     setTeclas(teclasAtualizadas)
 
@@ -122,14 +122,9 @@ const ForcaGameScreen = () => {
 
   return (
     <ScrollView style={styles.forcaContainer} contentContainerStyle={styles.forcaContent}>
-
       <TooltipIcon text="Adivinhe a palavra secreta, antes de atingir os seis erros." />
 
-      <Image
-        source={forcaImagens[erros]}
-        alt="Imagem da Forca"
-        style={styles.forcaImagem}
-      />
+      <Image source={forcaImagens[erros]} alt="Imagem da Forca" style={styles.forcaImagem} />
       <Text style={styles.dica}>Dica: {grupoAtual.dica}</Text>
       <Text style={styles.palavra}>Palavra: {renderPalavra()}</Text>
       <Text style={styles.erros}>Erros: {erros} de 6</Text>
@@ -155,20 +150,20 @@ const ForcaGameScreen = () => {
 const styles = StyleSheet.create({
   forcaContainer: {
     flex: 1,
-    backgroundColor: '#F2E8DF',
+    backgroundColor: '#F2E8DF'
   },
   forcaContent: {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 40,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   forcaImagem: {
     width: 400,
     height: 300,
     objectFit: 'contain',
-    marginBottom: 10,
+    marginBottom: 10
   },
   teclado: {
     display: 'flex',
@@ -176,7 +171,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     gap: 6,
-    maxWidth: '100%',
+    maxWidth: '100%'
   },
   tecla: {
     display: 'flex',
@@ -191,7 +186,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     textAlign: 'center',
-    lineHeight: 24,
+    lineHeight: 24
   },
   teclaDisabled: {
     display: 'flex',
@@ -206,14 +201,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     textAlign: 'center',
-    lineHeight: 24,
+    lineHeight: 24
   },
   dica: {
     fontSize: 14,
     fontFamily: 'Poppins',
     color: '#333333',
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   palavra: {
     fontSize: 16,
@@ -221,15 +216,15 @@ const styles = StyleSheet.create({
     color: '#333333',
     letterSpacing: 4,
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   erros: {
     fontSize: 14,
     fontFamily: 'Poppins',
     color: '#f28585',
     marginBottom: 10,
-    textAlign: 'center',
+    textAlign: 'center'
   }
-});
+})
 
 export default ForcaGameScreen
