@@ -2,7 +2,6 @@
   "tema": "Frutas",
   "letras": ["M", "A", "P", "G", "N", "O"],
   "enunciado": "Forme palavras com as letras disponíveis.",
-  "imagens": ["https://picsum.photos/id//200/300"],
   "pontuacaoMaxima": 100,
   "palavrasEscondidas": [
     {

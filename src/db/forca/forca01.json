@@ -6,7 +6,7 @@
         "grupos": [
           {
             "dica": "Aves",
-            "imagem": "https://picsum.photos/id/200/200/300",
+            "imagem": "",
             "palavras": ["papagaio", "coruja", "perdiz", "ema"]
           },
           {
@@ -27,7 +27,7 @@
           {
             "dica": "Cítricas",
             "imagem": "",
-            "palavras": ["laranja", "limão", "tangerina"]
+            "palavras": ["laranja", "limao", "tangerina"]
           }
         ]
       },

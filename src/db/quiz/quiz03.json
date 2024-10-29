@@ -1,0 +1,125 @@
+{
+    "topic": "Frutas",
+    "questions": [
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual fruta tem casca grossa e polpa doce e suculenta?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Abacaxi",
+            "correct": true
+          },
+          {
+            "id": 2,
+            "answer": "Morango",
+            "correct": false
+          },
+          {
+            "id": 3,
+            "answer": "Uva",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Cereja",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual dessas frutas é conhecida por suas sementes pretas e polpa vermelha?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Melancia",
+            "correct": true
+          },
+          {
+            "id": 2,
+            "answer": "Limão",
+            "correct": false
+          },
+          {
+            "id": 3,
+            "answer": "Maçã",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Pêssego",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual fruta é pequena, vermelha e possui pequenas sementes na sua superfície?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Morango",
+            "correct": true
+          },
+          {
+            "id": 2,
+            "answer": "Banana",
+            "correct": false
+          },
+          {
+            "id": 3,
+            "answer": "Laranja",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Abacate",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual fruta é amarela por fora e possui polpa macia e doce, além de uma semente grande?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Manga",
+            "correct": true
+          },
+          {
+            "id": 2,
+            "answer": "Pera",
+            "correct": false
+          },
+          {
+            "id": 3,
+            "answer": "Maçã",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Lima",
+            "correct": false
+          }
+        ]
+      }
+    ]
+}

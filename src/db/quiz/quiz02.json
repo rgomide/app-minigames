@@ -1,0 +1,96 @@
+{
+    "topic": "Animais",
+    "questions": [
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual desses animais é conhecido por sua capacidade de voar longas distâncias durante a migração?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Pombo",
+            "correct": false
+          },
+          {
+            "id": 2,
+            "answer": "Águia",
+            "correct": true
+          },
+          {
+            "id": 3,
+            "answer": "Coruja",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Galinha",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual animal é conhecido por ser o maior mamífero terrestre?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Elefante",
+            "correct": true
+          },
+          {
+            "id": 2,
+            "answer": "Gorila",
+            "correct": false
+          },
+          {
+            "id": 3,
+            "answer": "Hipopótamo",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Tigre",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "title": [
+          {
+            "type": "text",
+            "value": "Qual desses animais é conhecido por seu longo pescoço?"
+          }
+        ],
+        "answers": [
+          {
+            "id": 1,
+            "answer": "Girafa",
+            "correct": true
+          },
+          {
+            "id": 2,
+            "answer": "Leão",
+            "correct": false
+          },
+          {
+            "id": 3,
+            "answer": "Elefante",
+            "correct": false
+          },
+          {
+            "id": 4,
+            "answer": "Cavalo",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -8,12 +8,11 @@ const QuizGameScreen = (props) => {
   const {
     navigation,
     route: {
-      params: {
-        quizSettings: { topic, questions }
-      }
+      params: { quizSettings }
     }
   } = props
 
+  const { topic, questions } = quizSettings 
   const [currentQuestion, setCurrentQuestion] = useState(questions[0])
   const [questionCounter, setQuestionCounter] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -50,10 +49,7 @@ const QuizGameScreen = (props) => {
   }
 
   const getButtonTitle = () => {
-    if (questionCounter === questions.length - 1) {
-      return 'Finalizar'
-    }
-    return 'Próxima'
+    return questionCounter === questions.length - 1 ? 'Finalizar' : 'Próxima'
   }
 
   return (

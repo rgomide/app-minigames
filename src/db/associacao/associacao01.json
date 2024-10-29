@@ -9,7 +9,7 @@
           "imagem": "https://picsum.photos/id/1084/300/200"
         },
         {
-          "titulo": "Círculo Polar Ártico",
+          "titulo": "Polar Ártico",
           "imagem": "https://picsum.photos/id/1036/300/200"
         }
       ]
@@ -23,7 +23,7 @@
         },
         {
           "titulo": "Floresta Tropical",
-          "imagem": null
+          "imagem": "https://picsum.photos/id/466/300/200"
         }
       ]
     },

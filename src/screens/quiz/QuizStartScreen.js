@@ -8,11 +8,13 @@ import TooltipIcon from '../../components/TooltipIcon'
 const QuizStartScreen = (props) => {
   const navigation = props.navigation
   const [selectedQuiz, setSelectedQuiz] = useState('')
-  const quizList = [{ label: 'Capitais', value: 'quiz01' }]
+  const quizList = [{ label: 'Capitais', value: 'quiz01' }, { label: 'Animais', value: 'quiz02' }, { label: 'Frutas', value: 'quiz03' }]
 
   const handleStartGame = async () => {
-    const quiz = await getQuiz('quiz01')
-    navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz })
+    if (selectedQuiz) {
+      const quiz = await getQuiz(selectedQuiz)
+      navigation.navigate(QUIZ_GAME_SCREEN, { quizSettings: quiz })
+    }
   }
 
   return (
