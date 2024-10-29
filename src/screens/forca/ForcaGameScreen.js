@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   forcaImagem: {
     width: 400,
-    height: 300,
+    height: 568,
     objectFit: 'contain',
     marginBottom: 10
   },
