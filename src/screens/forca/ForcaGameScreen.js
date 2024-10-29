@@ -109,14 +109,14 @@ const ForcaGameScreen = () => {
     if (erroAtualizado >= 6) {
       setTimeout(() => {
         navigation.navigate('ForcaEndScreen', { resultado: 'perdeu', pontuacao, palavraAtual })
-      }, 1000)
+      }, 1000);
     } else if (
       palavraAtual
         .toUpperCase()
         .split('')
         .every((l) => tentativasAtualizado.includes(l))
     ) {
-      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao, palavraAtual })
+      navigation.navigate('ForcaEndScreen', { resultado: 'ganhou', pontuacao })
     }
   }
 
@@ -160,10 +160,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   forcaImagem: {
-    width: 400,
-    height: 568,
-    objectFit: 'contain',
-    marginBottom: 10
+    width: '100%', 
+    height: undefined, 
+    aspectRatio: 4 / 3, 
+    resizeMode: 'contain', 
+    marginBottom: 10,
   },
   teclado: {
     display: 'flex',
