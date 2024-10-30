@@ -69,5 +69,17 @@ git checkout -b NOME-DA-NOVA-BRANCH
 git branch --show-current
 ``` 
 
+## Converter AAB para APK
+
+Fazer o download do [bundletool](https://github.com/google/bundletool/releases).
+
+Executar o comando:
+```
+java -jar bundletool-all-1.17.2.jar build-apks --bundle=/Users/gomide/Desktop/appMinigameBuild.aab --output=/Users/gomide/Desktop/appMinigame.apks --mode=universal
+```
+
+Renomear o arquivo `appMinigame.apks` para `appMinigame.zip` e descompactar.
+
 ## Referências
 - [Gitbash](https://git-scm.com/downloads)
+- [Bundletool - Converter AAB para APK](https://github.com/google/bundletool)
