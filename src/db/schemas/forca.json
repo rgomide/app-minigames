@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "forca": {
+      "type": "object",
+      "properties": {
+        "temas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tema": {
+                "type": "string",
+                "description": "The category name"
+              },
+              "grupos": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "dica": {
+                      "type": "string",
+                      "description": "The hint or subcategory"
+                    },
+                    "imagem": {
+                      "type": "string",
+                      "description": "URL or path to an associated image"
+                    },
+                    "palavras": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Words to guess in the game"
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": ["dica", "imagem", "palavras"]
+                }
+              }
+            },
+            "required": ["tema", "grupos"]
+          }
+        }
+      },
+      "required": ["temas"]
+    }
+  },
+  "required": ["forca"]
+}

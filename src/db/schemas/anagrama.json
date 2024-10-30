@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["tema", "letras", "enunciado", "pontuacaoMaxima", "palavrasEscondidas"],
+  "properties": {
+    "tema": {
+      "type": "string",
+      "description": "The theme of the anagram puzzle"
+    },
+    "letras": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1
+      },
+      "description": "Array of single letters available for forming words"
+    },
+    "enunciado": {
+      "type": "string",
+      "description": "Instructions or prompt for the puzzle"
+    },
+    "pontuacaoMaxima": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum score possible for the puzzle"
+    },
+    "palavrasEscondidas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["palavra", "dica", "tamanho"],
+        "properties": {
+          "palavra": {
+            "type": "string",
+            "pattern": "^[A-Z]+$",
+            "description": "The hidden word to be found (in uppercase)"
+          },
+          "dica": {
+            "type": "string",
+            "description": "Hint for the hidden word"
+          },
+          "tamanho": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Length of the hidden word"
+          }
+        }
+      },
+      "description": "Array of hidden words with their hints and lengths"
+    }
+  }
+}

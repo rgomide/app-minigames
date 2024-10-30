@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["topic", "questions"],
+  "properties": {
+    "topic": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "answers"],
+        "properties": {
+          "title": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "value"],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["text", "image"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "minItems": 1
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "answer", "correct"],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "answer": {
+                  "type": "string"
+                },
+                "correct": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "minItems": 4,
+            "maxItems": 4
+          }
+        }
+      },
+      "minItems": 1
+    }
+  }
+}
