@@ -4,13 +4,20 @@
 ## Sumário
 
 - [Executar o projeto](#executando-o-projeto)
+- [JSON Schemas dos jogos](#schemas)
 - [Comandos úteis do github](#comandos-úteis-do-github)
 - [Referências](#referências)
 
 ## Executando o projeto
 
-1. Execute `npm install`.
+1. Execute `npm install --force`.
 2. Execute `npm run web`.
+
+## JSON Schemas dos jogos
+
+Os esquemas dos JSONs dos jogos estão localizados na pasta [src/db/schemas](./src/db/schemas/).
+
+Utilize esses arquivos para validar os JSONs dos jogos e evitar erros de sintaxe. Além disso, você pode utilizar algum visualizador de esquema como o [JSON Schema Viewer](https://navneethg.github.io/jsonschemaviewer/) para compreender melhor a estrutura dos JSONs.
 
 ## Comandos úteis do github
 
